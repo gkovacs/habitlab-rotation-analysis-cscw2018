@@ -1,18 +1,22 @@
----
-title: "R Notebook"
-output: html_notebook
----
+#install.packages('lme4')
+#install.packages('stargazer')
+#install.packages('sjPlot')
+library(lme4)
+library(stargazer)
+library(sjPlot)
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+#data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am.csv')
+#data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_facebook_only.csv')
+data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_facebook_only_default_interventions_only.csv')
+summary(data)
+#data <- data[data$domain == 'www.facebook.com', ]
+#summary(data)
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
-
-```{r}
-plot(cars)
-```
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+#results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + as.factor(domain) + (1|install_id), data = data)
+results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
+plot(results)
+#stargazer(results)
+summary(results)
+vcov(results)
+anova(results)
+#aov(results)

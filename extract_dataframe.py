@@ -1,7 +1,9 @@
 import pandas as pd
 from math import log
 
-def extract_dataframe(alldata):
+def extract_dataframe(alldata, filter_funcs=[]):
+  if callable(filter_funcs):
+    filter_funcs = [filter_funcs]
   rows = []
   for install_id,experiment_info_with_sessions in alldata.items():
     for experiment_info in experiment_info_with_sessions:
@@ -15,7 +17,9 @@ def extract_dataframe(alldata):
             time_spent = session_info['time_spent']
             timestamp = session_info['timestamp']
             intervention = session_info['intervention']
-            rows.append({
+            #if domain != 'www.facebook.com':
+            #  continue
+            row = {
               'log_time_spent': log(time_spent),
               'time_spent': time_spent,
               'install_id': install_id,
@@ -23,5 +27,11 @@ def extract_dataframe(alldata):
               'condition': condition,
               'intervention': intervention,
               'domain': domain,
-            })
+            }
+            accept = True
+            for filter_func in filter_funcs:
+              if not filter_func(row):
+                accept = False
+            if accept:
+              rows.append(row)
   return pd.DataFrame(rows)
