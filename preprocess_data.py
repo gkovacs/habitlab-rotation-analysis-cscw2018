@@ -2,7 +2,7 @@ import pandas as pd
 import json
 from extract_dataframe import extract_dataframe, extract_dataframe_daily, is_default_facebook_intervention, is_default_youtube_intervention, at_least_two_conditions, is_facebook, is_youtube, exclude_first_day, exclude_last_day
 
-datafile = 'data_march30_1am.json'
+datafile = 'data_march31_11am.json'
 datafile_base = datafile.replace('.json', '')
 alldata = json.load(open(datafile))
 

@@ -104,6 +104,29 @@ def get_global_max_timestamp(alldata):
             max_timestamp = max(max_timestamp, timestamp)
   return max_timestamp
 
+def get_domain_to_num_samples(session_info_list):
+  output = Counter()
+  for session_info in session_info_list:
+    domain = session_info['domain']
+    output[domain] += 1
+  return dict(output)
+
+def get_domain_to_total_time_spent(session_info_list):
+  output = Counter()
+  for session_info in session_info_list:
+    domain = session_info['domain']
+    time_spent = session_info['time_spent']
+    output[domain] += time_spent
+  return dict(output)
+
+def get_domain_to_last_timestamp(session_info_list):
+  output = Counter()
+  for session_info in session_info_list:
+    domain = session_info['domain']
+    timestamp = session_info['timestamp']
+    output[domain] = max(output[domain], timestamp)
+  return dict(output)
+
 def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
   if callable(filter_funcs):
     filter_funcs = [filter_funcs]
@@ -131,11 +154,11 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
         for day_info in condition_info['day_info_list']:
-          is_day_with_just_one_sample = 0
-          if len(day_info['session_info_list']) < 2:
-            is_day_with_just_one_sample = 1
+          #is_day_with_just_one_sample = 0
+          #if len(day_info['session_info_list']) < 2:
+          #  is_day_with_just_one_sample = 1
+          domain_to_num_samples = get_domain_to_num_samples(day_info['session_info_list'])
           intervention_to_num_impressions_today = {}
-          total_time_on_day = 0
           intervention_to_seen_today_at_least_once = {}
           for session_info in sorted(day_info['session_info_list'], key=lambda k: k['timestamp']):
             domain = session_info['domain']
@@ -171,7 +194,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
               'days_until_last_day': days_until_last_day,
               'num_days_intervention_seen_at_least_once': num_days_intervention_seen_at_least_once,
               'timestamp': timestamp,
-              'is_day_with_just_one_sample': is_day_with_just_one_sample,
+              'is_day_with_just_one_sample': int(domain_to_num_samples[domain] == 1),
               'impression_idx': intervention_to_num_impressions[intervention],
               'is_first_visit_of_day': is_first_visit_of_day,
               'impression_idx_within_day': intervention_to_num_impressions_today[intervention],
@@ -227,10 +250,12 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
         for day_info in condition_info['day_info_list']:
-          is_day_with_just_one_sample = 0
-          if len(day_info['session_info_list']) < 2:
-            is_day_with_just_one_sample = 1
-          domain_to_total_time_spent = {}
+          domain_to_num_samples = get_domain_to_num_samples(day_info['session_info_list'])
+          #is_day_with_just_one_sample = 0
+          #if len(day_info['session_info_list']) < 2:
+          #  is_day_with_just_one_sample = 1
+          domain_to_total_time_spent = get_domain_to_total_time_spent(day_info['session_info_list'])
+          domain_to_last_timestamp = get_domain_to_last_timestamp(day_info['session_info_list'])
           day_intervention = 'random'
           domain_to_num_impressions_on_day = {}
           last_timestamp_on_day = None
@@ -256,29 +281,29 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
             days_until_last_day = last_localepoch - localepoch
             #if domain != 'www.facebook.com':
             #  continue
-            if domain not in domain_to_total_time_spent:
-              domain_to_total_time_spent[domain] = 0
-            domain_to_total_time_spent[domain] += time_spent
           if len(day_info['session_info_list']) == 0:
             continue
           is_last_day = int(last_timestamp_on_day == last_timestamp)
-          attritioned = 0
+          domain_to_attritioned = {}
+          attritioned_today = 0
           if len(day_info['session_info_list']) > 0 and is_last_day:
             if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 1:
-              attritioned = 1
+              attritioned_today = 1
           for domain,total_time_spent in domain_to_total_time_spent.items():
             row = {
               'days_since_install': days_since_install,
               'days_until_last_day': days_until_last_day,
               'user_saw_both_same_and_random': int(user_saw_both_same_and_random),
-              'is_day_with_just_one_sample': is_day_with_just_one_sample,
-              'attritioned': attritioned,
+              'num_visits_to_domain_today': domain_to_num_samples[domain],
+              'is_day_with_just_one_sample': int(domain_to_num_samples[domain] == 1),
+              'attritioned': attritioned_today,
+              'attritioned_today': attritioned_today,
               'is_last_day': is_last_day,
               'first_condition_for_user': first_condition_for_user,
               'intervention': day_intervention,
               'num_impressions_on_day': domain_to_num_impressions_on_day[domain],
-              'log_time_spent': log(time_spent),
-              'time_spent': time_spent,
+              'log_time_spent': log(total_time_spent),
+              'time_spent': total_time_spent,
               'install_id': install_id,
               'userid': userid,
               'condition': condition,
