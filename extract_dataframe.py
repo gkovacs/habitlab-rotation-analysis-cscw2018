@@ -91,6 +91,14 @@ def get_did_user_experience_both_same_and_random(experiment_info_with_sessions):
             random_seen = True
   return same_seen and random_seen
 
+def get_did_user_attrition(experiment_info_with_sessions):
+  for experiment_info in experiment_info_with_sessions:
+    for condition_info in experiment_info['condition_info_list']:
+      attritioned_today = 0
+      if len(day_info['session_info_list']) > 0 and is_last_day:
+        if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 1:
+          attritioned_today = 1
+
 def get_global_max_timestamp(alldata):
   max_timestamp = None
   for install_id,experiment_info_with_sessions in alldata.items():
@@ -196,7 +204,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
               'timestamp': timestamp,
               'is_day_with_just_one_sample': int(domain_to_num_samples[domain] == 1),
               'impression_idx': intervention_to_num_impressions[intervention],
-              'is_first_visit_of_day': is_first_visit_of_day,
+              'is_first_visit_of_day': int(is_first_visit_of_day),
               'impression_idx_within_day': intervention_to_num_impressions_today[intervention],
               'log_time_spent': log(time_spent),
               'time_spent': time_spent,
