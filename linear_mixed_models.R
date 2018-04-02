@@ -3,6 +3,8 @@
 #install.packages('sjPlot')
 #install.packages('Matrix')
 #install.packages('ez')
+#install.packages('fitdistrplus')
+library(fitdistrplus)
 library(ez)
 library(lme4)
 #library(stargazer)
@@ -74,6 +76,15 @@ datadays_facebook <- subset(datadays_facebook, datadays_facebook$days_since_inst
 datadays_facebook_withoutattritionday <- subset(datadays_facebook, datadays_facebook$attritioned_today == 0)
 #datadays <- subset(datadays, datadays$user_saw_both_same_and_random == 1)
 
+datadays_facebook_same_withoutattritionday <- subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$condition == "same")
+datadays_facebook_random_withoutattritionday <- subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$condition == "random")
+
+datadays_facebook_same <- subset(datadays_facebook, datadays_facebook$condition == "same")
+datadays_facebook_random <- subset(datadays_facebook, datadays_facebook$condition == "random")
+
+summary(datadays_facebook_same)
+summary(datadays_facebook_random)
+
 
 datadays_foruser <- subset(datadays, datadays$userid == '1ffbcad578ff880eb15ad164')
 summary(datadays_foruser)
@@ -93,7 +104,29 @@ data_facebook <- subset(data_facebook, data_facebook$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_facebook_notfirstvisit <- subset(data_facebook, data_facebook$is_first_visit_of_day == 0)
 
+data_facebook_allinterventions <- subset(data, data$domain == "www.facebook.com")
+data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_day_with_just_one_sample == 0)
+#data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$days_since_install > 0)
+#data <- subset(data, data$days_until_last_day > 0)
+data_facebook_allinterventions_notfirstvisit <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_first_visit_of_day == 0)
+
+data_youtube <- subset(data, data$domain == "www.youtube.com")
+#data_facebook <- subset(data_facebook, data_facebook$intervention == 'facebook/feed_injection_timer' | data_facebook$intervention == "facebook/remove_news_feed" | data_facebook$intervention == "facebook/remove_comments" | data_facebook$intervention == 'facebook/toast_notifications' | data_facebook$intervention == 'facebook/show_timer_banner')
+data_youtube <- subset(data_youtube, data_youtube$is_day_with_just_one_sample == 0)
+data_youtube <- subset(data_youtube, data_youtube$days_since_install > 0)
+#data <- subset(data, data$days_until_last_day > 0)
+data_youtube_notfirstvisit <- subset(data_youtube, data_youtube$is_first_visit_of_day == 0)
+
 summary(data_facebook)
+
+length(unique(data$userid))
+
+#data_facebook <- subset(data_facebook, data_facebook$intervention == 'facebook/feed_injection_timer' | data_facebook$intervention == "facebook/remove_news_feed" | data_facebook$intervention == "facebook/remove_comments" | data_facebook$intervention == 'facebook/toast_notifications' | data_facebook$intervention == 'facebook/show_timer_banner')
+data_all <- subset(data, data$is_day_with_just_one_sample == 0)
+data_all <- subset(data_all, data_all$days_since_install > 0)
+#data <- subset(data, data$days_until_last_day > 0)
+data_all_notfirstvisit <- subset(data_all, data_all$is_first_visit_of_day == 0)
+
 
 #summary(data)
 #typeof(data$userid)
@@ -139,20 +172,29 @@ summary(results)
 #results <- t.test(log_time_spent ~ as.factor(condition), data=datadays_facebook_withoutlastday)
 #show(results)
 
+#shapiro.test(data_facebook$log_time_spent)
+
 # note that linear mixed model is not correct to use on binary response data. need a generalized linear mixed model I think
 
-results <- lmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_facebook)
-resultsnull <- lmer(attritioned ~ (1|install_id), data = datadays_facebook)
+fit = fitdist(data = datadays_facebook$attritioned, dist="binom")
+summary(fit)
+
+# https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/
+
+#results <- glmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_facebook, family='binomial')
+#resultsnull <- glmer(attritioned ~ (1|install_id), data = datadays_facebook, family='binomial')
+results <- glmer(attritioned ~ as.factor(condition) + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
+resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
 anova(resultsnull, results)
 summary(results)
 
-results <- lmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_youtube)
-resultsnull <- lmer(attritioned ~ (1|install_id), data = datadays_youtube)
+#results <- glmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_youtube, family='binomial')
+#resultsnull <- glmer(attritioned ~ (1|install_id), data = datadays_youtube, family='binomial')
 anova(resultsnull, results)
 summary(results)
 
-results <- lmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_reddit)
-resultsnull <- lmer(attritioned ~ (1|install_id), data = datadays_reddit)
+results <- glmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays_reddit, family='binomial')
+resultsnull <- glmer(attritioned ~ (1|install_id), data = datadays_reddit, family='binomial')
 anova(resultsnull, results)
 summary(results)
 
@@ -163,6 +205,8 @@ results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = d
 resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday)
 anova(resultsnull, results)
 summary(results)
+
+
 
 results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_youtube_withoutattritionday)
 resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_youtube_withoutattritionday)
@@ -186,8 +230,28 @@ resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), d
 anova(resultsnull, results)
 summary(results)
 
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + as.factor(intervention) + (1|install_id), data = data_youtube)
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_youtube)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + as.factor(domain) + as.factor(intervention) + (1|install_id), data = data_all)
+resultsnull <- lmer(log_time_spent ~ as.factor(domain) + as.factor(intervention) + (1|install_id), data = data_all)
+anova(resultsnull, results)
+summary(results)
+
 results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_facebook)
 resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_facebook)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_youtube)
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_youtube)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(domain) + as.factor(intervention) + (1|install_id), data = data_all)
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(domain) + as.factor(intervention) + (1|install_id), data = data_all)
 anova(resultsnull, results)
 summary(results)
 
@@ -197,6 +261,36 @@ results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + as.fac
 resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_facebook)
 anova(resultsnull, results)
 summary(results)
+
+results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_youtube)
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_youtube)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_all)
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_all)
+anova(resultsnull, results)
+summary(results)
+
+# are interventions differentially effective?
+
+results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data=datadays_facebook_same_withoutattritionday)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data=datadays_facebook_same_withoutattritionday)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_facebook_allinterventions)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data_facebook_allinterventions)
+anova(resultsnull, results)
+summary(results)
+
+# are sessions shorter in the random condition?
+
+#results <- lmer(log_time_spent ~ as.factor(condition) + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_facebook)
+#resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data_facebook)
+#anova(resultsnull, results)
+#summary(results)
+
 
 # in this section we show that on sessions where the intervention seen index within day is higher, the session duration increases
 
@@ -213,10 +307,15 @@ summary(results)
 
 # in this section we show that on higher indexed days, daily time on site increases (not significant unfortunately)
 
-#results <- lmer(log_time_spent ~ days_since_install + (1|install_id), data = datadays_facebook_withoutattritionday)
-#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday)
-#anova(resultsnull, results)
-#summary(results)
+results <- lmer(log_time_spent ~ days_since_install + (1|install_id), data = datadays_facebook_same_withoutattritionday)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_same_withoutattritionday)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ days_since_install + as.factor(intervention) + (1|install_id), data = datadays_facebook_same_withoutattritionday)
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = datadays_facebook_same_withoutattritionday)
+anova(resultsnull, results)
+summary(results)
 
 # you can ignore everything below here
 # 
