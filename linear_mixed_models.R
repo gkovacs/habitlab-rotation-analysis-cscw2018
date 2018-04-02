@@ -73,8 +73,6 @@ datadays_facebook <- subset(datadays_facebook, datadays_facebook$days_since_inst
 #datadays <- subset(datadays, datadays$days_until_last_day > 0)
 datadays_facebook_withoutattritionday <- subset(datadays_facebook, datadays_facebook$attritioned_today == 0)
 #datadays <- subset(datadays, datadays$user_saw_both_same_and_random == 1)
-summary(datadays)
-summary(datadays_withoutlastday)
 
 
 datadays_foruser <- subset(datadays, datadays$userid == '1ffbcad578ff880eb15ad164')
@@ -202,10 +200,11 @@ summary(results)
 
 # in this section we show that on sessions where the intervention seen index within day is higher, the session duration increases
 
-results <- lmer(log_time_spent ~ impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data_facebook)
-resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_facebook)
-anova(resultsnull, results)
-summary(results)
+# doesn't get result, probably because of temporal things throughout the day
+#results <- lmer(log_time_spent ~ impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data_facebook)
+#resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_facebook)
+#anova(resultsnull, results)
+#summary(results)
 
 #results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data_facebook)
 #resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_facebook)
@@ -214,136 +213,138 @@ summary(results)
 
 # in this section we show that on higher indexed days, daily time on site increases (not significant unfortunately)
 
-results <- lmer(log_time_spent ~ days_since_install + (1|install_id), data = datadays_facebook_withoutattritionday)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday)
-anova(resultsnull, results)
-summary(results)
-
-
-results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(domain) + (1|install_id), data = datadays_all_withoutattritionday)
-resultsnull <- lmer(log_time_spent ~ as.factor(domain) + (1|install_id), data = datadays_all_withoutattritionday)
-anova(resultsnull, results)
-summary(results)
-
-#t.test(datadays$log_time_spent ~ as.factor(datadays$condition))
-#summary(results)
-
-#results <- aov(attritioned ~ as.factor(condition), data = datadays)
-#summary(results)
-
-results <- lmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays)
-resultsnull <- lmer(attritioned ~ (1|install_id), data = datadays)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays)
-anova(resultsnull, results)
-summary(results)
-
-#results <- lmer(attritioned ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = datadays)
-#resultsnull <- lmer(attritioned ~ as.factor(intervention) + (1|install_id), data = datadays)
+#results <- lmer(log_time_spent ~ days_since_install + (1|install_id), data = datadays_facebook_withoutattritionday)
+#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday)
 #anova(resultsnull, results)
 #summary(results)
 
-#results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + days_since_install + as.factor(intervention) + (1|install_id), data = data)
-#results <- lmer(log_time_spent ~ days_since_install + num_days_intervention_seen_at_least_once + as.factor(intervention) + (1|install_id), data = data)
-#results <- lmer(log_time_spent ~ days_since_install + impression_idx + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ days_since_install + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
-#results <- lmer(log_time_spent ~ days_since_install + impression_idx + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ days_since_install + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
-results <- lmer(log_time_spent ~ days_since_install + num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ days_since_install + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-#cor(data$impression_idx, data$impression_idx_within_day)
-
-#results <- lmer(log_time_spent ~ condition + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
-#anova(resultsnull, results)
-#summary(results)
-
-#results <- lmer(log_time_spent ~ condition + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-#anova(resultsnull, results)
-#summary(results)
-
-results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ as.factor(intervention) + is_first_visit_of_day + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~  as.factor(intervention) + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(attritioned ~ as.factor(intervention) + (1|install_id), data = data)
-resultsnull <- lmer(attritioned ~ (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-results <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + as.factor(condition) + (1|install_id), data = data)
-resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
-anova(resultsnull, results)
-summary(results)
-
-
-#results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
-#anova(resultsnull, results)
-#summary(results)
-
-#results <- lmer(log_time_spent ~ days_since_install + as.factor(intervention) + is_first_visit_of_day + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ days_since_install + is_first_visit_of_day + (1|install_id), data = data)
-#anova(resultsnull, results)
-#summary(results)
-
-#results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + days_since_install + as.factor(intervention) + (1|install_id), data = data)
-#results <- lmer(log_time_spent ~ days_since_install + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-#anova(resultsnull, results)
-#summary(results)
-
-#results <- aov(log_time_spent ~ as.factor(intervention), data = data)
-#summary(results)
-
-#results <- aov(log_time_spent ~ as.factor(condition), data = data)
-#summary(results)
-
-#results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
-#summary(results)
-#anova(resultsnull, results)
-
-#results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
-#resultsnull <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = data)
-#summary(results)
-#anova(resultsnull, results)
-
-#plot(results)
-#stargazer(results)
-#summary(results)
-#vcov(results)
-#anova(results)
-#aov(results)
+# you can ignore everything below here
+# 
+# 
+# results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(domain) + (1|install_id), data = datadays_all_withoutattritionday)
+# resultsnull <- lmer(log_time_spent ~ as.factor(domain) + (1|install_id), data = datadays_all_withoutattritionday)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# #t.test(datadays$log_time_spent ~ as.factor(datadays$condition))
+# #summary(results)
+# 
+# #results <- aov(attritioned ~ as.factor(condition), data = datadays)
+# #summary(results)
+# 
+# results <- lmer(attritioned ~ as.factor(condition) + (1|install_id), data = datadays)
+# resultsnull <- lmer(attritioned ~ (1|install_id), data = datadays)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays)
+# resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# #results <- lmer(attritioned ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = datadays)
+# #resultsnull <- lmer(attritioned ~ as.factor(intervention) + (1|install_id), data = datadays)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# #results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + days_since_install + as.factor(intervention) + (1|install_id), data = data)
+# #results <- lmer(log_time_spent ~ days_since_install + num_days_intervention_seen_at_least_once + as.factor(intervention) + (1|install_id), data = data)
+# #results <- lmer(log_time_spent ~ days_since_install + impression_idx + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ days_since_install + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
+# #results <- lmer(log_time_spent ~ days_since_install + impression_idx + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ days_since_install + impression_idx_within_day + as.factor(intervention) + (1|install_id), data = data)
+# results <- lmer(log_time_spent ~ days_since_install + num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ days_since_install + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# #cor(data$impression_idx, data$impression_idx_within_day)
+# 
+# #results <- lmer(log_time_spent ~ condition + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# #results <- lmer(log_time_spent ~ condition + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ as.factor(intervention) + is_first_visit_of_day + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~  as.factor(intervention) + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(attritioned ~ as.factor(intervention) + (1|install_id), data = data)
+# resultsnull <- lmer(attritioned ~ (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# results <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + as.factor(condition) + (1|install_id), data = data)
+# resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + as.factor(intervention) + (1|install_id), data = data)
+# anova(resultsnull, results)
+# summary(results)
+# 
+# 
+# #results <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# #results <- lmer(log_time_spent ~ days_since_install + as.factor(intervention) + is_first_visit_of_day + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ days_since_install + is_first_visit_of_day + (1|install_id), data = data)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# #results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + days_since_install + as.factor(intervention) + (1|install_id), data = data)
+# #results <- lmer(log_time_spent ~ days_since_install + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# #anova(resultsnull, results)
+# #summary(results)
+# 
+# #results <- aov(log_time_spent ~ as.factor(intervention), data = data)
+# #summary(results)
+# 
+# #results <- aov(log_time_spent ~ as.factor(condition), data = data)
+# #summary(results)
+# 
+# #results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)
+# #summary(results)
+# #anova(resultsnull, results)
+# 
+# #results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
+# #resultsnull <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = data)
+# #summary(results)
+# #anova(resultsnull, results)
+# 
+# #plot(results)
+# #stargazer(results)
+# #summary(results)
+# #vcov(results)
+# #anova(results)
+# #aov(results)
