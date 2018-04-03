@@ -161,6 +161,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
     for experiment_info in experiment_info_with_sessions:
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
+        conditionduration = condition_info['conditionduration']
         for day_info in condition_info['day_info_list']:
           #is_day_with_just_one_sample = 0
           #if len(day_info['session_info_list']) < 2:
@@ -198,6 +199,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
             #print(days_until_last_day)
             is_first_visit_of_day = intervention_to_num_impressions_today[intervention] == 0
             row = {
+              'conditionduration': conditionduration,
               'days_since_install': days_since_install,
               'days_until_last_day': days_until_last_day,
               'num_days_intervention_seen_at_least_once': num_days_intervention_seen_at_least_once,
@@ -257,6 +259,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
     for experiment_info in experiment_info_with_sessions:
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
+        conditionduration = condition_info['conditionduration']
         for day_info in condition_info['day_info_list']:
           domain_to_num_samples = get_domain_to_num_samples(day_info['session_info_list'])
           #is_day_with_just_one_sample = 0
@@ -299,6 +302,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               attritioned_today = 1
           for domain,total_time_spent in domain_to_total_time_spent.items():
             row = {
+              'conditionduration': conditionduration,
               'days_since_install': days_since_install,
               'days_until_last_day': days_until_last_day,
               'user_saw_both_same_and_random': int(user_saw_both_same_and_random),

@@ -51,9 +51,16 @@ as.factor(datadays$userid)
 #datadays <- subset(datadays, data$domain == "www.facebook.com" | data$domain == "www.youtube.com" | data$domain == "www.reddit.com")
 
 datadays_all <- subset(datadays, datadays$is_day_with_just_one_sample == 0)
+
+#summary(datadays_all)
+
 datadays_all <- subset(datadays_all, datadays_all$days_since_install > 0)
+
+#summary(datadays_all)
+
 datadays_all_withoutattritionday <- subset(datadays_all, datadays_all$attritioned_today == 0)
 
+#summary(datadays_all_withoutattritionday)
 
 datadays_youtube <- subset(datadays, datadays$domain == 'www.youtube.com')
 #datadays_youtube <- subset(datadays_youtube, datadays_facebook$intervention == 'random' | datadays_facebook$intervention == 'facebook/feed_injection_timer' | datadays_facebook$intervention == "facebook/remove_news_feed" | datadays_facebook$intervention == "facebook/remove_comments" | datadays_facebook$intervention == 'facebook/toast_notifications' | datadays_facebook$intervention == 'facebook/show_timer_banner')
@@ -85,6 +92,13 @@ datadays_facebook_random <- subset(datadays_facebook, datadays_facebook$conditio
 summary(datadays_facebook_same)
 summary(datadays_facebook_random)
 
+#summary(data_same)
+
+#datadays_same <- subset(datadays, datadays$condition == "same")
+datadays_same <- subset(datadays_all, datadays_all$condition == "same")
+datadays_random <- subset(datadays_all, datadays_all$condition == "random")
+
+#summary(datadays_same)
 
 datadays_foruser <- subset(datadays, datadays$userid == '1ffbcad578ff880eb15ad164')
 summary(datadays_foruser)
@@ -103,6 +117,9 @@ data_facebook <- subset(data_facebook, data_facebook$is_day_with_just_one_sample
 data_facebook <- subset(data_facebook, data_facebook$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_facebook_notfirstvisit <- subset(data_facebook, data_facebook$is_first_visit_of_day == 0)
+
+data_facebook_same <- subset(data_facebook, data_facebook$condition == 'same')
+data_facebook_random <- subset(data_facebook, data_facebook$condition == 'random')
 
 data_facebook_allinterventions <- subset(data, data$domain == "www.facebook.com")
 data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_day_with_just_one_sample == 0)
@@ -127,6 +144,9 @@ data_all <- subset(data_all, data_all$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_all_notfirstvisit <- subset(data_all, data_all$is_first_visit_of_day == 0)
 
+
+data_same <- subset(data_all, data_all$condition == "same")
+data_random <- subset(data_all, data_all$condition == "random")
 
 #summary(data)
 #typeof(data$userid)
@@ -176,8 +196,8 @@ summary(results)
 
 # note that linear mixed model is not correct to use on binary response data. need a generalized linear mixed model I think
 
-fit = fitdist(data = datadays_facebook$attritioned, dist="binom")
-summary(fit)
+#fit = fitdist(data = datadays_facebook$attritioned, dist="binom")
+#summary(fit)
 
 # https://stats.idre.ucla.edu/r/dae/mixed-effects-logistic-regression/
 
@@ -199,10 +219,218 @@ anova(resultsnull, results)
 summary(results)
 
 # in this section we show that on days where random interventions are shown instead of the same one, net time spent is decreased
-# TODO we need to show that log time spent is normally distributed
 
-results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_withoutattritionday)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday)
+# log time spent is normally distributed
+#shapiro.test(datadays_facebook$log_time_spent)
+
+#summary(datadays_facebook)
+
+#summary(datadays_facebook_same_withoutattritionday)
+
+#datadays_condition1 = subset(datadays_all, datadays_all$conditionduration == 1)
+#summary(datadays_condition1)
+
+datadays_condition1 = subset(datadays, datadays$conditionduration == 1)
+summary(datadays_condition1)
+
+datadays_condition3 = subset(datadays, datadays$conditionduration == 3)
+summary(datadays_condition3)
+
+datadays_condition5 = subset(datadays, datadays$conditionduration == 5)
+summary(datadays_condition5)
+
+datadays_condition7 = subset(datadays, datadays$conditionduration == 7)
+summary(datadays_condition7)
+
+
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_condition1)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_condition1)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_condition3)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_condition3)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_condition5)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_condition5)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_condition7)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_condition7)
+anova(resultsnull, results)
+summary(results)
+
+
+
+#datadays_facebook_condition1 = subset(datadays_facebook, datadays_facebook$conditionduration == 1)
+#summary(datadays_facebook_condition1)
+
+datadays_facebook_condition1 = subset(datadays_condition1, datadays_condition1$domain == 'www.facebook.com')
+summary(datadays_facebook_condition1)
+
+datadays_facebook_condition3 = subset(datadays_condition3, datadays_condition3$domain == 'www.facebook.com')
+summary(datadays_facebook_condition3)
+
+datadays_facebook_condition5 = subset(datadays_condition5, datadays_condition5$domain == 'www.facebook.com')
+summary(datadays_facebook_condition5)
+
+datadays_facebook_condition7 = subset(datadays_condition7, datadays_condition7$domain == 'www.facebook.com')
+summary(datadays_facebook_condition7)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_condition1)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_condition1)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_condition3)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_condition3)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_condition5)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_condition5)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_condition7)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_condition7)
+anova(resultsnull, results)
+summary(results)
+
+
+
+
+datadays_withoutattritionday_condition1 = subset(datadays_all_withoutattritionday, datadays_all_withoutattritionday$conditionduration == 1)
+summary(datadays_withoutattritionday_condition1)
+
+datadays_withoutattritionday_condition3 = subset(datadays_all_withoutattritionday, datadays_all_withoutattritionday$conditionduration == 3)
+summary(datadays_withoutattritionday_condition3)
+
+datadays_withoutattritionday_condition5 = subset(datadays_all_withoutattritionday, datadays_all_withoutattritionday$conditionduration == 5)
+summary(datadays_withoutattritionday_condition5)
+
+datadays_withoutattritionday_condition7 = subset(datadays_all_withoutattritionday, datadays_all_withoutattritionday$conditionduration == 7)
+summary(datadays_withoutattritionday_condition7)
+
+# RESULT4 with increasing condition duration lengths, the difference between random and same becomes smaller
+
+# don't have enough samples to run this condition - there are 0 users with conditionduration1 and same that satisfy the filters
+#results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition1)
+#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition1)
+#anova(resultsnull, results)
+#summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition3)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition3)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition5)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition5)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition7)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition7)
+anova(resultsnull, results)
+summary(results)
+
+
+
+datadays_facebook_withoutattritionday_condition1 = subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$conditionduration == 1)
+summary(datadays_withoutattritionday_condition1)
+
+datadays_facebook_withoutattritionday_condition3 = subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$conditionduration == 3)
+summary(datadays_withoutattritionday_condition3)
+
+datadays_facebook_withoutattritionday_condition5 = subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$conditionduration == 5)
+summary(datadays_withoutattritionday_condition5)
+
+datadays_facebook_withoutattritionday_condition7 = subset(datadays_facebook_withoutattritionday, datadays_facebook_withoutattritionday$conditionduration == 7)
+summary(datadays_withoutattritionday_condition7)
+
+# don't have enough samples to run this condition - there are 0 users with conditionduration1 and same that satisfy the filters
+#results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_withoutattritionday_condition1)
+#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday_condition1)
+#anova(resultsnull, results)
+#summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_withoutattritionday_condition3)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday_condition3)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_withoutattritionday_condition5)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday_condition5)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook_withoutattritionday_condition7)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook_withoutattritionday_condition7)
+anova(resultsnull, results)
+summary(results)
+
+
+
+
+
+results <- lmer(log_time_spent ~ as.factor(intervention) + as.factor(conditionduration) + (1|install_id), data = subset(datadays, datadays$condition == 'same'))
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = subset(datadays, datadays$condition == 'same'))
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = subset(data, data$condition == 'same'))
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = subset(data, data$condition == 'same'))
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = data_facebook_same)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data_facebook_same)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = data_same)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data_same)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + as.factor(intervention) + (1|install_id), data = data_same)
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data_same)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + as.factor(intervention) + (1|install_id), data = datadays_same)
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = datadays_same)
+anova(resultsnull, results)
+summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = datadays_all)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_all)
+anova(resultsnull, results)
+summary(results)
+
+# NONRESULT2 condition duration within the same condition has no effect on the log time spent
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = data_facebook_same)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data_facebook_same)
+anova(resultsnull, results)
+summary(results)
+
+# RESULT3 log time spent in the random condition increases with increasing duration
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + (1|install_id), data = data_facebook_random)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = data_facebook_random)
+anova(resultsnull, results)
+summary(results)
+
+
+
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + as.factor(intervention) + (1|install_id), data = datadays_facebook_same_withoutattritionday)
+resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = datadays_facebook_same_withoutattritionday)
 anova(resultsnull, results)
 summary(results)
 
