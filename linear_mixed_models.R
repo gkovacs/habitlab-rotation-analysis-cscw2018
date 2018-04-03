@@ -28,6 +28,21 @@ library(lme4)
 #datadays <- read.csv('/home/geza/habitlab_data_analysis/data_march30_1am_days.csv')
 #datadays <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am_days.csv')
 datadays <- read.csv('/home/geza/habitlab_data_analysis/data_april1_4am_days.csv')
+
+summary(subset(datadays, datadays$conditionduration == 1))
+conditionduration1_all <- subset(datadays, datadays$conditionduration == 1)
+summary(conditionduration1_all)
+conditionduration1_all_nofirstday <- subset(conditionduration1_all, conditionduration1_all$days_since_install > 0)
+summary(conditionduration1_all_nofirstday)
+conditionduration1_all_noattritionday <- subset(conditionduration1_all, conditionduration1_all$attritioned == 0)
+summary(conditionduration1_all_noattritionday)
+conditionduration1_all_nosinglesample <- subset(conditionduration1_all, conditionduration1_all$is_day_with_just_one_sample == 0)
+summary(conditionduration1_all_nosinglesample)
+conditionduration1_all_nofirstday_noattritionday <- subset(conditionduration1_all_nofirstday, conditionduration1_all_nofirstday$attritioned == 0)
+summary(conditionduration1_all_nofirstday_noattritionday)
+conditionduration1_all_nofirstday_noattritionday_nosinglesample <- subset(conditionduration1_all_nofirstday_noattritionday, conditionduration1_all_nofirstday_noattritionday$is_day_with_just_one_sample == 0)
+summary(conditionduration1_all_nofirstday_noattritionday_nosinglesample)
+
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am.csv')
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march30_1am.csv')
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_no_first_last.csv')
@@ -50,10 +65,11 @@ as.factor(datadays$userid)
 #data <- subset(data, data$domain == "www.facebook.com" | data$domain == "www.youtube.com" | data$domain == "www.reddit.com")
 #datadays <- subset(datadays, data$domain == "www.facebook.com" | data$domain == "www.youtube.com" | data$domain == "www.reddit.com")
 
-datadays_all <- subset(datadays, datadays$is_day_with_just_one_sample == 0)
+#datadays_all <- subset(datadays, datadays$is_day_with_just_one_sample == 0)
 
 #summary(datadays_all)
 
+datadays_all <- datadays
 datadays_all <- subset(datadays_all, datadays_all$days_since_install > 0)
 
 #summary(datadays_all)
@@ -64,20 +80,20 @@ datadays_all_withoutattritionday <- subset(datadays_all, datadays_all$attritione
 
 datadays_youtube <- subset(datadays, datadays$domain == 'www.youtube.com')
 #datadays_youtube <- subset(datadays_youtube, datadays_facebook$intervention == 'random' | datadays_facebook$intervention == 'facebook/feed_injection_timer' | datadays_facebook$intervention == "facebook/remove_news_feed" | datadays_facebook$intervention == "facebook/remove_comments" | datadays_facebook$intervention == 'facebook/toast_notifications' | datadays_facebook$intervention == 'facebook/show_timer_banner')
-datadays_youtube <- subset(datadays_youtube, datadays_youtube$is_day_with_just_one_sample == 0)
+#datadays_youtube <- subset(datadays_youtube, datadays_youtube$is_day_with_just_one_sample == 0)
 datadays_youtube <- subset(datadays_youtube, datadays_youtube$days_since_install > 0)
 datadays_youtube_withoutattritionday <- subset(datadays_youtube, datadays_youtube$attritioned_today == 0)
 
 datadays_reddit <- subset(datadays, datadays$domain == 'www.reddit.com')
 #datadays_youtube <- subset(datadays_youtube, datadays_facebook$intervention == 'random' | datadays_facebook$intervention == 'facebook/feed_injection_timer' | datadays_facebook$intervention == "facebook/remove_news_feed" | datadays_facebook$intervention == "facebook/remove_comments" | datadays_facebook$intervention == 'facebook/toast_notifications' | datadays_facebook$intervention == 'facebook/show_timer_banner')
-datadays_reddit <- subset(datadays_reddit, datadays_reddit$is_day_with_just_one_sample == 0)
+#datadays_reddit <- subset(datadays_reddit, datadays_reddit$is_day_with_just_one_sample == 0)
 datadays_reddit <- subset(datadays_reddit, datadays_reddit$days_since_install > 0)
 datadays_reddit_withoutattritionday <- subset(datadays_reddit, datadays_reddit$attritioned_today == 0)
 
 
 datadays_facebook <- subset(datadays, datadays$domain == "www.facebook.com")
 datadays_facebook <- subset(datadays_facebook, datadays_facebook$intervention == 'random' | datadays_facebook$intervention == 'facebook/feed_injection_timer' | datadays_facebook$intervention == "facebook/remove_news_feed" | datadays_facebook$intervention == "facebook/remove_comments" | datadays_facebook$intervention == 'facebook/toast_notifications' | datadays_facebook$intervention == 'facebook/show_timer_banner')
-datadays_facebook <- subset(datadays_facebook, datadays_facebook$is_day_with_just_one_sample == 0)
+#datadays_facebook <- subset(datadays_facebook, datadays_facebook$is_day_with_just_one_sample == 0)
 datadays_facebook <- subset(datadays_facebook, datadays_facebook$days_since_install > 0)
 #datadays <- subset(datadays, datadays$days_until_last_day > 0)
 datadays_facebook_withoutattritionday <- subset(datadays_facebook, datadays_facebook$attritioned_today == 0)
@@ -113,7 +129,7 @@ summary(lastday_datadays)
 
 data_facebook <- subset(data, data$domain == "www.facebook.com")
 data_facebook <- subset(data_facebook, data_facebook$intervention == 'facebook/feed_injection_timer' | data_facebook$intervention == "facebook/remove_news_feed" | data_facebook$intervention == "facebook/remove_comments" | data_facebook$intervention == 'facebook/toast_notifications' | data_facebook$intervention == 'facebook/show_timer_banner')
-data_facebook <- subset(data_facebook, data_facebook$is_day_with_just_one_sample == 0)
+#data_facebook <- subset(data_facebook, data_facebook$is_day_with_just_one_sample == 0)
 data_facebook <- subset(data_facebook, data_facebook$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_facebook_notfirstvisit <- subset(data_facebook, data_facebook$is_first_visit_of_day == 0)
@@ -122,14 +138,14 @@ data_facebook_same <- subset(data_facebook, data_facebook$condition == 'same')
 data_facebook_random <- subset(data_facebook, data_facebook$condition == 'random')
 
 data_facebook_allinterventions <- subset(data, data$domain == "www.facebook.com")
-data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_day_with_just_one_sample == 0)
+#data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_day_with_just_one_sample == 0)
 #data_facebook_allinterventions <- subset(data_facebook_allinterventions, data_facebook_allinterventions$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_facebook_allinterventions_notfirstvisit <- subset(data_facebook_allinterventions, data_facebook_allinterventions$is_first_visit_of_day == 0)
 
 data_youtube <- subset(data, data$domain == "www.youtube.com")
 #data_facebook <- subset(data_facebook, data_facebook$intervention == 'facebook/feed_injection_timer' | data_facebook$intervention == "facebook/remove_news_feed" | data_facebook$intervention == "facebook/remove_comments" | data_facebook$intervention == 'facebook/toast_notifications' | data_facebook$intervention == 'facebook/show_timer_banner')
-data_youtube <- subset(data_youtube, data_youtube$is_day_with_just_one_sample == 0)
+#data_youtube <- subset(data_youtube, data_youtube$is_day_with_just_one_sample == 0)
 data_youtube <- subset(data_youtube, data_youtube$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_youtube_notfirstvisit <- subset(data_youtube, data_youtube$is_first_visit_of_day == 0)
@@ -139,7 +155,7 @@ summary(data_facebook)
 length(unique(data$userid))
 
 #data_facebook <- subset(data_facebook, data_facebook$intervention == 'facebook/feed_injection_timer' | data_facebook$intervention == "facebook/remove_news_feed" | data_facebook$intervention == "facebook/remove_comments" | data_facebook$intervention == 'facebook/toast_notifications' | data_facebook$intervention == 'facebook/show_timer_banner')
-data_all <- subset(data, data$is_day_with_just_one_sample == 0)
+#data_all <- subset(data, data$is_day_with_just_one_sample == 0)
 data_all <- subset(data_all, data_all$days_since_install > 0)
 #data <- subset(data, data$days_until_last_day > 0)
 data_all_notfirstvisit <- subset(data_all, data_all$is_first_visit_of_day == 0)
@@ -303,7 +319,6 @@ summary(results)
 
 
 
-
 datadays_withoutattritionday_condition1 = subset(datadays_all_withoutattritionday, datadays_all_withoutattritionday$conditionduration == 1)
 summary(datadays_withoutattritionday_condition1)
 
@@ -319,10 +334,10 @@ summary(datadays_withoutattritionday_condition7)
 # RESULT4 with increasing condition duration lengths, the difference between random and same becomes smaller
 
 # don't have enough samples to run this condition - there are 0 users with conditionduration1 and same that satisfy the filters
-#results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition1)
-#resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition1)
-#anova(resultsnull, results)
-#summary(results)
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition1)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition1)
+anova(resultsnull, results)
+summary(results)
 
 results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_withoutattritionday_condition3)
 resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_withoutattritionday_condition3)

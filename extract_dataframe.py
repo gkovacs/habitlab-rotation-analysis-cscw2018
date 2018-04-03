@@ -91,14 +91,6 @@ def get_did_user_experience_both_same_and_random(experiment_info_with_sessions):
             random_seen = True
   return same_seen and random_seen
 
-def get_did_user_attrition(experiment_info_with_sessions):
-  for experiment_info in experiment_info_with_sessions:
-    for condition_info in experiment_info['condition_info_list']:
-      attritioned_today = 0
-      if len(day_info['session_info_list']) > 0 and is_last_day:
-        if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 1:
-          attritioned_today = 1
-
 def get_global_max_timestamp(alldata):
   max_timestamp = None
   for install_id,experiment_info_with_sessions in alldata.items():
@@ -139,6 +131,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
   if callable(filter_funcs):
     filter_funcs = [filter_funcs]
   rows = []
+  max_timestamp = get_global_max_timestamp(alldata)
   for install_id,experiment_info_with_sessions in alldata.items():
     accept_user = True
     for user_filter_func in user_filter_funcs:
@@ -191,6 +184,11 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
             #if domain != 'www.facebook.com':
             #  continue
             timestamp = session_info['timestamp']
+            is_last_intervention_for_user = timestamp == last_timestamp
+            attritioned = False
+            if is_last_intervention_for_user:
+              if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 4:
+                attritioned = True
             days_since_install = round((timestamp - first_timestamp) / (24*3600*1000))
             days_until_last_day = floor((last_timestamp - timestamp) / (24*3600*1000))
             localepoch = session_info['localepoch']
@@ -199,6 +197,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
             #print(days_until_last_day)
             is_first_visit_of_day = intervention_to_num_impressions_today[intervention] == 0
             row = {
+              'attritioned': int(attritioned),
               'conditionduration': conditionduration,
               'days_since_install': days_since_install,
               'days_until_last_day': days_until_last_day,
@@ -272,6 +271,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
           last_timestamp_on_day = None
           days_since_install = None
           days_until_last_day = None
+          domain_to_last_timestamp = {}
           for session_info in sorted(day_info['session_info_list'], key=lambda k: k['timestamp']):
             domain = session_info['domain']
             if domain not in domain_to_num_impressions_on_day:
@@ -281,6 +281,10 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
             userid = session_info['userid']
             time_spent = session_info['time_spent']
             timestamp = session_info['timestamp']
+            if domain not in domain_to_last_timestamp:
+              domain_to_last_timestamp[domain] = timestamp
+            else:
+              domain_to_last_timestamp[domain] = max(timestamp, domain_to_last_timestamp[domain])
             if last_timestamp_on_day == None:
               last_timestamp_on_day = timestamp
             last_timestamp_on_day = max(last_timestamp_on_day, timestamp)
@@ -296,11 +300,19 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
             continue
           is_last_day = int(last_timestamp_on_day == last_timestamp)
           domain_to_attritioned = {}
+          if is_last_day:
+            for domain,last_timestamp_for_domain in domain_to_last_timestamp.items():
+              if last_timestamp == last_timestamp_for_domain: # user attritioned on this domain
+                days_until_final_impression = (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days
+                domain_to_attritioned[domain] = days_until_final_impression > 4
           attritioned_today = 0
           if len(day_info['session_info_list']) > 0 and is_last_day:
-            if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 1:
+            if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 4:
               attritioned_today = 1
           for domain,total_time_spent in domain_to_total_time_spent.items():
+            attritioned = 0
+            if domain in domain_to_attritioned:
+              attritioned = int(domain_to_attritioned[domain])
             row = {
               'conditionduration': conditionduration,
               'days_since_install': days_since_install,
@@ -308,7 +320,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               'user_saw_both_same_and_random': int(user_saw_both_same_and_random),
               'num_visits_to_domain_today': domain_to_num_samples[domain],
               'is_day_with_just_one_sample': int(domain_to_num_samples[domain] == 1),
-              'attritioned': attritioned_today,
+              'attritioned': attritioned,
               'attritioned_today': attritioned_today,
               'is_last_day': is_last_day,
               'first_condition_for_user': first_condition_for_user,
