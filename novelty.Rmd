@@ -7,6 +7,14 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+
 Loading in data:
 
 ```{r}
@@ -15,19 +23,25 @@ library(ez)
 library(lme4)
 
 basepath = '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
-basepath = '/home/geza/habitlab_data_analysis/'
+#basepath = '/home/geza/habitlab_data_analysis/'
 datadays_filename = paste(basepath, 'data_april3_1am_days.csv', sep='')
 data_filename = paste(basepath, 'data_april3_1am.csv', sep='')
 
 datadays <- read.csv(datadays_filename)
 datadays$attritioned_today <- datadays$attritioned_today == 1
 datadays$attritioned <- datadays$attritioned == 1
+datadays$is_last_day <- datadays$is_last_day == 1
+datadays$is_day_with_just_one_sample <- datadays$is_day_with_just_one_sample == 1
+datadays$user_saw_both_same_and_random <- datadays$user_saw_both_same_and_random == 1
 summary(datadays)
 ```
 
 Reading in the per-session data:
 ```{r}
 data <- read.csv(data_filename)
+data$attritioned <- data$attritioned == 1
+data$is_first_visit_of_day <- data$is_first_visit_of_day == 1
+data$is_day_with_just_one_sample <- data$is_day_with_just_one_sample == 1
 
 summary(data)
 ```
@@ -63,17 +77,6 @@ length(unique(datadays_facebook_nofirstlast$userid))
 ```
 
 
-Is there an effect of condition on whether they attritioned?
-
-```{r}
-# does not converge after 10000 evaluations
-#results <- glmer(attritioned ~ condition + domain/intervention + (1|install_id), family=binomial(link='logit'), data = datadays)
-#resultsnull <- glmer(attritioned ~ domain/intervention + (1|install_id), family=binomial(link='logit'), data = datadays)
-#anova(resultsnull, results)
-#summary(results)
-
-```
-
 *SIGNIFICANT* Does condition have effect on attrition rates at the day level overall?
 
 ```{r}
@@ -81,6 +84,10 @@ results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link=
 resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays)
 anova(resultsnull, results)
 summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
 ```
 
 *SIGNIFICANT* Does condition have effect on attrition rates at the day level, on Facebook?
@@ -90,16 +97,13 @@ results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link=
 resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
 anova(resultsnull, results)
 summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
 ```
 
 
-```{r}
-# excessively complex model, doesn't converge
-#results <- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data)
-#resultsnull <- glmer(attritioned ~ intervention + (1|install_id), family=binomial(link='logit'), data = data)
-#anova(resultsnull, results)
-#summary(results)
-```
 
 *SIGNIFICANT* Does condition have an effect on attrition rates at the session level?
 
@@ -108,6 +112,10 @@ results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link=
 resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = data)
 anova(resultsnull, results)
 summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
 ```
 
 
@@ -118,6 +126,10 @@ results <- glmer(attritioned ~ condition + intervention + (1|install_id), family
 resultsnull <- glmer(attritioned ~ intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
 anova(resultsnull, results)
 summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
 ```
 
 Does condition duration have an effect on attrition rates at the day level?
@@ -320,10 +332,4 @@ summary(results)
 
 
 
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 
