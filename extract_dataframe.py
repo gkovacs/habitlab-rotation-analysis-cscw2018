@@ -139,6 +139,18 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
         accept_user = False
     if not accept_user:
       continue
+    first_condition_for_user = None
+    for experiment_info in experiment_info_with_sessions:
+      for condition_info in experiment_info['condition_info_list']:
+        condition = condition_info['condition']
+        if first_condition_for_user == None:
+          first_condition_for_user = condition
+    first_conditionduration_for_user = None
+    for experiment_info in experiment_info_with_sessions:
+      for condition_info in experiment_info['condition_info_list']:
+        conditionduration = condition_info['conditionduration']
+        if first_conditionduration_for_user == None:
+          first_conditionduration_for_user = conditionduration
     intervention_to_num_impressions = {}
     intervention_to_num_days_seen_at_least_once = {}
     #epoch = day_info['epoch']
@@ -197,6 +209,8 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
             #print(days_until_last_day)
             is_first_visit_of_day = intervention_to_num_impressions_today[intervention] == 0
             row = {
+              'first_condition_for_user': first_condition_for_user,
+              'first_conditionduration_for_user': first_conditionduration_for_user,
               'attritioned': int(attritioned),
               'conditionduration': conditionduration,
               'days_since_install': days_since_install,
@@ -249,6 +263,12 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
         condition = condition_info['condition']
         if first_condition_for_user == None:
           first_condition_for_user = condition
+    first_conditionduration_for_user = None
+    for experiment_info in experiment_info_with_sessions:
+      for condition_info in experiment_info['condition_info_list']:
+        conditionduration = condition_info['conditionduration']
+        if first_conditionduration_for_user == None:
+          first_conditionduration_for_user = conditionduration
     install_id_to_first_condition[install_id] = first_condition_for_user
     firstlast_info = get_firstlast_info(experiment_info_with_sessions)
     first_localepoch = firstlast_info['first_localepoch']
@@ -324,6 +344,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               'attritioned_today': attritioned_today,
               'is_last_day': is_last_day,
               'first_condition_for_user': first_condition_for_user,
+              'first_conditionduration_for_user': first_conditionduration_for_user,
               'intervention': day_intervention,
               'num_impressions_on_day': domain_to_num_impressions_on_day[domain],
               'log_time_spent': log(total_time_spent),
@@ -342,3 +363,45 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
   print(Counter(install_id_to_first_condition.values()))
   return pd.DataFrame(rows)
 
+def extract_dataframe_peruser(alldata):
+  rows = []
+  install_id_to_first_condition = {}
+  max_timestamp = get_global_max_timestamp(alldata)
+  for install_id,experiment_info_with_sessions in alldata.items():
+    firstlast_info = get_firstlast_info(experiment_info_with_sessions)
+    first_localepoch = firstlast_info['first_localepoch']
+    last_localepoch = firstlast_info['last_localepoch']
+    first_timestamp = firstlast_info['first_timestamp']
+    last_timestamp = firstlast_info['last_timestamp']
+    if last_timestamp == None or first_timestamp == None:
+      continue
+    #days_kept_installed = (moment.unix(last_timestamp) - moment.unix(first_timestamp)).days
+    days_kept_installed = last_localepoch - first_localepoch
+    attritioned = (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 2
+    first_condition_for_user = None
+    first_conditionduration_for_user = None
+    for experiment_info in experiment_info_with_sessions:
+      for condition_info in experiment_info['condition_info_list']:
+        condition = condition_info['condition']
+        conditionduration = condition_info['conditionduration']
+        if first_condition_for_user == None:
+          first_condition_for_user = condition
+        if first_conditionduration_for_user == None:
+          first_conditionduration_for_user = conditionduration
+        for day_info in condition_info['day_info_list']:
+          for session_info in sorted(day_info['session_info_list'], key=lambda k: k['timestamp']):
+            domain = session_info['domain']
+    if first_condition_for_user == None or first_conditionduration_for_user == None:
+      continue
+    completed_first_condition = days_kept_installed >= first_conditionduration_for_user
+    attritioned_during_first_condition = (not completed_first_condition) and attritioned
+    rows.append({
+      'install_id': install_id,
+      'attritioned': int(attritioned),
+      'days_kept_installed': days_kept_installed,
+      'attritioned_during_first_condition': int(attritioned_during_first_condition),
+      'completed_first_condition': int(completed_first_condition),
+      'first_condition_for_user': first_condition_for_user,
+      'first_conditionduration_for_user': first_conditionduration_for_user,
+    })
+  return pd.DataFrame(rows)

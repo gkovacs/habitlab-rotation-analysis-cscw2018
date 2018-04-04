@@ -22,10 +22,11 @@ library(fitdistrplus)
 library(ez)
 library(lme4)
 
-basepath = '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
-#basepath = '/home/geza/habitlab_data_analysis/'
-datadays_filename = paste(basepath, 'data_april3_1am_days.csv', sep='')
-data_filename = paste(basepath, 'data_april3_1am.csv', sep='')
+#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+basepath <- '/home/geza/habitlab_data_analysis/'
+survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
+datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
+data_filename <- paste(basepath, 'data_april3_1am.csv', sep='')
 
 datadays <- read.csv(datadays_filename)
 datadays$attritioned_today <- datadays$attritioned_today == 1
@@ -45,6 +46,14 @@ data$is_day_with_just_one_sample <- data$is_day_with_just_one_sample == 1
 
 summary(data)
 ```
+
+Reading in the survival data from the old experiment
+
+```{r}
+survivaldata <- read.csv(survivaldata_filename)
+summary(survivaldata)
+```
+
 
 
 Filter to Facebook data
@@ -328,6 +337,34 @@ results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = c
 resultsnull <- lmer(log_time_spent ~ (1|install_id), data = curdata)
 anova(resultsnull, results)
 summary(results)
+```
+
+
+```{r}
+summary(survivaldata)
+```
+
+
+```{r}
+library("survival")
+library("survminer")
+
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
+summary(coxresult)
 ```
 
 
