@@ -28,6 +28,7 @@ survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', s
 datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
 data_filename <- paste(basepath, 'data_april3_1am.csv', sep='')
 dataperuser_filename <- paste(basepath, 'data_april3_1am_peruser.csv', sep='')
+choosing_own_intervention_data_filename <- paste(basepath, 'choosing_own_intervention.csv', sep='')
 
 datadays <- read.csv(datadays_filename)
 datadays$attritioned_today <- datadays$attritioned_today == 1
@@ -67,6 +68,10 @@ survivaldata <- read.csv(survivaldata_filename)
 summary(survivaldata)
 ```
 
+```{r}
+choosing_own_intervention_data <- read.csv(choosing_own_intervention_data_filename)
+summary(choosing_own_intervention_data)
+```
 
 
 Filter to Facebook data
@@ -352,11 +357,31 @@ anova(resultsnull, results)
 summary(results)
 ```
 
+*SIGNIFICANT* Does enabling/disabling interventions during onboarding reduce your likelihood of attrition?
 
 ```{r}
-summary(survivaldata)
+library("survival")
+library("survminer")
+
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=choosing_own_intervention_data)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition, data=choosing_own_intervention_data)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=choosing_own_intervention_data)
+summary(coxresult)
 ```
 
+*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the old experiment (where people in the same=one intervention condition were seeing that same one forever, and random=all_default combined with half_defaults were always seeing random interventions)
 
 ```{r}
 library("survival")
@@ -385,6 +410,8 @@ summary(coxresult)
 summary(data_peruser)
 ```
 
+*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the new experiment
+
 
 ```{r}
 library("survival")
@@ -409,7 +436,7 @@ summary(coxresult)
 ```
 
 
-
+*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the new experiment (michael's version, note this one is overestimating attrition because new users who haven't been around for conditionduration days are considered to be attritions)
 
 ```{r}
 library(plyr)
