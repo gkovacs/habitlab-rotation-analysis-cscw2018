@@ -199,7 +199,7 @@ def extract_dataframe(alldata, filter_funcs=[], user_filter_funcs=[]):
             is_last_intervention_for_user = timestamp == last_timestamp
             attritioned = False
             if is_last_intervention_for_user:
-              if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 4:
+              if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 2:
                 attritioned = True
             days_since_install = round((timestamp - first_timestamp) / (24*3600*1000))
             days_until_last_day = floor((last_timestamp - timestamp) / (24*3600*1000))
@@ -324,10 +324,10 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
             for domain,last_timestamp_for_domain in domain_to_last_timestamp.items():
               if last_timestamp == last_timestamp_for_domain: # user attritioned on this domain
                 days_until_final_impression = (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days
-                domain_to_attritioned[domain] = days_until_final_impression > 4
+                domain_to_attritioned[domain] = days_until_final_impression > 2
           attritioned_today = 0
           if len(day_info['session_info_list']) > 0 and is_last_day:
-            if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 4:
+            if (moment.unix(max_timestamp) - moment.unix(last_timestamp)).days > 2:
               attritioned_today = 1
           for domain,total_time_spent in domain_to_total_time_spent.items():
             attritioned = 0

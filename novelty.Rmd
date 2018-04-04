@@ -27,6 +27,7 @@ basepath <- '/home/geza/habitlab_data_analysis/'
 survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
 datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
 data_filename <- paste(basepath, 'data_april3_1am.csv', sep='')
+dataperuser_filename <- paste(basepath, 'data_april3_1am_peruser.csv', sep='')
 
 datadays <- read.csv(datadays_filename)
 datadays$attritioned_today <- datadays$attritioned_today == 1
@@ -46,6 +47,18 @@ data$is_day_with_just_one_sample <- data$is_day_with_just_one_sample == 1
 
 summary(data)
 ```
+
+Reading in the per-user data used for survival analysis
+
+```{r}
+data_peruser <- read.csv(dataperuser_filename)
+data_peruser$attritioned <- data_peruser$attritioned == 1
+data_peruser$attritioned_during_first_condition <- data_peruser$attritioned_during_first_condition == 1
+data_peruser$did_not_complete_first_condition <- data_peruser$completed_first_condition == 0
+data_peruser$completed_first_condition <- data_peruser$completed_first_condition == 1
+summary(data_peruser)
+```
+
 
 Reading in the survival data from the old experiment
 
@@ -366,6 +379,35 @@ survdiff(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
 coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
 summary(coxresult)
 ```
+
+
+```{r}
+summary(data_peruser)
+```
+
+
+```{r}
+library("survival")
+library("survminer")
+fit <- survfit(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+#fit <- survfit(Surv(days_kept_installed, did_not_complete_first_condition) ~ first_condition_for_user, data=data_peruser)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+
+coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+summary(coxresult)
+```
+
 
 
 
