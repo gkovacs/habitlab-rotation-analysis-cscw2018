@@ -24,7 +24,8 @@ library(lme4)
 
 #basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 basepath <- '/home/geza/habitlab_data_analysis/'
-survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
+survivaldata_grouped_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
+survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_nongrouped_april3_4pm.csv', sep='')
 datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
 data_filename <- paste(basepath, 'data_april3_1am.csv', sep='')
 dataperuser_filename <- paste(basepath, 'data_april3_1am_peruser.csv', sep='')
@@ -66,6 +67,9 @@ Reading in the survival data from the old experiment
 ```{r}
 survivaldata <- read.csv(survivaldata_filename)
 summary(survivaldata)
+
+survivaldata_grouped <- read.csv(survivaldata_grouped_filename)
+summary(survivaldata_grouped)
 ```
 
 ```{r}
@@ -381,7 +385,7 @@ coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=choosing_own_in
 summary(coxresult)
 ```
 
-*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the old experiment (where people in the same=one intervention condition were seeing that same one forever, and random=all_default combined with half_defaults were always seeing random interventions)
+Are there differences in attrition rates between same, random_half, and random conditions in the old experiment
 
 ```{r}
 library("survival")
@@ -396,12 +400,89 @@ ggsurvplot(fit,
           linetype = "strata", # Change line type by groups
           surv.median.line = "hv", # Specify median survival
           ggtheme = theme_bw(), # Change ggplot2 theme
-          palette = c("#E7B800", "#2E9FDF"))
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
 
 
 survdiff(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
 
 coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=survivaldata)
+summary(coxresult)
+```
+
+Are there differences in attrition rates between same and random_half conditions in the old experiment
+
+
+```{r}
+library("survival")
+library("survminer")
+
+curdata <- subset(survivaldata, condition ==  'random_half' | condition == 'same')
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=curdata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition, data=curdata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=curdata)
+summary(coxresult)
+```
+
+Are there differences in attrition rates between same and random conditions in the old experiment
+
+```{r}
+library("survival")
+library("survminer")
+
+curdata <- subset(survivaldata, condition ==  'random' | condition == 'same')
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=curdata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition, data=curdata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=curdata)
+summary(coxresult)
+```
+
+
+*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the old experiment (where people in the same=one intervention condition were seeing that same one forever, and random=all_default combined with half_defaults were always seeing random interventions)
+
+
+```{r}
+library("survival")
+library("survminer")
+
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=survivaldata_grouped)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition, data=survivaldata_grouped)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=survivaldata_grouped)
 summary(coxresult)
 ```
 
