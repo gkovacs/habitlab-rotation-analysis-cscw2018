@@ -332,4 +332,39 @@ summary(results)
 
 
 
+```{r}
+library(plyr)
+userdata <- ddply(data, c("install_id"), summarize,
+                  total_days_alive = max(days_since_install),
+                  dead_at_end_of_condition = total_days_alive < min(conditionduration),#length(unique(condition)) == 2,
+                  first_condition = names(which.max(table(condition[days_since_install == 0]))),
+                  first_condition_duration = names(which.max(table(conditionduration[days_since_install == 0])))
+)
+userdata$first_condition <- as.factor(userdata$first_condition)
+userdata$first_condition_duration <- as.numeric(userdata$first_condition_duration)
+userdata$days_alive <- pmin(userdata$total_days_alive, userdata$first_condition_duration)
+summary(userdata)
+
+```
+
+```{r}
+library("survival")
+library("survminer")
+fit <- survfit(Surv(days_alive, dead_at_end_of_condition) ~ first_condition, data=userdata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_alive, dead_at_end_of_condition) ~ first_condition, data=userdata)
+
+coxresult <- coxph(Surv(days_alive, dead_at_end_of_condition) ~ first_condition, data=userdata)
+summary(coxresult)
+```
 
