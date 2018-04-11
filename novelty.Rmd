@@ -311,6 +311,16 @@ anova(resultsnull, results)
 summary(results)
 ```
 
+
+```{r}
+curdata <- subset(datadays_nofirstlast, condition == 'same')
+results <- lmer(log_time_spent ~ as.factor(conditionduration) + intervention + (1|install_id), data = curdata)
+resultsnull <- lmer(log_time_spent ~ intervention + (1|install_id), data = curdata)
+anova(resultsnull, results)
+summary(results)
+```
+
+
 *SIGNIFICANT* Does condition duration within the same condition have effect on time spent per day on all sites?
 
 ```{r}
@@ -333,7 +343,14 @@ anova(resultsnull, results)
 summary(results)
 ```
 
+
+
+
 *SIGNIFICANT* Does difference between random and same conditions increase with condition durations?
+
+
+
+
 
 ```{r}
 curdata <- subset(datadays_nofirstlast, conditionduration == 1)
