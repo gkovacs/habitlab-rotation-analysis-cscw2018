@@ -1,0 +1,208 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+
+```{r}
+library(fitdistrplus)
+library(ez)
+library(lme4)
+library("survival")
+library("survminer")
+
+#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+basepath <- '/home/geza/habitlab_data_analysis/'
+data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+data_exp2 <- read.csv(data_exp2_filename)
+
+summary(data_exp2)
+```
+
+```{r}
+ndata <- data_exp2
+ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == 'info')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == '')
+#ndata$condition <- ifelse(ndata$condition == 'power', 'power', 'none')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+ndata <- subset(ndata, is_preview == 'false')
+#ndata <- subset(ndata, did_user_see_notice_or_is_none == 'true')
+ndata <- subset(ndata, did_user_see_notice_or_is_none_and_saw_interventions == 'true')
+#ndata <- subset(ndata, domain != 'www.youtube.com')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+#ndata <- subset(ndata, total_num_times_interventions_seen > 0)
+ndata <- subset(ndata, total_num_times_interventions_seen_all > 0)
+#ndata <- subset(ndata, is_session_list_empty == 'false')
+ndata <- subset(ndata, initial_habitlab_version_for_user == '1.0.216')
+#ndata <- subset(ndata, )
+#summary(ndata)
+ndata <- subset(ndata, saw_multiple_conditions_for_user == 'false')
+ndata <- subset(ndata, is_first_install_id == 'true')
+ndata$attritioned <- ndata$attritioned == 'true'
+ndata$attritioned_install_id <- ndata$attritioned_install_id == 'true'
+ndata$days_alive <- ndata$days_alive_install_id
+ndata$attritioned <- ndata$attritioned_install_id
+summary(ndata)
+fit <- survfit(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_alive, attritioned) ~ condition, data=ndata)
+
+coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(coxresult)
+```
+
+
+```{r}
+ndata <- data_exp2
+ndata <- subset(ndata, condition == 'none' | condition == 'power')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == '')
+#ndata$condition <- ifelse(ndata$condition == 'power', 'power', 'none')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+ndata <- subset(ndata, is_preview == 'false')
+#ndata <- subset(ndata, did_user_see_notice_or_is_none == 'true')
+ndata <- subset(ndata, did_user_see_notice_or_is_none_and_saw_interventions == 'true')
+#ndata <- subset(ndata, domain != 'www.youtube.com')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+#ndata <- subset(ndata, total_num_times_interventions_seen > 0)
+ndata <- subset(ndata, total_num_times_interventions_seen_all > 0)
+#ndata <- subset(ndata, is_session_list_empty == 'false')
+ndata <- subset(ndata, initial_habitlab_version_for_user == '1.0.216')
+#ndata <- subset(ndata, )
+#summary(ndata)
+ndata <- subset(ndata, saw_multiple_conditions_for_user == 'false')
+ndata <- subset(ndata, is_first_install_id == 'true')
+ndata$attritioned <- ndata$attritioned == 'true'
+ndata$attritioned_install_id <- ndata$attritioned_install_id == 'true'
+ndata$days_alive <- ndata$days_alive_install_id
+ndata$attritioned <- ndata$attritioned_install_id
+summary(ndata)
+fit <- survfit(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_alive, attritioned) ~ condition, data=ndata)
+
+coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(coxresult)
+```
+
+
+```{r}
+ndata <- data_exp2
+ndata <- subset(ndata, condition == 'none' | condition == 'info')
+#ndata <- subset(ndata, condition == 'none' | condition == 'info' | condition == '')
+#ndata$condition <- ifelse(ndata$condition == 'info', 'info', 'none')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+ndata <- subset(ndata, is_preview == 'false')
+#ndata <- subset(ndata, did_user_see_notice_or_is_none == 'true')
+ndata <- subset(ndata, did_user_see_notice_or_is_none_and_saw_interventions == 'true')
+#ndata <- subset(ndata, domain != 'www.youtube.com')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+#ndata <- subset(ndata, total_num_times_interventions_seen > 0)
+ndata <- subset(ndata, total_num_times_interventions_seen_all > 0)
+#ndata <- subset(ndata, is_session_list_empty == 'false')
+ndata <- subset(ndata, initial_habitlab_version_for_user == '1.0.216')
+#ndata <- subset(ndata, )
+#summary(ndata)
+ndata <- subset(ndata, saw_multiple_conditions_for_user == 'false')
+ndata <- subset(ndata, is_first_install_id == 'true')
+ndata$attritioned <- ndata$attritioned == 'true'
+ndata$attritioned_install_id <- ndata$attritioned_install_id == 'true'
+ndata$days_alive <- ndata$days_alive_install_id
+ndata$attritioned <- ndata$attritioned_install_id
+summary(ndata)
+fit <- survfit(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_alive, attritioned) ~ condition, data=ndata)
+
+coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(coxresult)
+```
+
+```{r}
+ndata <- data_exp2
+ndata <- subset(ndata, condition == 'info' | condition == 'power')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == '')
+#ndata$condition <- ifelse(ndata$condition == 'power', 'power', 'none')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+ndata <- subset(ndata, is_preview == 'false')
+#ndata <- subset(ndata, did_user_see_notice_or_is_none == 'true')
+ndata <- subset(ndata, did_user_see_notice_or_is_none_and_saw_interventions == 'true')
+#ndata <- subset(ndata, domain != 'www.youtube.com')
+#ndata <- subset(ndata, condition == 'none' | condition == 'power')
+#ndata <- subset(ndata, total_num_times_interventions_seen > 0)
+ndata <- subset(ndata, total_num_times_interventions_seen_all > 0)
+#ndata <- subset(ndata, is_session_list_empty == 'false')
+ndata <- subset(ndata, initial_habitlab_version_for_user == '1.0.216')
+#ndata <- subset(ndata, )
+#summary(ndata)
+ndata <- subset(ndata, saw_multiple_conditions_for_user == 'false')
+ndata <- subset(ndata, is_first_install_id == 'true')
+ndata$attritioned <- ndata$attritioned == 'true'
+ndata$attritioned_install_id <- ndata$attritioned_install_id == 'true'
+ndata$days_alive <- ndata$days_alive_install_id
+ndata$attritioned <- ndata$attritioned_install_id
+summary(ndata)
+fit <- survfit(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_alive, attritioned) ~ condition, data=ndata)
+
+coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
+summary(coxresult)
+```
