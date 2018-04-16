@@ -30,8 +30,30 @@ basepath <- '/home/geza/habitlab_data_analysis/'
 data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
 data_exp2 <- read.csv(data_exp2_filename)
 
-summary(data_exp2)
+data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april16_1am_withsessionlengths.csv', sep='')
+data_exp2_withsessionlengths <- read.csv(data_exp2_withsessionlengths_filename)
+
+summary(data_exp2_withsessionlengths)
 ```
+
+
+
+```{r}
+ndata <- data_exp2_withsessionlengths
+ndata$log_mean_daily_time <- log(ndata$mean_daily_time)
+ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == 'info')
+#results <- aov(log_mean_daily_time ~ condition, data=ndata)
+#summary(results)
+#summary()
+results <- t.test(subset(ndata, condition == 'none')$log_mean_daily_time, subset(ndata, condition == 'power')$log_mean_daily_time)
+show(results)
+results <- t.test(subset(ndata, condition == 'none')$log_mean_daily_time, subset(ndata, condition == 'info')$log_mean_daily_time)
+show(results)
+summary(subset(ndata, condition == 'none')$log_mean_daily_time)
+summary(subset(ndata, condition == 'info')$log_mean_daily_time)
+summary(subset(ndata, condition == 'power')$log_mean_daily_time)
+```
+
 
 ```{r}
 ndata <- data_exp2
