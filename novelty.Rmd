@@ -508,13 +508,47 @@ summary(coxresult)
 summary(data_peruser)
 ```
 
-*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the new experiment
+
 
 
 ```{r}
 library("survival")
 library("survminer")
 fit <- survfit(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+#fit <- survfit(Surv(days_kept_installed, did_not_complete_first_condition) ~ first_condition_for_user, data=data_peruser)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+
+coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+summary(coxresult)
+```
+
+
+
+*SIGNIFICANT* Are there differences in attrition rates between same and random conditions in the new experiment
+
+
+```{r}
+library("survival")
+library("survminer")
+#library(dplyr)
+#summary(data_peruser)
+#data_peruser %>% rowwise() %>% mutate(days_in_firstcondition = min(days_kept_installed, first_conditionduration_for_user))
+data_peruser <- transform(data_peruser, days_in_firstcondition = pmin(days_kept_installed, first_conditionduration_for_user))
+
+#data_peruser$days_in_firstcondition <- min(data_peruser$days_kept_installed, data_peruser$first_conditionduration_for_user)
+summary(data_peruser)
+fit <- survfit(Surv(days_in_firstcondition, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 #fit <- survfit(Surv(days_kept_installed, did_not_complete_first_condition) ~ first_condition_for_user, data=data_peruser)
 summary(fit)
 ggsurvplot(fit,

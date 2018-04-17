@@ -1,0 +1,136 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+library(fitdistrplus)
+library(ez)
+library(lme4)
+library("survival")
+library("survminer")
+
+#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+basepath <- '/home/geza/habitlab_data_analysis/'
+data_exp3_filename <- paste(basepath, 'exp3_april16_1am.csv', sep='')
+data_exp3 <- read.csv(data_exp3_filename)
+
+#data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april16_1am_withsessionlengths.csv', sep='')
+#data_exp2_withsessionlengths <- read.csv(data_exp2_withsessionlengths_filename)
+
+data_exp3$attritioned <- data_exp3$attritioned == 'true'
+data_exp3$did_user_change_interventions <- data_exp3$did_user_change_interventions == 'true'
+data_exp3$did_user_change_interventions_5min <- data_exp3$did_user_change_interventions_5min == 'true'
+data_exp3$did_user_enable_interventions <- data_exp3$did_user_enable_interventions == 'true'
+data_exp3$did_user_enable_interventions_5min <- data_exp3$did_user_enable_interventions_5min == 'true'
+data_exp3$did_user_disable_interventions <- data_exp3$did_user_disable_interventions == 'true'
+data_exp3$did_user_disable_interventions_5min <- data_exp3$did_user_disable_interventions_5min == 'true'
+data_exp3$onboarding_completed <- data_exp3$onboarding_completed == 'true'
+data_exp3$saw_interventions <- data_exp3$total_interventions_seen > 0
+data_exp3$saw_multiple_interventions <- data_exp3$total_interventions_seen > 1
+data_exp3$saw_facebook_interventions <- data_exp3$total_facebook_interventions_seen > 0
+data_exp3$saw_multiple_facebook_interventions <- data_exp3$total_facebook_interventions_seen > 1
+#data_exp3 <- subset(data_exp3, lifetime > 200)
+summary(data_exp3)
+#summary(data_exp2_withsessionlengths)
+```
+
+
+
+```{r}
+ndata <- data_exp3
+#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ did_user_change_interventions_5min, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ did_user_change_interventions_5min, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ did_user_change_interventions_5min, data=ndata)
+summary(coxresult)
+```
+
+
+
+```{r}
+ndata <- data_exp3
+ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
+summary(coxresult)
+```
+
+
+
+```{r}
+ndata <- data_exp3
+ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+ndata <- subset(ndata, did_user_disable_interventions_5min == FALSE)
+ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
+summary(coxresult)
+```
