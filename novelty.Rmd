@@ -27,7 +27,9 @@ basepath <- '/home/geza/habitlab_data_analysis/'
 survivaldata_grouped_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
 survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_nongrouped_april3_4pm.csv', sep='')
 datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
+#datadays_filename <- paste(basepath, 'data_april16_1am_days.csv', sep='')
 data_filename <- paste(basepath, 'data_april3_1am.csv', sep='')
+#data_filename <- paste(basepath, 'data_april16_1am.csv', sep='')
 dataperuser_filename <- paste(basepath, 'data_april3_1am_peruser.csv', sep='')
 choosing_own_intervention_data_filename <- paste(basepath, 'choosing_own_intervention.csv', sep='')
 
@@ -202,10 +204,30 @@ summary(results)
 *SIGNIFICANT* Does condition have an effect on time spent per day?
 
 ```{r}
-results <- lmer(log_time_spent ~ condition + domain + (1|install_id), data = datadays_nofirstlast)
-resultsnull <- lmer(log_time_spent ~ domain + (1|install_id), data = datadays_nofirstlast)
+# GENERATES table 3
+
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+
+results <- lmer(log_time_spent ~ condition + (1|domain) + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
+stargazer(results)
+```
+
+*SIGNIFICANT* Does condition have an effect on time spent on Facebook per day?
+
+
+```{r}
+ndata <- subset(datadays_facebook_nofirstlast, datadays_facebook_nofirstlast$is_day_with_just_one_sample == 0)
+#summary(ndata$intervention[ndata$intervention])
+#ndata$intervention[ndata$intervention == '']
+results <- lmer(log_time_spent ~ condition + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+library(stargazer)
+stargazer(results)
 ```
 
 Does condition have an effect on time spent on Facebook per day?
@@ -238,8 +260,33 @@ summary(results)
 *SIGNIFICANT* Do interventions decrease in effectiveness over time on Facebook?
 
 ```{r}
-results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + intervention + (1|install_id), data = data_facebook)
-resultsnull <- lmer(log_time_spent ~ intervention + (1|install_id), data = data_facebook)
+#summary(data_facebook$intervention)
+library(plyr)
+
+ndata <- data_facebook
+ndata$intervention <- revalue(ndata$intervention, c("facebook/feed_injection_timer"="feed_injection_timer"))
+ndata$intervention <- revalue(ndata$intervention, c("facebook/remove_news_feed"="remove_news_feed"))
+ndata$intervention <- revalue(ndata$intervention, c("facebook/remove_comments"="remove_comments"))
+ndata$intervention <- revalue(ndata$intervention, c("facebook/show_timer_banner"="show_timer_banner"))
+ndata$intervention <- revalue(ndata$intervention, c("facebook/toast_notifications"="toast_notifications"))
+ndata$intervention <- factor(ndata$intervention, levels=c('toast_notifications','remove_news_feed','remove_comments','feed_injection_timer','show_timer_banner'))
+
+#ndata$intervention[ndata$intervention == 'facebook/feed_injection_timer'] <- '0facebook/feed_injection_timer'
+#ndata$intervention[ndata$intervention == 'facebook/remove_news_feed'] <- '1facebook/remove_news_feed'
+#ndata$intervention[ndata$intervention == 'facebook/remove_comments'] <- '2facebook/remove_comments'
+#summary(ndata)
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + intervention + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ intervention + (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+#install.packages('stargazer')
+library(stargazer)
+stargazer(results)
+```
+
+```{r}
+results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + intervention + (1|install_id), data = data_facebook_same)
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + intervention + (1|install_id), data = data_facebook_same)
 anova(resultsnull, results)
 summary(results)
 ```
@@ -261,6 +308,71 @@ resultsnull <- lmer(log_time_spent ~ intervention + (1|install_id), data = data)
 anova(resultsnull, results)
 summary(results)
 ```
+
+```{r}
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(data, condition == 'random'))
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(data, condition == 'random'))
+anova(resultsnull, results)
+summary(results)
+#stargazer(results)
+```
+
+
+```{r}
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|install_id), data = subset(data, condition == 'same' & domain == 'www.facebook.com'))
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = subset(data, condition == 'same' & domain == 'www.facebook.com'))
+anova(resultsnull, results)
+summary(results)
+```
+
+```{r}
+results <- lmer(log_time_spent ~ impression_idx + (1|install_id), data = subset(data, condition == 'same' & domain == 'www.facebook.com'))
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = subset(data, condition == 'same' & domain == 'www.facebook.com'))
+anova(resultsnull, results)
+summary(results)
+```
+
+```{r}
+results <- lmer(log_time_spent ~ impression_idx + (1|domain) + (1|install_id), data = subset(data, condition == 'same'))
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(data, condition == 'same'))
+anova(resultsnull, results)
+summary(results)
+```
+
+```{r}
+# GENERATES table 2
+# generates tab:effectiveness_sessions_alldomains_vs_num_days_same
+
+ndata <- subset(data, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
+anova(resultsnull, results)
+summary(results)
+library(stargazer)
+stargazer(results)
+```
+
+```{r}
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + condition + (1|domain) + (1|install_id), data = data)
+resultsnull <- lmer(log_time_spent ~ condition + (1|domain) + (1|install_id), data = data)
+anova(resultsnull, results)
+summary(results)
+#stargazer(results)
+#t.test(data$num_days_intervention_seen_at_least_once ~ data$condition)
+#cor(data$condition, data$num_days_intervention_seen_at_least_once)
+```
+
+
+
+```{r}
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = data)
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = data)
+anova(resultsnull, results)
+summary(results)
+```
+
+
 
 *SIGNIFICANT* Do interventions decrease in effectiveness over time on all sites?
 
