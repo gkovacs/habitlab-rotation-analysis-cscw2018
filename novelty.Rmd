@@ -231,7 +231,15 @@ anova(resultsnull, results)
 summary(results)
 #install.packages('stargazer')
 library(stargazer)
-stargazer(results, covariate.labels = c("Rotation (baseline: static)", "(Intercept)"), dep.var.labels=c("Log time spent per day", "(Intercept)"), no.space=TRUE, title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", label="tab:effectiveness_same_vs_random", table.placement = "tb")
+stargazer(results, 
+          covariate.labels = c("Rotation (baseline: static)", "(Intercept)"),
+          dep.var.labels=c("Log time spent per day", "(Intercept)"), 
+          no.space=TRUE, 
+          title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", 
+          label="tab:effectiveness_same_vs_random", 
+          keep.stat="n",
+          table.placement = "tb"
+          )
 ```
 
 *SIGNIFICANT* Does condition have an effect on time spent on Facebook per day?
@@ -382,7 +390,15 @@ resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(
 anova(resultsnull, results)
 summary(results)
 library(stargazer)
-stargazer(results, covariate.labels = c("Number of days the intervention has been seen", "(Intercept)"), dep.var.labels=c("Log time spent per session"), no.space=TRUE, title="Within the same condition, interventions decline in effectiveness, with longer visit lengths with increasing larger number of days since it was first observed.", label="tab:effectiveness_sessions_alldomain_vs_num_days_same", table.placement = "tb")
+stargazer(results, 
+          covariate.labels = c("Number of days the intervention has been seen", "(Intercept)"), 
+          dep.var.labels=c("Log time spent per session"), 
+          no.space=TRUE, 
+          title="Within the same condition, interventions decline in effectiveness, with longer visit lengths with increasing larger number of days since it was first observed.", 
+          label="tab:effectiveness_sessions_alldomain_vs_num_days_same", 
+          keep.stat="n",
+          table.placement = "tb"
+)
 ```
 
 ```{r}
