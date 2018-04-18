@@ -26,8 +26,9 @@ library(lme4)
 
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march30_1am.csv')
 #datadays <- read.csv('/home/geza/habitlab_data_analysis/data_march30_1am_days.csv')
-#datadays <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am_days.csv')
-datadays <- read.csv('/home/geza/habitlab_data_analysis/data_april1_4am_days.csv')
+datadays <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am_days.csv')
+#datadays <- read.csv('/home/geza/habitlab_data_analysis/data_april1_4am_days.csv')
+#datadays <- read.csv('/home/geza/habitlab_data_analysis/data_april3_1am_days.csv')
 
 summary(subset(datadays, datadays$conditionduration == 1))
 conditionduration1_all <- subset(datadays, datadays$conditionduration == 1)
@@ -43,10 +44,11 @@ summary(conditionduration1_all_nofirstday_noattritionday)
 conditionduration1_all_nofirstday_noattritionday_nosinglesample <- subset(conditionduration1_all_nofirstday_noattritionday, conditionduration1_all_nofirstday_noattritionday$is_day_with_just_one_sample == 0)
 summary(conditionduration1_all_nofirstday_noattritionday_nosinglesample)
 
-#data <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am.csv')
+data <- read.csv('/home/geza/habitlab_data_analysis/data_march31_11am.csv')
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march30_1am.csv')
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_no_first_last.csv')
-data <- read.csv('/home/geza/habitlab_data_analysis/data_april1_4am.csv')
+#data <- read.csv('/home/geza/habitlab_data_analysis/data_april1_4am.csv')
+#data <- read.csv('/home/geza/habitlab_data_analysis/data_april3_1am.csv')
 
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_facebook_only.csv')
 #data <- read.csv('/home/geza/habitlab_data_analysis/data_march28_2am_youtube_only.csv')
@@ -197,6 +199,10 @@ data_random <- subset(data_all, data_all$condition == "random")
 
 results <- aov(log_time_spent ~ as.factor(condition), data = datadays_facebook_withoutattritionday)
 summary(results)
+
+results <- lmer(log_time_spent ~ as.factor(condition) + (1|install_id), data = datadays_facebook)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = datadays_facebook)
+anova(resultsnull, results)
 
 #results <- lmer(log_time_spent ~ as.factor(condition) + as.factor(intervention) + (1|install_id), data = data)
 #resultsnull <- lmer(log_time_spent ~ as.factor(intervention) + (1|install_id), data = data)

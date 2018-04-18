@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git commit -am 'changes'
+git push origin master
