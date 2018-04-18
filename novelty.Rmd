@@ -373,7 +373,8 @@ resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(
 anova(resultsnull, results)
 summary(results)
 library(stargazer)
-stargazer(results, covariate.labels = c("(Intercept)", "Number of days the intervention has been seen"), dep.var.labels=c("Log time spent"), align=TRUE, no.space=TRUE)
+#stargazer(results, covariate.labels = c("(Intercept)", "Number of days the intervention has been seen"), dep.var.labels=c("Log time spent"), align=TRUE, no.space=TRUE)
+stargazer(results)
 ```
 
 ```{r}
