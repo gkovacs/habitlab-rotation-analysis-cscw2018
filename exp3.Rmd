@@ -24,8 +24,8 @@ library(lme4)
 library("survival")
 library("survminer")
 
-#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
-basepath <- '/home/geza/habitlab_data_analysis/'
+basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+#basepath <- '/home/geza/habitlab_data_analysis/'
 data_exp3_filename <- paste(basepath, 'exp3_april16_1am.csv', sep='')
 data_exp3 <- read.csv(data_exp3_filename)
 
@@ -44,6 +44,7 @@ data_exp3$saw_interventions <- data_exp3$total_interventions_seen > 0
 data_exp3$saw_multiple_interventions <- data_exp3$total_interventions_seen > 1
 data_exp3$saw_facebook_interventions <- data_exp3$total_facebook_interventions_seen > 0
 data_exp3$saw_multiple_facebook_interventions <- data_exp3$total_facebook_interventions_seen > 1
+data_exp3$condition <- factor(data_exp3$condition, levels=c("one", "half_of_defaults", "all_of_defaults"))
 #data_exp3 <- subset(data_exp3, lifetime > 200)
 summary(data_exp3)
 #summary(data_exp2_withsessionlengths)
@@ -109,27 +110,49 @@ summary(coxresult)
 ```{r}
 ndata <- data_exp3
 ndata <- subset(ndata, condition == 'one' | condition == 'half_of_defaults' | condition == 'all_of_defaults')
-#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
 ndata <- subset(ndata, did_user_change_interventions == FALSE)
 ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
 #ndata <- subset(ndata, saw_multiple_interventions == TRUE)
 summary(ndata)
 fit <- survfit(Surv(lifetime, attritioned) ~ condition, data=ndata)
 summary(fit)
+
 ggsurvplot(fit,
-          pval = TRUE, conf.int = TRUE,
-          risk.table = TRUE, # Add risk table
+          pval = FALSE, conf.int = TRUE,
+          risk.table = FALSE, # Add risk table
           risk.table.col = "strata", # Change risk table color by groups
           linetype = "strata", # Change line type by groups
-          surv.median.line = "hv", # Specify median survival
+          surv.median.line = "none", # Specify median survival
           ggtheme = theme_bw(), # Change ggplot2 theme
-)
-          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
-          #palette = c("#E7B800", "#2E9FDF"))
+          palette = c("#E7B800", "#444444", "#2E9FDF"),
+          xlab="Days HabitLab is installed",
+          xlim=c(0, 70),
+          break.x.by = 10,
+          legend="bottom",
+          legend.labs = c("One default", "Half of defaults", "All defaults")
+          )
+ggsave(paste(basepath, 'attrition_between_subjects.png', sep=''), width = 7.5, height = 4, units="in")
 
+survdiff(Surv(lifetime, attritioned) ~ condition, data=ndata)
+coxresult <- coxph(Surv(lifetime, attritioned) ~ condition, data=ndata)
+summary(coxresult)
 
+stargazer(coxresult, 
+          covariate.labels = c("Half of defaults (baseline: one default)", "All defaults"), 
+          dep.var.labels=c("Survival in days"), 
+          no.space=TRUE, 
+          title="A Cox proportional hazards analysis over a longer period suggests that rotating with more interventions increases the hazard of attrition. Coefficients are log hazard ratio.", 
+          label="tab:cox_regression_between_participants",
+          keep.stat="n"
+          )
+
+```
+
+```{r}
+ndata <- data_exp3
+ndata <- subset(ndata, condition == 'one' | condition == 'half_of_defaults' | condition == 'all_of_defaults')
+ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
 survdiff(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
-
 coxresult <- coxph(Surv(lifetime, attritioned) ~ condition + did_user_change_interventions_5min, data=ndata)
 summary(coxresult)
 ```

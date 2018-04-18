@@ -676,7 +676,7 @@ ggsurvplot(fit,
           legend="bottom",
           legend.labs = c("Static", "Rotation")
           )
-
+ggsave(paste(basepath, 'attrition_within_subjects.png', sep=''), width = 7.5, height = 4, units="in")
 
 survdiff(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 
@@ -684,6 +684,8 @@ summary(data_peruser)
 
 coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 summary(coxresult)
+stargazer(coxresult, covariate.labels = c("Rotation (baseline: static)"), dep.var.labels=c("Survival in days"), no.space=TRUE, title="A Cox proportional hazards analysis suggests that the rotation condition substantially increases the hazard of attrition. Coefficients are log hazard ratio, so values under 1 indicate increased hazard; the exponentiated hazard ratio for the rotation condition is 1.72.", label="tab:cox_regression")
+
 ```
 
 
