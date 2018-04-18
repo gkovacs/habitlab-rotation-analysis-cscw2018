@@ -26,8 +26,12 @@ library("survival")
 library("survminer")
 
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+if (!file.exists(basepath)) {
+  basepath <- '/home/geza/habitlab_data_analysis/'
+}
 #basepath <- '/home/geza/habitlab_data_analysis/'
-data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+#data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+data_exp2_filename <- paste(basepath, 'exp2_april18_3am_withsessionlengths.csv', sep='')
 #data_exp2_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2 <- read.csv(data_exp2_filename)
 
