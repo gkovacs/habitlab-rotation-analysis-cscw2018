@@ -180,14 +180,12 @@ $(document).ready(function () {
 <p>Loading in data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmaXRkaXN0cnBsdXMpXG5saWJyYXJ5KGV6KVxubGlicmFyeShsbWU0KVxuXG5iYXNlcGF0aCA8LSAnL1VzZXJzL21zYi9Ecm9wYm94IChTdGFuZm9yZCBIQ0kpL3Byb2plY3RzL2hhYml0bGFiLydcbiNiYXNlcGF0aCA8LSAnL2hvbWUvZ2V6YS9oYWJpdGxhYl9kYXRhX2FuYWx5c2lzLydcblxuc3Vydml2YWxkYXRhX2dyb3VwZWRfZmlsZW5hbWUgPC1wYXN0ZShiYXNlcGF0aCwgJ29sZGV4cF9saWZldGltZV9kYXRhX2FwcmlsM180cG0uY3N2Jywgc2VwPScnKVxuc3Vydml2YWxkYXRhX2ZpbGVuYW1lIDwtcGFzdGUoYmFzZXBhdGgsICdvbGRleHBfbGlmZXRpbWVfZGF0YV9ub25ncm91cGVkX2FwcmlsM180cG0uY3N2Jywgc2VwPScnKVxuZGF0YWRheXNfZmlsZW5hbWUgPC0gcGFzdGUoYmFzZXBhdGgsICdkYXRhX2FwcmlsM18xYW1fZGF5cy5jc3YnLCBzZXA9JycpXG4jZGF0YWRheXNfZmlsZW5hbWUgPC0gcGFzdGUoYmFzZXBhdGgsICdkYXRhX2FwcmlsMTZfMWFtX2RheXMuY3N2Jywgc2VwPScnKVxuZGF0YV9maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2RhdGFfYXByaWwzXzFhbS5jc3YnLCBzZXA9JycpXG4jZGF0YV9maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2RhdGFfYXByaWwxNl8xYW0uY3N2Jywgc2VwPScnKVxuZGF0YXBlcnVzZXJfZmlsZW5hbWUgPC0gcGFzdGUoYmFzZXBhdGgsICdkYXRhX2FwcmlsM18xYW1fcGVydXNlci5jc3YnLCBzZXA9JycpXG5jaG9vc2luZ19vd25faW50ZXJ2ZW50aW9uX2RhdGFfZmlsZW5hbWUgPC0gcGFzdGUoYmFzZXBhdGgsICdjaG9vc2luZ19vd25faW50ZXJ2ZW50aW9uLmNzdicsIHNlcD0nJylcblxuZGF0YWRheXMgPC0gcmVhZC5jc3YoZGF0YWRheXNfZmlsZW5hbWUpXG5kYXRhZGF5cyRhdHRyaXRpb25lZF90b2RheSA8LSBkYXRhZGF5cyRhdHRyaXRpb25lZF90b2RheSA9PSAxXG5kYXRhZGF5cyRhdHRyaXRpb25lZCA8LSBkYXRhZGF5cyRhdHRyaXRpb25lZCA9PSAxXG5kYXRhZGF5cyRpc19sYXN0X2RheSA8LSBkYXRhZGF5cyRpc19sYXN0X2RheSA9PSAxXG5kYXRhZGF5cyRpc19kYXlfd2l0aF9qdXN0X29uZV9zYW1wbGUgPC0gZGF0YWRheXMkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlID09IDFcbmRhdGFkYXlzJHVzZXJfc2F3X2JvdGhfc2FtZV9hbmRfcmFuZG9tIDwtIGRhdGFkYXlzJHVzZXJfc2F3X2JvdGhfc2FtZV9hbmRfcmFuZG9tID09IDFcbmRhdGFkYXlzJGNvbmRpdGlvbiA8LSBmYWN0b3IoZGF0YWRheXMkY29uZGl0aW9uLCBsYWJlbHM9YyhcInNhbWVcIiwgXCJyYW5kb21cIikpXG5zdW1tYXJ5KGRhdGFkYXlzKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShmaXRkaXN0cnBsdXMpXG5saWJyYXJ5KGV6KVxubGlicmFyeShsbWU0KVxuYmFzZXBhdGggPC0gJy9Vc2Vycy9tc2IvRHJvcGJveCAoU3RhbmZvcmQgSENJKS9wcm9qZWN0cy9oYWJpdGxhYi8nXG4jYmFzZXBhdGggPC0gJy9ob21lL2dlemEvaGFiaXRsYWJfZGF0YV9hbmFseXNpcy8nXG5zdXJ2aXZhbGRhdGFfZ3JvdXBlZF9maWxlbmFtZSA8LXBhc3RlKGJhc2VwYXRoLCAnb2xkZXhwX2xpZmV0aW1lX2RhdGFfYXByaWwzXzRwbS5jc3YnLCBzZXA9JycpXG5zdXJ2aXZhbGRhdGFfZmlsZW5hbWUgPC1wYXN0ZShiYXNlcGF0aCwgJ29sZGV4cF9saWZldGltZV9kYXRhX25vbmdyb3VwZWRfYXByaWwzXzRwbS5jc3YnLCBzZXA9JycpXG5kYXRhZGF5c19maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2RhdGFfYXByaWwzXzFhbV9kYXlzLmNzdicsIHNlcD0nJylcbiNkYXRhZGF5c19maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2RhdGFfYXByaWwxNl8xYW1fZGF5cy5jc3YnLCBzZXA9JycpXG5kYXRhX2ZpbGVuYW1lIDwtIHBhc3RlKGJhc2VwYXRoLCAnZGF0YV9hcHJpbDNfMWFtLmNzdicsIHNlcD0nJylcbiNkYXRhX2ZpbGVuYW1lIDwtIHBhc3RlKGJhc2VwYXRoLCAnZGF0YV9hcHJpbDE2XzFhbS5jc3YnLCBzZXA9JycpXG5kYXRhcGVydXNlcl9maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2RhdGFfYXByaWwzXzFhbV9wZXJ1c2VyLmNzdicsIHNlcD0nJylcbmNob29zaW5nX293bl9pbnRlcnZlbnRpb25fZGF0YV9maWxlbmFtZSA8LSBwYXN0ZShiYXNlcGF0aCwgJ2Nob29zaW5nX293bl9pbnRlcnZlbnRpb24uY3N2Jywgc2VwPScnKVxuZGF0YWRheXMgPC0gcmVhZC5jc3YoZGF0YWRheXNfZmlsZW5hbWUpXG5kYXRhZGF5cyRhdHRyaXRpb25lZF90b2RheSA8LSBkYXRhZGF5cyRhdHRyaXRpb25lZF90b2RheSA9PSAxXG5kYXRhZGF5cyRhdHRyaXRpb25lZCA8LSBkYXRhZGF5cyRhdHRyaXRpb25lZCA9PSAxXG5kYXRhZGF5cyRpc19sYXN0X2RheSA8LSBkYXRhZGF5cyRpc19sYXN0X2RheSA9PSAxXG5kYXRhZGF5cyRpc19kYXlfd2l0aF9qdXN0X29uZV9zYW1wbGUgPC0gZGF0YWRheXMkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlID09IDFcbmRhdGFkYXlzJHVzZXJfc2F3X2JvdGhfc2FtZV9hbmRfcmFuZG9tIDwtIGRhdGFkYXlzJHVzZXJfc2F3X2JvdGhfc2FtZV9hbmRfcmFuZG9tID09IDFcbmRhdGFkYXlzJGNvbmRpdGlvbiA8LSBmYWN0b3IoZGF0YWRheXMkY29uZGl0aW9uLCBsYWJlbHM9YyhcInNhbWVcIiwgXCJyYW5kb21cIikpXG5zdW1tYXJ5KGRhdGFkYXlzKVxuYGBgIn0= -->
 <pre class="r"><code>library(fitdistrplus)
 library(ez)
 library(lme4)
-
 basepath &lt;- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 #basepath &lt;- '/home/geza/habitlab_data_analysis/'
-
 survivaldata_grouped_filename &lt;-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
 survivaldata_filename &lt;-paste(basepath, 'oldexp_lifetime_data_nongrouped_april3_4pm.csv', sep='')
 datadays_filename &lt;- paste(basepath, 'data_april3_1am_days.csv', sep='')
@@ -196,7 +194,6 @@ data_filename &lt;- paste(basepath, 'data_april3_1am.csv', sep='')
 #data_filename &lt;- paste(basepath, 'data_april16_1am.csv', sep='')
 dataperuser_filename &lt;- paste(basepath, 'data_april3_1am_peruser.csv', sep='')
 choosing_own_intervention_data_filename &lt;- paste(basepath, 'choosing_own_intervention.csv', sep='')
-
 datadays &lt;- read.csv(datadays_filename)
 datadays$attritioned_today &lt;- datadays$attritioned_today == 1
 datadays$attritioned &lt;- datadays$attritioned == 1
@@ -206,20 +203,103 @@ datadays$user_saw_both_same_and_random &lt;- datadays$user_saw_both_same_and_ran
 datadays$condition &lt;- factor(datadays$condition, labels=c(&quot;same&quot;, &quot;random&quot;))
 summary(datadays)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGF0dHJpdGlvbmVkICAgICBhdHRyaXRpb25lZF90b2RheSAgY29uZGl0aW9uICAgY29uZGl0aW9uZHVyYXRpb24gZGF5c19zaW5jZV9pbnN0YWxsIGRheXNfdW50aWxfbGFzdF9kYXlcbiBNb2RlIDpsb2dpY2FsICAgTW9kZSA6bG9naWNhbCAgICAgc2FtZSAgOjcwMCAgIE1pbi4gICA6MS4wMDAgICAgIE1pbi4gICA6IDAuMDAwICAgICBNaW4uICAgOiAwLjAwMCAgICAgXG4gRkFMU0U6OTQyICAgICAgIEZBTFNFOjg5NiAgICAgICAgIHJhbmRvbTozODMgICAxc3QgUXUuOjMuMDAwICAgICAxc3QgUXUuOiAwLjAwMCAgICAgMXN0IFF1LjogMC4wMDAgICAgIFxuIFRSVUUgOjE0MSAgICAgICBUUlVFIDoxODcgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuIDo1LjAwMCAgICAgTWVkaWFuIDogMS4wMDAgICAgIE1lZGlhbiA6IDMuMDAwICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1lYW4gICA6NC43NjkgICAgIE1lYW4gICA6IDMuMjk3ICAgICBNZWFuICAgOiA0LjY1NyAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAzcmQgUXUuOjcuMDAwICAgICAzcmQgUXUuOiA1LjAwMCAgICAgM3JkIFF1LjogOC4wMDAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo3LjAwMCAgICAgTWF4LiAgIDoyMS4wMDAgICAgIE1heC4gICA6MjEuMDAwICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgIGRvbWFpbiAgICBmaXJzdF9jb25kaXRpb25fZm9yX3VzZXIgZmlyc3RfY29uZGl0aW9uZHVyYXRpb25fZm9yX3VzZXIgICAgICAgICAgICAgICAgICAgIGluc3RhbGxfaWQgXG4gd3d3LmZhY2Vib29rLmNvbTozNjcgICByYW5kb206NTc3ICAgICAgICAgICAgICAgTWluLiAgIDoxLjAwICAgICAgICAgICAgICAgICAgICAgMmY4OTZiOTIxMzllYmY5ODA3ZjU4MDYwOiAzMiAgXG4gd3d3LnlvdXR1YmUuY29tIDoyNTkgICBzYW1lICA6NTA2ICAgICAgICAgICAgICAgMXN0IFF1LjozLjAwICAgICAgICAgICAgICAgICAgICAgZjY4MWJkZWIyYTFlZmZjZjk1NjA3NzVmOiAyMSAgXG4gd3d3LnJlZGRpdC5jb20gIDogODUgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuIDo1LjAwICAgICAgICAgICAgICAgICAgICAgMGI5NGFhZTZkZDRmMDk3ZTUyZDM3M2QwOiAxNyAgXG4gdHdpdHRlci5jb20gICAgIDogNzkgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDo0LjA4ICAgICAgICAgICAgICAgICAgICAgNTg5ZjcxZjllNDdiNTEyMDU2NjdiZWE5OiAxNyAgXG4gdmsuY29tICAgICAgICAgIDogNDMgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1Ljo1LjAwICAgICAgICAgICAgICAgICAgICAgN2RhMjkzYTkzOGU1MmFkYWI2ZjU0YmEwOiAxNyAgXG4gbWFpbC5nb29nbGUuY29tIDogMzkgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo3LjAwICAgICAgICAgICAgICAgICAgICAgM2Y0YzQzZDIxNjYyMWNkMzQ4NGM4MGMzOiAxNiAgXG4gKE90aGVyKSAgICAgICAgIDoyMTEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKE90aGVyKSAgICAgICAgICAgICAgICAgOjk2MyAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJ2ZW50aW9uIGlzX2RheV93aXRoX2p1c3Rfb25lX3NhbXBsZSBpc19sYXN0X2RheSAgICAgbG9nX3RpbWVfc3BlbnQgXG4gcmFuZG9tICAgICAgICAgICAgICAgICAgICAgICAgOjcwMCAgIE1vZGUgOmxvZ2ljYWwgICAgICAgICAgICAgICBNb2RlIDpsb2dpY2FsICAgTWluLiAgIDowLjAwMCAgXG4geW91dHViZS9yZW1vdmVfY29tbWVudF9zZWN0aW9uOiA0MiAgIEZBTFNFOjQxNyAgICAgICAgICAgICAgICAgICBGQUxTRTo3ODQgICAgICAgMXN0IFF1LjozLjU0MSAgXG4geW91dHViZS9yZW1vdmVfc2lkZWJhcl9saW5rcyAgOiAzOCAgIFRSVUUgOjY2NiAgICAgICAgICAgICAgICAgICBUUlVFIDoyOTkgICAgICAgTWVkaWFuIDo0Ljg1MiAgXG4geW91dHViZS9wcm9tcHRfYmVmb3JlX3dhdGNoICAgOiAzNyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDo0Ljc4NiAgXG4gZmFjZWJvb2svZmVlZF9pbmplY3Rpb25fdGltZXIgOiAyNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1Ljo2LjA5NCAgXG4gZmFjZWJvb2svc2hvd190aW1lcl9iYW5uZXIgICAgOiAyMyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo5LjM2NyAgXG4gKE90aGVyKSAgICAgICAgICAgICAgICAgICAgICAgOjIxNyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gbnVtX2ltcHJlc3Npb25zX29uX2RheSBudW1fdmlzaXRzX3RvX2RvbWFpbl90b2RheSAgIHRpbWVfc3BlbnQgICAgICB1c2VyX3Nhd19ib3RoX3NhbWVfYW5kX3JhbmRvbVxuIE1pbi4gICA6IDAuMDAwICAgICAgICAgTWluLiAgIDogMS4wMDAgICAgICAgICAgICAgTWluLiAgIDogICAgMS4wICAgTW9kZSA6bG9naWNhbCAgICAgICAgICAgICAgICBcbiAxc3QgUXUuOiAwLjAwMCAgICAgICAgIDFzdCBRdS46IDEuMDAwICAgICAgICAgICAgIDFzdCBRdS46ICAgMzQuNSAgIEZBTFNFOjM3MCAgICAgICAgICAgICAgICAgICAgXG4gTWVkaWFuIDogMC4wMDAgICAgICAgICBNZWRpYW4gOiAxLjAwMCAgICAgICAgICAgICBNZWRpYW4gOiAgMTI4LjAgICBUUlVFIDo3MTMgICAgICAgICAgICAgICAgICAgIFxuIE1lYW4gICA6IDEuMjQ1ICAgICAgICAgTWVhbiAgIDogMi4yNDUgICAgICAgICAgICAgTWVhbiAgIDogIDQzNS4yICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzcmQgUXUuOiAxLjAwMCAgICAgICAgIDNyZCBRdS46IDIuMDAwICAgICAgICAgICAgIDNyZCBRdS46ICA0NDMuMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gTWF4LiAgIDo2Mi4wMDAgICAgICAgICBNYXguICAgOjYzLjAwMCAgICAgICAgICAgICBNYXguICAgOjExNjkzLjAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICB1c2VyaWQgICBcbiAyZjg5NmI5MjEzOWViZjk4MDdmNTgwNjA6IDMyICBcbiBmNjgxYmRlYjJhMWVmZmNmOTU2MDc3NWY6IDIxICBcbiAwYjk0YWFlNmRkNGYwOTdlNTJkMzczZDA6IDE3ICBcbiA1ODlmNzFmOWU0N2I1MTIwNTY2N2JlYTk6IDE3ICBcbiA3ZGEyOTNhOTM4ZTUyYWRhYjZmNTRiYTA6IDE3ICBcbiAzZjRjNDNkMjE2NjIxY2QzNDg0YzgwYzM6IDE2ICBcbiAoT3RoZXIpICAgICAgICAgICAgICAgICA6OTYzICBcbiJ9 -->
+<pre><code> attritioned     attritioned_today  condition   conditionduration days_since_install days_until_last_day
+ Mode :logical   Mode :logical     same  :700   Min.   :1.000     Min.   : 0.000     Min.   : 0.000     
+ FALSE:942       FALSE:896         random:383   1st Qu.:3.000     1st Qu.: 0.000     1st Qu.: 0.000     
+ TRUE :141       TRUE :187                      Median :5.000     Median : 1.000     Median : 3.000     
+                                                Mean   :4.769     Mean   : 3.297     Mean   : 4.657     
+                                                3rd Qu.:7.000     3rd Qu.: 5.000     3rd Qu.: 8.000     
+                                                Max.   :7.000     Max.   :21.000     Max.   :21.000     
+                                                                                                        
+              domain    first_condition_for_user first_conditionduration_for_user                    install_id 
+ www.facebook.com:367   random:577               Min.   :1.00                     2f896b92139ebf9807f58060: 32  
+ www.youtube.com :259   same  :506               1st Qu.:3.00                     f681bdeb2a1effcf9560775f: 21  
+ www.reddit.com  : 85                            Median :5.00                     0b94aae6dd4f097e52d373d0: 17  
+ twitter.com     : 79                            Mean   :4.08                     589f71f9e47b51205667bea9: 17  
+ vk.com          : 43                            3rd Qu.:5.00                     7da293a938e52adab6f54ba0: 17  
+ mail.google.com : 39                            Max.   :7.00                     3f4c43d216621cd3484c80c3: 16  
+ (Other)         :211                                                             (Other)                 :963  
+                         intervention is_day_with_just_one_sample is_last_day     log_time_spent 
+ random                        :700   Mode :logical               Mode :logical   Min.   :0.000  
+ youtube/remove_comment_section: 42   FALSE:417                   FALSE:784       1st Qu.:3.541  
+ youtube/remove_sidebar_links  : 38   TRUE :666                   TRUE :299       Median :4.852  
+ youtube/prompt_before_watch   : 37                                               Mean   :4.786  
+ facebook/feed_injection_timer : 26                                               3rd Qu.:6.094  
+ facebook/show_timer_banner    : 23                                               Max.   :9.367  
+ (Other)                       :217                                                              
+ num_impressions_on_day num_visits_to_domain_today   time_spent      user_saw_both_same_and_random
+ Min.   : 0.000         Min.   : 1.000             Min.   :    1.0   Mode :logical                
+ 1st Qu.: 0.000         1st Qu.: 1.000             1st Qu.:   34.5   FALSE:370                    
+ Median : 0.000         Median : 1.000             Median :  128.0   TRUE :713                    
+ Mean   : 1.245         Mean   : 2.245             Mean   :  435.2                                
+ 3rd Qu.: 1.000         3rd Qu.: 2.000             3rd Qu.:  443.0                                
+ Max.   :62.000         Max.   :63.000             Max.   :11693.0                                
+                                                                                                  
+                      userid   
+ 2f896b92139ebf9807f58060: 32  
+ f681bdeb2a1effcf9560775f: 21  
+ 0b94aae6dd4f097e52d373d0: 17  
+ 589f71f9e47b51205667bea9: 17  
+ 7da293a938e52adab6f54ba0: 17  
+ 3f4c43d216621cd3484c80c3: 16  
+ (Other)                 :963  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Reading in the per-session data:</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSByZWFkLmNzdihkYXRhX2ZpbGVuYW1lKVxuZGF0YSRhdHRyaXRpb25lZCA8LSBkYXRhJGF0dHJpdGlvbmVkID09IDFcbmRhdGEkaXNfZmlyc3RfdmlzaXRfb2ZfZGF5IDwtIGRhdGEkaXNfZmlyc3RfdmlzaXRfb2ZfZGF5ID09IDFcbmRhdGEkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlIDwtIGRhdGEkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlID09IDFcbmRhdGEkY29uZGl0aW9uIDwtIGZhY3RvcihkYXRhJGNvbmRpdGlvbiwgbGV2ZWxzPWMoJ3NhbWUnLCAncmFuZG9tJykpXG5cbnN1bW1hcnkoZGF0YSlcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSByZWFkLmNzdihkYXRhX2ZpbGVuYW1lKVxuZGF0YSRhdHRyaXRpb25lZCA8LSBkYXRhJGF0dHJpdGlvbmVkID09IDFcbmRhdGEkaXNfZmlyc3RfdmlzaXRfb2ZfZGF5IDwtIGRhdGEkaXNfZmlyc3RfdmlzaXRfb2ZfZGF5ID09IDFcbmRhdGEkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlIDwtIGRhdGEkaXNfZGF5X3dpdGhfanVzdF9vbmVfc2FtcGxlID09IDFcbmRhdGEkY29uZGl0aW9uIDwtIGZhY3RvcihkYXRhJGNvbmRpdGlvbiwgbGV2ZWxzPWMoJ3NhbWUnLCAncmFuZG9tJykpXG5zdW1tYXJ5KGRhdGEpXG5gYGAifQ== -->
 <pre class="r"><code>data &lt;- read.csv(data_filename)
 data$attritioned &lt;- data$attritioned == 1
 data$is_first_visit_of_day &lt;- data$is_first_visit_of_day == 1
 data$is_day_with_just_one_sample &lt;- data$is_day_with_just_one_sample == 1
 data$condition &lt;- factor(data$condition, levels=c('same', 'random'))
-
 summary(data)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGF0dHJpdGlvbmVkICAgICAgY29uZGl0aW9uICAgIGNvbmRpdGlvbmR1cmF0aW9uIGRheXNfc2luY2VfaW5zdGFsbCBkYXlzX3VudGlsX2xhc3RfZGF5ICAgICAgICAgICAgICAgICAgICBkb21haW4gICBcbiBNb2RlIDpsb2dpY2FsICAgc2FtZSAgOjExNTYgICBNaW4uICAgOjEuMDAwICAgICBNaW4uICAgOiAwLjAwMCAgICAgTWluLiAgIDogMC4wMDAgICAgICB3d3cuZmFjZWJvb2suY29tICAgICAgOjk3MiAgXG4gRkFMU0U6MjI5MCAgICAgIHJhbmRvbToxMjc1ICAgMXN0IFF1LjozLjAwMCAgICAgMXN0IFF1LjogMC4wMDAgICAgIDFzdCBRdS46IDEuMDAwICAgICAgd3d3LnJlZGRpdC5jb20gICAgICAgIDo0MjIgIFxuIFRSVUUgOjE0MSAgICAgICAgICAgICAgICAgICAgIE1lZGlhbiA6NS4wMDAgICAgIE1lZGlhbiA6IDIuMDAwICAgICBNZWRpYW4gOiA0LjAwMCAgICAgIHd3dy55b3V0dWJlLmNvbSAgICAgICA6NDA1ICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOjQuODQ5ICAgICBNZWFuICAgOiAzLjg5OSAgICAgTWVhbiAgIDogNC45MTEgICAgICB0d2l0dGVyLmNvbSAgICAgICAgICAgOjEwOCAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1Ljo3LjAwMCAgICAgM3JkIFF1LjogNy4wMDAgICAgIDNyZCBRdS46IDguMDAwICAgICAgdmsuY29tICAgICAgICAgICAgICAgIDoxMDIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6Ny4wMDAgICAgIE1heC4gICA6MjEuMDAwICAgICBNYXguICAgOjIxLjAwMCAgICAgIGhvdXN0b24uY3JhaWdzbGlzdC5vcmc6IDU2ICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAoT3RoZXIpICAgICAgICAgICAgICAgOjM2NiAgXG4gZmlyc3RfY29uZGl0aW9uX2Zvcl91c2VyIGZpcnN0X2NvbmRpdGlvbmR1cmF0aW9uX2Zvcl91c2VyIGltcHJlc3Npb25faWR4ICAgaW1wcmVzc2lvbl9pZHhfd2l0aGluX2RheVxuIHJhbmRvbToxMDYxICAgICAgICAgICAgICBNaW4uICAgOjEuMDAwICAgICAgICAgICAgICAgICAgICBNaW4uICAgOiAgMC4wMCAgIE1pbi4gICA6IDAuMDAwICAgICAgICAgICBcbiBzYW1lICA6MTM3MCAgICAgICAgICAgICAgMXN0IFF1LjoxLjAwMCAgICAgICAgICAgICAgICAgICAgMXN0IFF1LjogIDAuMDAgICAxc3QgUXUuOiAwLjAwMCAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIE1lZGlhbiA6My4wMDAgICAgICAgICAgICAgICAgICAgIE1lZGlhbiA6ICAwLjAwICAgTWVkaWFuIDogMC4wMDAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOjMuNjgzICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiAxMi44NyAgIE1lYW4gICA6IDMuMDg5ICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1Ljo1LjAwMCAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogMTQuMDAgICAzcmQgUXUuOiAyLjAwMCAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6Ny4wMDAgICAgICAgICAgICAgICAgICAgIE1heC4gICA6MTM0LjAwICAgTWF4LiAgIDo2Mi4wMDAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgaW5zdGFsbF9pZCAgICAgICAgICAgICAgICAgICAgICAgICAgaW50ZXJ2ZW50aW9uICBpc19kYXlfd2l0aF9qdXN0X29uZV9zYW1wbGVcbiAyZjg5NmI5MjEzOWViZjk4MDdmNTgwNjA6IDIwMyAgIHJlZGRpdC90b2FzdF9ub3RpZmljYXRpb25zICAgOiAyMzEgICBNb2RlIDpsb2dpY2FsICAgICAgICAgICAgICBcbiBiYjJmYzA5NWU5NGVmMTI1ZWExYWJlNjE6IDE1MSAgIGZhY2Vib29rL3JlbW92ZV9uZXdzX2ZlZWQgICAgOiAyMTggICBGQUxTRToxNzY1ICAgICAgICAgICAgICAgICBcbiAxODczMmM1N2RmZTU5ZDA1NmFmYmUxY2I6IDEwOSAgIGZhY2Vib29rL3RvYXN0X25vdGlmaWNhdGlvbnMgOiAyMDUgICBUUlVFIDo2NjYgICAgICAgICAgICAgICAgICBcbiBmZDcyN2ExZjMzNjM4ZmQwMTdlNGY4ODk6ICA5NSAgIGZhY2Vib29rL2ZlZWRfaW5qZWN0aW9uX3RpbWVyOiAxNzYgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAzZjRjNDNkMjE2NjIxY2QzNDg0YzgwYzM6ICA4MiAgIHJlZGRpdC9zaG93X3RpbWVyX2Jhbm5lciAgICAgOiAxNjEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBkY2RkNTQ4OTM4MGRkOTdjNTY0ZWQwODM6ICA1OSAgIGZhY2Vib29rL3Nob3dfdGltZXJfYmFubmVyICAgOiAxNTkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAoT3RoZXIpICAgICAgICAgICAgICAgICA6MTczMiAgIChPdGhlcikgICAgICAgICAgICAgICAgICAgICAgOjEyODEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiBpc19maXJzdF92aXNpdF9vZl9kYXkgbG9nX3RpbWVfc3BlbnQgIG51bV9kYXlzX2ludGVydmVudGlvbl9zZWVuX2F0X2xlYXN0X29uY2UgICB0aW1lX3NwZW50ICAgICAgICB0aW1lc3RhbXAgICAgICAgIFxuIE1vZGUgOmxvZ2ljYWwgICAgICAgICBNaW4uICAgOjAuMDAwICAgTWluLiAgIDogMC4wMDAgICAgICAgICAgICAgICAgICAgICAgICAgICBNaW4uICAgOiAgICAxLjAgICBNaW4uICAgOjEuNTIxZSsxMiAgXG4gRkFMU0U6ODEzICAgICAgICAgICAgIDFzdCBRdS46Mi40ODUgICAxc3QgUXUuOiAwLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgIDFzdCBRdS46ICAgMTIuMCAgIDFzdCBRdS46MS41MjJlKzEyICBcbiBUUlVFIDoxNjE4ICAgICAgICAgICAgTWVkaWFuIDozLjgyOSAgIE1lZGlhbiA6IDAuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVkaWFuIDogICA0Ni4wICAgTWVkaWFuIDoxLjUyMmUrMTIgIFxuICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOjMuNzkyICAgTWVhbiAgIDogMS4zNDkgICAgICAgICAgICAgICAgICAgICAgICAgICBNZWFuICAgOiAgMTkzLjkgICBNZWFuICAgOjEuNTIyZSsxMiAgXG4gICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46NS4wNjkgICAzcmQgUXUuOiAyLjAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46ICAxNTkuMCAgIDNyZCBRdS46MS41MjJlKzEyICBcbiAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDo5LjM2NyAgIE1heC4gICA6MTQuMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDoxMTY5My4wICAgTWF4LiAgIDoxLjUyM2UrMTIgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgdXNlcmlkICAgIFxuIDJmODk2YjkyMTM5ZWJmOTgwN2Y1ODA2MDogMjAzICBcbiBiYjJmYzA5NWU5NGVmMTI1ZWExYWJlNjE6IDE1MSAgXG4gMTg3MzJjNTdkZmU1OWQwNTZhZmJlMWNiOiAxMDkgIFxuIGZkNzI3YTFmMzM2MzhmZDAxN2U0Zjg4OTogIDk1ICBcbiAzZjRjNDNkMjE2NjIxY2QzNDg0YzgwYzM6ICA4MiAgXG4gZGNkZDU0ODkzODBkZDk3YzU2NGVkMDgzOiAgNTkgIFxuIChPdGhlcikgICAgICAgICAgICAgICAgIDoxNzMyICBcbiJ9 -->
+<pre><code> attritioned      condition    conditionduration days_since_install days_until_last_day                    domain   
+ Mode :logical   same  :1156   Min.   :1.000     Min.   : 0.000     Min.   : 0.000      www.facebook.com      :972  
+ FALSE:2290      random:1275   1st Qu.:3.000     1st Qu.: 0.000     1st Qu.: 1.000      www.reddit.com        :422  
+ TRUE :141                     Median :5.000     Median : 2.000     Median : 4.000      www.youtube.com       :405  
+                               Mean   :4.849     Mean   : 3.899     Mean   : 4.911      twitter.com           :108  
+                               3rd Qu.:7.000     3rd Qu.: 7.000     3rd Qu.: 8.000      vk.com                :102  
+                               Max.   :7.000     Max.   :21.000     Max.   :21.000      houston.craigslist.org: 56  
+                                                                                        (Other)               :366  
+ first_condition_for_user first_conditionduration_for_user impression_idx   impression_idx_within_day
+ random:1061              Min.   :1.000                    Min.   :  0.00   Min.   : 0.000           
+ same  :1370              1st Qu.:1.000                    1st Qu.:  0.00   1st Qu.: 0.000           
+                          Median :3.000                    Median :  0.00   Median : 0.000           
+                          Mean   :3.683                    Mean   : 12.87   Mean   : 3.089           
+                          3rd Qu.:5.000                    3rd Qu.: 14.00   3rd Qu.: 2.000           
+                          Max.   :7.000                    Max.   :134.00   Max.   :62.000           
+                                                                                                     
+                    install_id                          intervention  is_day_with_just_one_sample
+ 2f896b92139ebf9807f58060: 203   reddit/toast_notifications   : 231   Mode :logical              
+ bb2fc095e94ef125ea1abe61: 151   facebook/remove_news_feed    : 218   FALSE:1765                 
+ 18732c57dfe59d056afbe1cb: 109   facebook/toast_notifications : 205   TRUE :666                  
+ fd727a1f33638fd017e4f889:  95   facebook/feed_injection_timer: 176                              
+ 3f4c43d216621cd3484c80c3:  82   reddit/show_timer_banner     : 161                              
+ dcdd5489380dd97c564ed083:  59   facebook/show_timer_banner   : 159                              
+ (Other)                 :1732   (Other)                      :1281                              
+ is_first_visit_of_day log_time_spent  num_days_intervention_seen_at_least_once   time_spent        timestamp        
+ Mode :logical         Min.   :0.000   Min.   : 0.000                           Min.   :    1.0   Min.   :1.521e+12  
+ FALSE:813             1st Qu.:2.485   1st Qu.: 0.000                           1st Qu.:   12.0   1st Qu.:1.522e+12  
+ TRUE :1618            Median :3.829   Median : 0.000                           Median :   46.0   Median :1.522e+12  
+                       Mean   :3.792   Mean   : 1.349                           Mean   :  193.9   Mean   :1.522e+12  
+                       3rd Qu.:5.069   3rd Qu.: 2.000                           3rd Qu.:  159.0   3rd Qu.:1.522e+12  
+                       Max.   :9.367   Max.   :14.000                           Max.   :11693.0   Max.   :1.523e+12  
+                                                                                                                     
+                      userid    
+ 2f896b92139ebf9807f58060: 203  
+ bb2fc095e94ef125ea1abe61: 151  
+ 18732c57dfe59d056afbe1cb: 109  
+ fd727a1f33638fd017e4f889:  95  
+ 3f4c43d216621cd3484c80c3:  82  
+ dcdd5489380dd97c564ed083:  59  
+ (Other)                 :1732  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Reading in the per-user data used for survival analysis</p>
@@ -233,18 +313,63 @@ data_peruser$did_not_complete_first_condition &lt;- data_peruser$completed_first
 data_peruser$completed_first_condition &lt;- data_peruser$completed_first_condition == 1
 summary(data_peruser)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiIGF0dHJpdGlvbmVkICAgICBhdHRyaXRpb25lZF9kdXJpbmdfZmlyc3RfY29uZGl0aW9uIGNvbXBsZXRlZF9maXJzdF9jb25kaXRpb24gZGF5c19rZXB0X2luc3RhbGxlZFxuIE1vZGUgOmxvZ2ljYWwgICBNb2RlIDpsb2dpY2FsICAgICAgICAgICAgICAgICAgICAgIE1vZGUgOmxvZ2ljYWwgICAgICAgICAgICAgTWluLiAgIDogMC4wMDAgICAgIFxuIEZBTFNFOjc2ICAgICAgICBGQUxTRToxNDQgICAgICAgICAgICAgICAgICAgICAgICAgIEZBTFNFOjExMyAgICAgICAgICAgICAgICAgMXN0IFF1LjogMC4wMDAgICAgIFxuIFRSVUUgOjE0MSAgICAgICBUUlVFIDo3MyAgICAgICAgICAgICAgICAgICAgICAgICAgIFRSVUUgOjEwNCAgICAgICAgICAgICAgICAgTWVkaWFuIDogMi4wMDAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDogNC42MzYgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgM3JkIFF1LjogNy4wMDAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgTWF4LiAgIDoyMS4wMDAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIGZpcnN0X2NvbmRpdGlvbl9mb3JfdXNlciBmaXJzdF9jb25kaXRpb25kdXJhdGlvbl9mb3JfdXNlciAgICAgICAgICAgICAgICAgICAgaW5zdGFsbF9pZCBcbiByYW5kb206MTIwICAgICAgICAgICAgICAgTWluLiAgIDoxLjAwMCAgICAgICAgICAgICAgICAgICAgMDAxNzU5ZTVhZjM4M2Q4NjFjN2IwMmI1OiAgMSAgXG4gc2FtZSAgOiA5NyAgICAgICAgICAgICAgIDFzdCBRdS46My4wMDAgICAgICAgICAgICAgICAgICAgIDA2ZDgwZDZhZmEzZjFmYzhiYThlYjQ3ZjogIDEgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBNZWRpYW4gOjUuMDAwICAgICAgICAgICAgICAgICAgICAwN2I4MTFjMmNlODFjNDUzM2VhNTJkZjQ6ICAxICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgTWVhbiAgIDo0LjEyNCAgICAgICAgICAgICAgICAgICAgMDdjMDllMzNkZjFjOTFmN2Q3N2VkNjk2OiAgMSAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDNyZCBRdS46Ny4wMDAgICAgICAgICAgICAgICAgICAgIDA4MjVjMDQxYjEzOWU1YzUzODcxYTBiOTogIDEgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICBNYXguICAgOjcuMDAwICAgICAgICAgICAgICAgICAgICAwOGM1ZTM2ZjNhYWYyNTgyNWEyMDZiOTI6ICAxICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgKE90aGVyKSAgICAgICAgICAgICAgICAgOjIxMSAgXG4gZGlkX25vdF9jb21wbGV0ZV9maXJzdF9jb25kaXRpb25cbiBNb2RlIDpsb2dpY2FsICAgICAgICAgICAgICAgICAgIFxuIEZBTFNFOjEwNCAgICAgICAgICAgICAgICAgICAgICAgXG4gVFJVRSA6MTEzICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuIn0= -->
+<pre><code> attritioned     attritioned_during_first_condition completed_first_condition days_kept_installed
+ Mode :logical   Mode :logical                      Mode :logical             Min.   : 0.000     
+ FALSE:76        FALSE:144                          FALSE:113                 1st Qu.: 0.000     
+ TRUE :141       TRUE :73                           TRUE :104                 Median : 2.000     
+                                                                              Mean   : 4.636     
+                                                                              3rd Qu.: 7.000     
+                                                                              Max.   :21.000     
+                                                                                                 
+ first_condition_for_user first_conditionduration_for_user                    install_id 
+ random:120               Min.   :1.000                    001759e5af383d861c7b02b5:  1  
+ same  : 97               1st Qu.:3.000                    06d80d6afa3f1fc8ba8eb47f:  1  
+                          Median :5.000                    07b811c2ce81c4533ea52df4:  1  
+                          Mean   :4.124                    07c09e33df1c91f7d77ed696:  1  
+                          3rd Qu.:7.000                    0825c041b139e5c53871a0b9:  1  
+                          Max.   :7.000                    08c5e36f3aaf25825a206b92:  1  
+                                                           (Other)                 :211  
+ did_not_complete_first_condition
+ Mode :logical                   
+ FALSE:104                       
+ TRUE :113                       
+                                 
+                                 
+                                 
+                                 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Reading in the survival data from the old experiment</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vydml2YWxkYXRhIDwtIHJlYWQuY3N2KHN1cnZpdmFsZGF0YV9maWxlbmFtZSlcbnN1bW1hcnkoc3Vydml2YWxkYXRhKVxuXG5zdXJ2aXZhbGRhdGFfZ3JvdXBlZCA8LSByZWFkLmNzdihzdXJ2aXZhbGRhdGFfZ3JvdXBlZF9maWxlbmFtZSlcbnN1bW1hcnkoc3Vydml2YWxkYXRhX2dyb3VwZWQpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vydml2YWxkYXRhIDwtIHJlYWQuY3N2KHN1cnZpdmFsZGF0YV9maWxlbmFtZSlcbnN1bW1hcnkoc3Vydml2YWxkYXRhKVxuYGBgIn0= -->
 <pre class="r"><code>survivaldata &lt;- read.csv(survivaldata_filename)
-summary(survivaldata)
-
-survivaldata_grouped &lt;- read.csv(survivaldata_grouped_filename)
+summary(survivaldata)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgIGNvbmRpdGlvbiAgICBhdHRyaXRpb25lZCAgICAgICAgbGlmZXRpbWUgICAgXG4gcmFuZG9tICAgICA6MTIyICAgTWluLiAgIDowLjAwMDAgICBNaW4uICAgOiAwLjAwICBcbiByYW5kb21faGFsZjoxMDUgICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MTIuMDAgIFxuIHNhbWUgICAgICAgOjExMCAgIE1lZGlhbiA6MC4wMDAwICAgTWVkaWFuIDozNy4wMCAgXG4gICAgICAgICAgICAgICAgICAgTWVhbiAgIDowLjQ3NzcgICBNZWFuICAgOjMyLjY0ICBcbiAgICAgICAgICAgICAgICAgICAzcmQgUXUuOjEuMDAwMCAgIDNyZCBRdS46NTQuMDAgIFxuICAgICAgICAgICAgICAgICAgIE1heC4gICA6MS4wMDAwICAgTWF4LiAgIDo2OC4wMCAgXG4ifQ== -->
+<pre><code>       condition    attritioned        lifetime    
+ random     :122   Min.   :0.0000   Min.   : 0.00  
+ random_half:105   1st Qu.:0.0000   1st Qu.:12.00  
+ same       :110   Median :0.0000   Median :37.00  
+                   Mean   :0.4777   Mean   :32.64  
+                   3rd Qu.:1.0000   3rd Qu.:54.00  
+                   Max.   :1.0000   Max.   :68.00  </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3Vydml2YWxkYXRhX2dyb3VwZWQgPC0gcmVhZC5jc3Yoc3Vydml2YWxkYXRhX2dyb3VwZWRfZmlsZW5hbWUpXG5zdW1tYXJ5KHN1cnZpdmFsZGF0YV9ncm91cGVkKVxuYGBgIn0= -->
+<pre class="r"><code>survivaldata_grouped &lt;- read.csv(survivaldata_grouped_filename)
 summary(survivaldata_grouped)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICBjb25kaXRpb24gICAgYXR0cml0aW9uZWQgICAgICAgIGxpZmV0aW1lICAgIFxuIHJhbmRvbToyMjcgICBNaW4uICAgOjAuMDAwMCAgIE1pbi4gICA6IDAuMDAgIFxuIHNhbWUgIDoxMTAgICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MTIuMDAgIFxuICAgICAgICAgICAgICBNZWRpYW4gOjAuMDAwMCAgIE1lZGlhbiA6MzcuMDAgIFxuICAgICAgICAgICAgICBNZWFuICAgOjAuNDc3NyAgIE1lYW4gICA6MzIuNjQgIFxuICAgICAgICAgICAgICAzcmQgUXUuOjEuMDAwMCAgIDNyZCBRdS46NTQuMDAgIFxuICAgICAgICAgICAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6NjguMDAgIFxuIn0= -->
+<pre><code>  condition    attritioned        lifetime    
+ random:227   Min.   :0.0000   Min.   : 0.00  
+ same  :110   1st Qu.:0.0000   1st Qu.:12.00  
+              Median :0.0000   Median :37.00  
+              Mean   :0.4777   Mean   :32.64  
+              3rd Qu.:1.0000   3rd Qu.:54.00  
+              Max.   :1.0000   Max.   :68.00  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -253,15 +378,23 @@ summary(survivaldata_grouped)</code></pre>
 <pre class="r"><code>choosing_own_intervention_data &lt;- read.csv(choosing_own_intervention_data_filename)
 summary(choosing_own_intervention_data)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICBjb25kaXRpb24gICAgYXR0cml0aW9uZWQgICAgICAgIGxpZmV0aW1lICAgIFxuIGNoYW5nZWQgIDo3MTUgICBNaW4uICAgOjAuMDAwMCAgIE1pbi4gICA6IDAuMDAgIFxuIG5vY2hhbmdlZDozMzggICAxc3QgUXUuOjAuMDAwMCAgIDFzdCBRdS46MTIuMDAgIFxuICAgICAgICAgICAgICAgICBNZWRpYW4gOjAuMDAwMCAgIE1lZGlhbiA6NDAuMDAgIFxuICAgICAgICAgICAgICAgICBNZWFuICAgOjAuNDc1OCAgIE1lYW4gICA6MzQuODMgIFxuICAgICAgICAgICAgICAgICAzcmQgUXUuOjEuMDAwMCAgIDNyZCBRdS46NTYuMDAgIFxuICAgICAgICAgICAgICAgICBNYXguICAgOjEuMDAwMCAgIE1heC4gICA6NzMuMDAgIFxuIn0= -->
+<pre><code>     condition    attritioned        lifetime    
+ changed  :715   Min.   :0.0000   Min.   : 0.00  
+ nochanged:338   1st Qu.:0.0000   1st Qu.:12.00  
+                 Median :0.0000   Median :40.00  
+                 Mean   :0.4758   Mean   :34.83  
+                 3rd Qu.:1.0000   3rd Qu.:56.00  
+                 Max.   :1.0000   Max.   :73.00  </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Filter to Facebook data</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YWRheXNfZmFjZWJvb2sgPC0gc3Vic2V0KGRhdGFkYXlzLCBkYXRhZGF5cyRkb21haW4gPT0gXCJ3d3cuZmFjZWJvb2suY29tXCIpXG5kYXRhZGF5c19mYWNlYm9vayA8LSBzdWJzZXQoZGF0YWRheXNfZmFjZWJvb2ssIGRhdGFkYXlzX2ZhY2Vib29rJGludGVydmVudGlvbiA9PSAncmFuZG9tJyB8IGRhdGFkYXlzX2ZhY2Vib29rJGludGVydmVudGlvbiA9PSAnZmFjZWJvb2svZmVlZF9pbmplY3Rpb25fdGltZXInIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX25ld3NfZmVlZFwiIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX2NvbW1lbnRzXCIgfCBkYXRhZGF5c19mYWNlYm9vayRpbnRlcnZlbnRpb24gPT0gJ2ZhY2Vib29rL3RvYXN0X25vdGlmaWNhdGlvbnMnIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09ICdmYWNlYm9vay9zaG93X3RpbWVyX2Jhbm5lcicpXG5cbmRhdGFfZmFjZWJvb2sgPC0gc3Vic2V0KGRhdGEsIGRvbWFpbiA9PSBcInd3dy5mYWNlYm9vay5jb21cIilcbmRhdGFfZmFjZWJvb2sgPC0gc3Vic2V0KGRhdGFfZmFjZWJvb2ssIGludGVydmVudGlvbiA9PSAncmFuZG9tJyB8IGludGVydmVudGlvbiA9PSAnZmFjZWJvb2svZmVlZF9pbmplY3Rpb25fdGltZXInIHwgaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX25ld3NfZmVlZFwiIHwgaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX2NvbW1lbnRzXCIgfCBpbnRlcnZlbnRpb24gPT0gJ2ZhY2Vib29rL3RvYXN0X25vdGlmaWNhdGlvbnMnIHwgaW50ZXJ2ZW50aW9uID09ICdmYWNlYm9vay9zaG93X3RpbWVyX2Jhbm5lcicpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YWRheXNfZmFjZWJvb2sgPC0gc3Vic2V0KGRhdGFkYXlzLCBkYXRhZGF5cyRkb21haW4gPT0gXCJ3d3cuZmFjZWJvb2suY29tXCIpXG5kYXRhZGF5c19mYWNlYm9vayA8LSBzdWJzZXQoZGF0YWRheXNfZmFjZWJvb2ssIGRhdGFkYXlzX2ZhY2Vib29rJGludGVydmVudGlvbiA9PSAncmFuZG9tJyB8IGRhdGFkYXlzX2ZhY2Vib29rJGludGVydmVudGlvbiA9PSAnZmFjZWJvb2svZmVlZF9pbmplY3Rpb25fdGltZXInIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX25ld3NfZmVlZFwiIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09IFwiZmFjZWJvb2svcmVtb3ZlX2NvbW1lbnRzXCIgfCBkYXRhZGF5c19mYWNlYm9vayRpbnRlcnZlbnRpb24gPT0gJ2ZhY2Vib29rL3RvYXN0X25vdGlmaWNhdGlvbnMnIHwgZGF0YWRheXNfZmFjZWJvb2skaW50ZXJ2ZW50aW9uID09ICdmYWNlYm9vay9zaG93X3RpbWVyX2Jhbm5lcicpXG5kYXRhX2ZhY2Vib29rIDwtIHN1YnNldChkYXRhLCBkb21haW4gPT0gXCJ3d3cuZmFjZWJvb2suY29tXCIpXG5kYXRhX2ZhY2Vib29rIDwtIHN1YnNldChkYXRhX2ZhY2Vib29rLCBpbnRlcnZlbnRpb24gPT0gJ3JhbmRvbScgfCBpbnRlcnZlbnRpb24gPT0gJ2ZhY2Vib29rL2ZlZWRfaW5qZWN0aW9uX3RpbWVyJyB8IGludGVydmVudGlvbiA9PSBcImZhY2Vib29rL3JlbW92ZV9uZXdzX2ZlZWRcIiB8IGludGVydmVudGlvbiA9PSBcImZhY2Vib29rL3JlbW92ZV9jb21tZW50c1wiIHwgaW50ZXJ2ZW50aW9uID09ICdmYWNlYm9vay90b2FzdF9ub3RpZmljYXRpb25zJyB8IGludGVydmVudGlvbiA9PSAnZmFjZWJvb2svc2hvd190aW1lcl9iYW5uZXInKVxuYGBgIn0= -->
 <pre class="r"><code>datadays_facebook &lt;- subset(datadays, datadays$domain == &quot;www.facebook.com&quot;)
 datadays_facebook &lt;- subset(datadays_facebook, datadays_facebook$intervention == 'random' | datadays_facebook$intervention == 'facebook/feed_injection_timer' | datadays_facebook$intervention == &quot;facebook/remove_news_feed&quot; | datadays_facebook$intervention == &quot;facebook/remove_comments&quot; | datadays_facebook$intervention == 'facebook/toast_notifications' | datadays_facebook$intervention == 'facebook/show_timer_banner')
-
 data_facebook &lt;- subset(data, domain == &quot;www.facebook.com&quot;)
 data_facebook &lt;- subset(data_facebook, intervention == 'random' | intervention == 'facebook/feed_injection_timer' | intervention == &quot;facebook/remove_news_feed&quot; | intervention == &quot;facebook/remove_comments&quot; | intervention == 'facebook/toast_notifications' | intervention == 'facebook/show_timer_banner')</code></pre>
 <!-- rnb-source-end -->
@@ -279,130 +412,622 @@ datadays_facebook_nofirstlast &lt;- subset(datadays_facebook, days_since_install
 <p>Number of users in dataset</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhJHVzZXJpZCkpXG5sZW5ndGgodW5pcXVlKGRhdGFkYXlzJHVzZXJpZCkpXG5sZW5ndGgodW5pcXVlKGRhdGFkYXlzX25vZmlyc3RsYXN0JHVzZXJpZCkpXG5sZW5ndGgodW5pcXVlKGRhdGFkYXlzX2ZhY2Vib29rJHVzZXJpZCkpXG5sZW5ndGgodW5pcXVlKGRhdGFkYXlzX2ZhY2Vib29rX25vZmlyc3RsYXN0JHVzZXJpZCkpXG5gYGAifQ== -->
-<pre class="r"><code>length(unique(data$userid))
-length(unique(datadays$userid))
-length(unique(datadays_nofirstlast$userid))
-length(unique(datadays_facebook$userid))
-length(unique(datadays_facebook_nofirstlast$userid))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhJHVzZXJpZCkpXG5gYGAifQ== -->
+<pre class="r"><code>length(unique(data$userid))</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIxN1xuIn0= -->
+<pre><code>[1] 217</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhZGF5cyR1c2VyaWQpKVxuYGBgIn0= -->
+<pre class="r"><code>length(unique(datadays$userid))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIxN1xuIn0= -->
+<pre><code>[1] 217</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhZGF5c19ub2ZpcnN0bGFzdCR1c2VyaWQpKVxuYGBgIn0= -->
+<pre class="r"><code>length(unique(datadays_nofirstlast$userid))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEwM1xuIn0= -->
+<pre><code>[1] 103</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhZGF5c19mYWNlYm9vayR1c2VyaWQpKVxuYGBgIn0= -->
+<pre class="r"><code>length(unique(datadays_facebook$userid))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDEzN1xuIn0= -->
+<pre><code>[1] 137</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHVuaXF1ZShkYXRhZGF5c19mYWNlYm9va19ub2ZpcnN0bGFzdCR1c2VyaWQpKVxuYGBgIn0= -->
+<pre class="r"><code>length(unique(datadays_facebook_nofirstlast$userid))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDc1XG4ifQ== -->
+<pre><code>[1] 75</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>SIGNIFICANT</em> Does condition have effect on attrition rates at the day level overall?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFkYXlzKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5cylcbmFub3ZhKHJlc3VsdHNudWxsLCByZXN1bHRzKVxuc3VtbWFyeShyZXN1bHRzKVxuXG5wcmludChcIk9kZHMgcmF0aW9zXCIpXG5ydGFiIDwtIGV4cChmaXhlZihyZXN1bHRzKSlcbnByaW50KHJ0YWIsZGlnaXRzPTMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFkYXlzKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5cylcbmFub3ZhKHJlc3VsdHNudWxsLCByZXN1bHRzKVxuYGBgIn0= -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
 resultsnull &lt;- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays)
-anova(resultsnull, results)
-summary(results)
+anova(resultsnull, results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YWRheXNcbk1vZGVsczpcbnJlc3VsdHNudWxsOiBhdHRyaXRpb25lZCB+ICgxIHwgaW5zdGFsbF9pZClcbnJlc3VsdHM6IGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxuICAgICAgICAgICAgRGYgICAgQUlDICAgIEJJQyAgbG9nTGlrIGRldmlhbmNlICBDaGlzcSBDaGkgRGYgUHIoPkNoaXNxKSAgXG5yZXN1bHRzbnVsbCAgMiA4MzguMzcgODQ4LjM1IC00MTcuMTkgICA4MzQuMzcgICAgICAgICAgICAgICAgICAgICAgICAgICBcbnJlc3VsdHMgICAgICAzIDgzNC4wNCA4NDkuMDEgLTQxNC4wMiAgIDgyOC4wNCA2LjMzMDMgICAgICAxICAgIDAuMDExODcgKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
+<pre><code>Data: datadays
+Models:
+resultsnull: attritioned ~ (1 | install_id)
+results: attritioned ~ condition + (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)  
+resultsnull  2 838.37 848.35 -417.19   834.37                           
+results      3 834.04 849.01 -414.02   828.04 6.3303      1    0.01187 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFkYXlzXG5cbiAgICAgQUlDICAgICAgQklDICAgbG9nTGlrIGRldmlhbmNlIGRmLnJlc2lkIFxuICAgICA4MzQgICAgICA4NDkgICAgIC00MTQgICAgICA4MjggICAgIDEwODAgXG5cblNjYWxlZCByZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTAuNDcwOSAtMC40MDc3IC0wLjM1MDcgLTAuMjg1MiAgMy41MDEzIFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gaW5zdGFsbF9pZCAoSW50ZXJjZXB0KSAwLjMxMjUgICAwLjU1OSAgIFxuTnVtYmVyIG9mIG9iczogMTA4MywgZ3JvdXBzOiAgaW5zdGFsbF9pZCwgMjE3XG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB6IHZhbHVlIFByKD58enwpICAgIFxuKEludGVyY2VwdCkgICAgICAtMS43MDUxICAgICAwLjExOTEgLTE0LjMyMyAgIDwyZS0xNiAqKipcbmNvbmRpdGlvbnJhbmRvbSAgLTAuNTI2NCAgICAgMC4yMTQ2ICAtMi40NTMgICAwLjAxNDIgKiAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgIChJbnRyKVxuY29uZGl0bnJuZG0gLTAuNDk3XG4ifQ== -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ condition + (1 | install_id)
+   Data: datadays
 
-print(&quot;Odds ratios&quot;)
-rtab &lt;- exp(fixef(results))
+     AIC      BIC   logLik deviance df.resid 
+     834      849     -414      828     1080 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.4709 -0.4077 -0.3507 -0.2852  3.5013 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.3125   0.559   
+Number of obs: 1083, groups:  install_id, 217
+
+Fixed effects:
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      -1.7051     0.1191 -14.323   &lt;2e-16 ***
+conditionrandom  -0.5264     0.2146  -2.453   0.0142 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr)
+conditnrndm -0.497</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>print(&quot;Odds ratios&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiT2RkcyByYXRpb3NcIlxuIn0= -->
+<pre><code>[1] &quot;Odds ratios&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<pre class="r"><code>rtab &lt;- exp(fixef(results))
 print(rtab,digits=3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIChJbnRlcmNlcHQpIGNvbmRpdGlvbnJhbmRvbSBcbiAgICAgICAgICAwLjE4MiAgICAgICAgICAgMC41OTEgXG4ifQ== -->
+<pre><code>    (Intercept) conditionrandom 
+          0.182           0.591 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>SIGNIFICANT</em> Does condition have effect on attrition rates at the day level, on Facebook?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFkYXlzX2ZhY2Vib29rKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5c19mYWNlYm9vaylcbmFub3ZhKHJlc3VsdHNudWxsLCByZXN1bHRzKVxuc3VtbWFyeShyZXN1bHRzKVxuXG5wcmludChcIk9kZHMgcmF0aW9zXCIpXG5ydGFiIDwtIGV4cChmaXhlZihyZXN1bHRzKSlcbnByaW50KHJ0YWIsZGlnaXRzPTMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFkYXlzX2ZhY2Vib29rKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5c19mYWNlYm9vaylcbmBgYCJ9 -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-resultsnull &lt;- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-anova(resultsnull, results)
-summary(results)
+resultsnull &lt;- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTW9kZWwgZmFpbGVkIHRvIGNvbnZlcmdlIHdpdGggbWF4fGdyYWR8ID0gMC4wMTQwNTE3ICh0b2wgPSAwLjAwMSwgY29tcG9uZW50IDEpXG4ifQ== -->
+<pre><code>Model failed to converge with max|grad| = 0.0140517 (tol = 0.001, component 1)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5gYGAifQ== -->
+<pre class="r"><code>anova(resultsnull, results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YWRheXNfZmFjZWJvb2tcbk1vZGVsczpcbnJlc3VsdHNudWxsOiBhdHRyaXRpb25lZCB+ICgxIHwgaW5zdGFsbF9pZClcbnJlc3VsdHM6IGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxuICAgICAgICAgICAgRGYgICAgQUlDICAgIEJJQyAgbG9nTGlrIGRldmlhbmNlICBDaGlzcSBDaGkgRGYgUHIoPkNoaXNxKSAgIFxucmVzdWx0c251bGwgIDIgMjg5Ljg0IDI5Ny4zNiAtMTQyLjkyICAgMjg1Ljg0ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxucmVzdWx0cyAgICAgIDMgMjg0Ljk4IDI5Ni4yNiAtMTM5LjQ5ICAgMjc4Ljk4IDYuODU4OCAgICAgIDEgICAwLjAwODgyMSAqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
+<pre><code>Data: datadays_facebook
+Models:
+resultsnull: attritioned ~ (1 | install_id)
+results: attritioned ~ condition + (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)   
+resultsnull  2 289.84 297.36 -142.92   285.84                            
+results      3 284.98 296.26 -139.49   278.98 6.8588      1   0.008821 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFkYXlzX2ZhY2Vib29rXG5cbiAgICAgQUlDICAgICAgQklDICAgbG9nTGlrIGRldmlhbmNlIGRmLnJlc2lkIFxuICAgMjg1LjAgICAgMjk2LjMgICAtMTM5LjUgICAgMjc5LjAgICAgICAzMTQgXG5cblNjYWxlZCByZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTAuNDk2MSAtMC40OTYxIC0wLjQ5NjEgLTAuMjg2NyAgMy40ODgxIFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gaW5zdGFsbF9pZCAoSW50ZXJjZXB0KSAwICAgICAgICAwICAgICAgIFxuTnVtYmVyIG9mIG9iczogMzE3LCBncm91cHM6ICBpbnN0YWxsX2lkLCAxMzdcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgIC0xLjQwMjEgICAgIDAuMTYyOCAgLTguNjExICAgPDJlLTE2ICoqKlxuY29uZGl0aW9ucmFuZG9tICAtMS4wOTY2ICAgICAwLjQ1NDggIC0yLjQxMSAgIDAuMDE1OSAqICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpXG5jb25kaXRucm5kbSAtMC4zNThcbiJ9 -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ condition + (1 | install_id)
+   Data: datadays_facebook
 
-print(&quot;Odds ratios&quot;)
-rtab &lt;- exp(fixef(results))
+     AIC      BIC   logLik deviance df.resid 
+   285.0    296.3   -139.5    279.0      314 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.4961 -0.4961 -0.4961 -0.2867  3.4881 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0        0       
+Number of obs: 317, groups:  install_id, 137
+
+Fixed effects:
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      -1.4021     0.1628  -8.611   &lt;2e-16 ***
+conditionrandom  -1.0966     0.4548  -2.411   0.0159 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr)
+conditnrndm -0.358</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>print(&quot;Odds ratios&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiT2RkcyByYXRpb3NcIlxuIn0= -->
+<pre><code>[1] &quot;Odds ratios&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<pre class="r"><code>rtab &lt;- exp(fixef(results))
 print(rtab,digits=3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIChJbnRlcmNlcHQpIGNvbmRpdGlvbnJhbmRvbSBcbiAgICAgICAgICAwLjI0NiAgICAgICAgICAgMC4zMzQgXG4ifQ== -->
+<pre><code>    (Intercept) conditionrandom 
+          0.246           0.334 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>SIGNIFICANT</em> Does condition have an effect on attrition rates at the session level?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGEpXG5yZXN1bHRzbnVsbCA8LSBnbG1lcihhdHRyaXRpb25lZCB+ICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGEpXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbnN1bW1hcnkocmVzdWx0cylcblxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGEpXG5yZXN1bHRzbnVsbCA8LSBnbG1lcihhdHRyaXRpb25lZCB+ICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGEpXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbmBgYCJ9 -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
 resultsnull &lt;- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = data)
-anova(resultsnull, results)
-summary(results)
+anova(resultsnull, results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YVxuTW9kZWxzOlxucmVzdWx0c251bGw6IGF0dHJpdGlvbmVkIH4gKDEgfCBpbnN0YWxsX2lkKVxucmVzdWx0czogYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyAoMSB8IGluc3RhbGxfaWQpXG4gICAgICAgICAgICBEZiAgICBBSUMgICAgQklDICBsb2dMaWsgZGV2aWFuY2UgIENoaXNxIENoaSBEZiBQcig+Q2hpc3EpICAgXG5yZXN1bHRzbnVsbCAgMiAxMDI0LjYgMTAzNi4yIC01MTAuMjkgICAxMDIwLjYgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5yZXN1bHRzICAgICAgMyAxMDE4LjcgMTAzNi4xIC01MDYuMzcgICAxMDEyLjcgNy44MzEzICAgICAgMSAgIDAuMDA1MTM1ICoqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcbiJ9 -->
+<pre><code>Data: data
+Models:
+resultsnull: attritioned ~ (1 | install_id)
+results: attritioned ~ condition + (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)   
+resultsnull  2 1024.6 1036.2 -510.29   1020.6                            
+results      3 1018.7 1036.1 -506.37   1012.7 7.8313      1   0.005135 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gIDEwMTguNyAgIDEwMzYuMSAgIC01MDYuNCAgIDEwMTIuNyAgICAgMjQyOCBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC40MjQ2IC0wLjI3MjYgLTAuMTg5OSAtMC4xMTUyICA1LjY2NDQgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBpbnN0YWxsX2lkIChJbnRlcmNlcHQpIDAuOTI1MiAgIDAuOTYxOSAgXG5OdW1iZXIgb2Ygb2JzOiAyNDMxLCBncm91cHM6ICBpbnN0YWxsX2lkLCAyMTdcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgIC0yLjk5MTUgICAgIDAuMjA2MiAtMTQuNTExICA8IDJlLTE2ICoqKlxuY29uZGl0aW9ucmFuZG9tICAgMC42MzU3ICAgICAwLjIzMTAgICAyLjc1MiAgMC4wMDU5MyAqKiBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpXG5jb25kaXRucm5kbSAtMC44MTZcbiJ9 -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ condition + (1 | install_id)
+   Data: data
 
-print(&quot;Odds ratios&quot;)
-rtab &lt;- exp(fixef(results))
+     AIC      BIC   logLik deviance df.resid 
+  1018.7   1036.1   -506.4   1012.7     2428 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.4246 -0.2726 -0.1899 -0.1152  5.6644 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.9252   0.9619  
+Number of obs: 2431, groups:  install_id, 217
+
+Fixed effects:
+                Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)      -2.9915     0.2062 -14.511  &lt; 2e-16 ***
+conditionrandom   0.6357     0.2310   2.752  0.00593 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr)
+conditnrndm -0.816</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>print(&quot;Odds ratios&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiT2RkcyByYXRpb3NcIlxuIn0= -->
+<pre><code>[1] &quot;Odds ratios&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<pre class="r"><code>rtab &lt;- exp(fixef(results))
 print(rtab,digits=3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgIChJbnRlcmNlcHQpIGNvbmRpdGlvbnJhbmRvbSBcbiAgICAgICAgIDAuMDUwMiAgICAgICAgICAxLjg4ODQgXG4ifQ== -->
+<pre><code>    (Intercept) conditionrandom 
+         0.0502          1.8884 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>SIGNIFICANT</em> Does condition have an effect on attrition rates at the session level, on Facebook?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArIGludGVydmVudGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFfZmFjZWJvb2spXG5yZXN1bHRzbnVsbCA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGludGVydmVudGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFfZmFjZWJvb2spXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbnN1bW1hcnkocmVzdWx0cylcblxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArIGludGVydmVudGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFfZmFjZWJvb2spXG5yZXN1bHRzbnVsbCA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGludGVydmVudGlvbiArICgxfGluc3RhbGxfaWQpLCBmYW1pbHk9Ymlub21pYWwobGluaz0nbG9naXQnKSwgZGF0YSA9IGRhdGFfZmFjZWJvb2spXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbmBgYCJ9 -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
 resultsnull &lt;- glmer(attritioned ~ intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-anova(resultsnull, results)
-summary(results)
+anova(resultsnull, results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YV9mYWNlYm9va1xuTW9kZWxzOlxucmVzdWx0c251bGw6IGF0dHJpdGlvbmVkIH4gaW50ZXJ2ZW50aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxucmVzdWx0czogYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAoMSB8IGluc3RhbGxfaWQpXG4gICAgICAgICAgICBEZiAgICBBSUMgICAgQklDICBsb2dMaWsgZGV2aWFuY2UgIENoaXNxIENoaSBEZiBQcig+Q2hpc3EpICAgIFxucmVzdWx0c251bGwgIDYgMzUzLjE1IDM4MS42NSAtMTcwLjU3ICAgMzQxLjE1ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbnJlc3VsdHMgICAgICA3IDMzNy43NCAzNzAuOTkgLTE2MS44NyAgIDMyMy43NCAxNy40MDYgICAgICAxICAzLjAxOGUtMDUgKioqXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcbiJ9 -->
+<pre><code>Data: data_facebook
+Models:
+resultsnull: attritioned ~ intervention + (1 | install_id)
+results: attritioned ~ condition + intervention + (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)    
+resultsnull  6 353.15 381.65 -170.57   341.15                             
+results      7 337.74 370.99 -161.87   323.74 17.406      1  3.018e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArIGludGVydmVudGlvbiArICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFfZmFjZWJvb2tcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gICAzMzcuNyAgICAzNzEuMCAgIC0xNjEuOSAgICAzMjMuNyAgICAgIDg0NyBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC41NDI5IC0wLjI0MzAgLTAuMTQxNCAtMC4wODE4ICA4LjA4MzEgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBpbnN0YWxsX2lkIChJbnRlcmNlcHQpIDAuOTIyOCAgIDAuOTYwNiAgXG5OdW1iZXIgb2Ygb2JzOiA4NTQsIGdyb3VwczogIGluc3RhbGxfaWQsIDE0NlxuXG5GaXhlZCBlZmZlY3RzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC0zLjc5MTA5ICAgIDAuNTI1ODIgIC03LjIxMCAgNS42ZS0xMyAqKipcbmNvbmRpdGlvbnJhbmRvbSAgICAgICAgICAgICAgICAgICAgICAgICAgIDEuOTAwMjEgICAgMC41MDQ3MSAgIDMuNzY1IDAuMDAwMTY3ICoqKlxuaW50ZXJ2ZW50aW9uZmFjZWJvb2svcmVtb3ZlX2NvbW1lbnRzICAgICAtMC42MTU0MiAgICAwLjUzMDEyICAtMS4xNjEgMC4yNDU2ODIgICAgXG5pbnRlcnZlbnRpb25mYWNlYm9vay9yZW1vdmVfbmV3c19mZWVkICAgICAwLjA5OTE4ICAgIDAuNDY1OTggICAwLjIxMyAwLjgzMTQ1MiAgICBcbmludGVydmVudGlvbmZhY2Vib29rL3Nob3dfdGltZXJfYmFubmVyICAgLTEuMDU0MjQgICAgMC41NDkyOSAgLTEuOTE5IDAuMDU0OTQ4IC4gIFxuaW50ZXJ2ZW50aW9uZmFjZWJvb2svdG9hc3Rfbm90aWZpY2F0aW9ucyAtMC43MDc0MiAgICAwLjQ5OTAzICAtMS40MTggMC4xNTYzMTQgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgICAgICAgKEludHIpIGNuZHRuciBpbnRydm50bmZjYmsvcl8gaW50cnZudG5mY2JrL3JfXyBpbnRydm50bmZjYmsvc19fXG5jb25kaXRucm5kbSAgICAgIC0wLjczOCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuaW50cnZudG5mY2JrL3JfICAtMC4yODYgLTAuMTAxICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbmludHJ2bnRuZmNiay9yX18gLTAuMzgxIC0wLjA5MSAgMC40MzEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5pbnRydm50bmZjYmsvc19fIC0wLjI5MyAtMC4wOTUgIDAuMzcwICAgICAgICAgICAwLjQyMCAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuaW50cnZudG5mY2JrL3RfICAtMC4zMjAgLTAuMTI0ICAwLjQwNiAgICAgICAgICAgMC40NzMgICAgICAgICAgICAwLjM5NyAgICAgICAgICBcbiJ9 -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ condition + intervention + (1 | install_id)
+   Data: data_facebook
 
-print(&quot;Odds ratios&quot;)
-rtab &lt;- exp(fixef(results))
+     AIC      BIC   logLik deviance df.resid 
+   337.7    371.0   -161.9    323.7      847 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.5429 -0.2430 -0.1414 -0.0818  8.0831 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.9228   0.9606  
+Number of obs: 854, groups:  install_id, 146
+
+Fixed effects:
+                                         Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                              -3.79109    0.52582  -7.210  5.6e-13 ***
+conditionrandom                           1.90021    0.50471   3.765 0.000167 ***
+interventionfacebook/remove_comments     -0.61542    0.53012  -1.161 0.245682    
+interventionfacebook/remove_news_feed     0.09918    0.46598   0.213 0.831452    
+interventionfacebook/show_timer_banner   -1.05424    0.54929  -1.919 0.054948 .  
+interventionfacebook/toast_notifications -0.70742    0.49903  -1.418 0.156314    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+                 (Intr) cndtnr intrvntnfcbk/r_ intrvntnfcbk/r__ intrvntnfcbk/s__
+conditnrndm      -0.738                                                         
+intrvntnfcbk/r_  -0.286 -0.101                                                  
+intrvntnfcbk/r__ -0.381 -0.091  0.431                                           
+intrvntnfcbk/s__ -0.293 -0.095  0.370           0.420                           
+intrvntnfcbk/t_  -0.320 -0.124  0.406           0.473            0.397          </code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJPZGRzIHJhdGlvc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>print(&quot;Odds ratios&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiT2RkcyByYXRpb3NcIlxuIn0= -->
+<pre><code>[1] &quot;Odds ratios&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucnRhYiA8LSBleHAoZml4ZWYocmVzdWx0cykpXG5wcmludChydGFiLGRpZ2l0cz0zKVxuYGBgIn0= -->
+<pre class="r"><code>rtab &lt;- exp(fixef(results))
 print(rtab,digits=3)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiICAgICAgICAgICAgICAgICAgICAgICAgICAgICAoSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgICAgICAgY29uZGl0aW9ucmFuZG9tIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuMDIyNiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgNi42ODczIFxuICAgIGludGVydmVudGlvbmZhY2Vib29rL3JlbW92ZV9jb21tZW50cyAgICBpbnRlcnZlbnRpb25mYWNlYm9vay9yZW1vdmVfbmV3c19mZWVkIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuNTQwNCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMS4xMDQzIFxuICBpbnRlcnZlbnRpb25mYWNlYm9vay9zaG93X3RpbWVyX2Jhbm5lciBpbnRlcnZlbnRpb25mYWNlYm9vay90b2FzdF9ub3RpZmljYXRpb25zIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAuMzQ4NSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMC40OTI5IFxuIn0= -->
+<pre><code>                             (Intercept)                          conditionrandom 
+                                  0.0226                                   6.6873 
+    interventionfacebook/remove_comments    interventionfacebook/remove_news_feed 
+                                  0.5404                                   1.1043 
+  interventionfacebook/show_timer_banner interventionfacebook/toast_notifications 
+                                  0.3485                                   0.4929 </code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Does condition duration have an effect on attrition rates at the day level?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5cylcbnJlc3VsdHNudWxsIDwtIGdsbWVyKGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDF8aW5zdGFsbF9pZCksIGZhbWlseT1iaW5vbWlhbChsaW5rPSdsb2dpdCcpLCBkYXRhID0gZGF0YWRheXMpXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbnN1bW1hcnkocmVzdWx0cylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5cylcbnJlc3VsdHNudWxsIDwtIGdsbWVyKGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDF8aW5zdGFsbF9pZCksIGZhbWlseT1iaW5vbWlhbChsaW5rPSdsb2dpdCcpLCBkYXRhID0gZGF0YWRheXMpXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbmBgYCJ9 -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays)
 resultsnull &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
-anova(resultsnull, results)
-summary(results)</code></pre>
+anova(resultsnull, results)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YWRheXNcbk1vZGVsczpcbnJlc3VsdHNudWxsOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbnJlc3VsdHM6IGF0dHJpdGlvbmVkIH4gYXMuZmFjdG9yKGNvbmRpdGlvbmR1cmF0aW9uKSArIGNvbmRpdGlvbiArICgxIHwgXG5yZXN1bHRzOiAgICAgaW5zdGFsbF9pZClcbiAgICAgICAgICAgIERmICAgIEFJQyAgICBCSUMgIGxvZ0xpayBkZXZpYW5jZSAgQ2hpc3EgQ2hpIERmIFByKD5DaGlzcSlcbnJlc3VsdHNudWxsICAzIDgzNC4wNCA4NDkuMDEgLTQxNC4wMiAgIDgyOC4wNCAgICAgICAgICAgICAgICAgICAgICAgICBcbnJlc3VsdHMgICAgICA2IDgzOS4wMSA4NjguOTQgLTQxMy41MSAgIDgyNy4wMSAxLjAyOTUgICAgICAzICAgICAwLjc5NDFcbiJ9 -->
+<pre><code>Data: datadays
+Models:
+resultsnull: attritioned ~ condition + (1 | install_id)
+results: attritioned ~ as.factor(conditionduration) + condition + (1 | 
+results:     install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)
+resultsnull  3 834.04 849.01 -414.02   828.04                         
+results      6 839.01 868.94 -413.51   827.01 1.0295      3     0.7941</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMSB8ICAgICAgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFkYXlzXG5cbiAgICAgQUlDICAgICAgQklDICAgbG9nTGlrIGRldmlhbmNlIGRmLnJlc2lkIFxuICAgODM5LjAgICAgODY4LjkgICAtNDEzLjUgICAgODI3LjAgICAgIDEwNzcgXG5cblNjYWxlZCByZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTAuNTE4MyAtMC4zOTgxIC0wLjM1MzQgLTAuMjg5MyAgMy40NTcxIFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gaW5zdGFsbF9pZCAoSW50ZXJjZXB0KSAwLjI5MzkgICAwLjU0MjEgIFxuTnVtYmVyIG9mIG9iczogMTA4MywgZ3JvdXBzOiAgaW5zdGFsbF9pZCwgMjE3XG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgLTEuNDk3OSAgICAgMC4yNjExICAtNS43MzggOS41OGUtMDkgKioqXG5hcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pMyAgLTAuMzE2NCAgICAgMC4zMjg0ICAtMC45NjMgICAwLjMzNTMgICAgXG5hcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pNSAgLTAuMjYwMSAgICAgMC4zMTY0ICAtMC44MjIgICAwLjQxMTEgICAgXG5hcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pNyAgLTAuMTgyNCAgICAgMC4zMDMzICAtMC42MDEgICAwLjU0NzYgICAgXG5jb25kaXRpb25yYW5kb20gICAgICAgICAgICAgICAgLTAuNTI4NyAgICAgMC4yMTQ0ICAtMi40NjYgICAwLjAxMzcgKiAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgIChJbnRyKSBhcy4oKTMgYXMuKCk1IGFzLigpN1xuYXMuZmN0cihjKTMgLTAuNzI1ICAgICAgICAgICAgICAgICAgICAgXG5hcy5mY3RyKGMpNSAtMC43NzYgIDAuNTkyICAgICAgICAgICAgICBcbmFzLmZjdHIoYyk3IC0wLjgxMCAgMC42MTkgIDAuNjY5ICAgICAgIFxuY29uZGl0bnJuZG0gLTAuMjYwICAwLjAxMCAgMC4wMzkgIDAuMDQ1XG4ifQ== -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ as.factor(conditionduration) + condition + (1 |      install_id)
+   Data: datadays
+
+     AIC      BIC   logLik deviance df.resid 
+   839.0    868.9   -413.5    827.0     1077 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.5183 -0.3981 -0.3534 -0.2893  3.4571 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.2939   0.5421  
+Number of obs: 1083, groups:  install_id, 217
+
+Fixed effects:
+                              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                    -1.4979     0.2611  -5.738 9.58e-09 ***
+as.factor(conditionduration)3  -0.3164     0.3284  -0.963   0.3353    
+as.factor(conditionduration)5  -0.2601     0.3164  -0.822   0.4111    
+as.factor(conditionduration)7  -0.1824     0.3033  -0.601   0.5476    
+conditionrandom                -0.5287     0.2144  -2.466   0.0137 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) as.()3 as.()5 as.()7
+as.fctr(c)3 -0.725                     
+as.fctr(c)5 -0.776  0.592              
+as.fctr(c)7 -0.810  0.619  0.669       
+conditnrndm -0.260  0.010  0.039  0.045</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Does condition duration have an effect on attrition rates at the day level on Facebook?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5c19mYWNlYm9vaylcbnJlc3VsdHNudWxsIDwtIGdsbWVyKGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDF8aW5zdGFsbF9pZCksIGZhbWlseT1iaW5vbWlhbChsaW5rPSdsb2dpdCcpLCBkYXRhID0gZGF0YWRheXNfZmFjZWJvb2spXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbnN1bW1hcnkocmVzdWx0cylcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhZGF5c19mYWNlYm9vaylcbnJlc3VsdHNudWxsIDwtIGdsbWVyKGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDF8aW5zdGFsbF9pZCksIGZhbWlseT1iaW5vbWlhbChsaW5rPSdsb2dpdCcpLCBkYXRhID0gZGF0YWRheXNfZmFjZWJvb2spXG5hbm92YShyZXN1bHRzbnVsbCwgcmVzdWx0cylcbmBgYCJ9 -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
 resultsnull &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-anova(resultsnull, results)
-summary(results)</code></pre>
+anova(resultsnull, results)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YWRheXNfZmFjZWJvb2tcbk1vZGVsczpcbnJlc3VsdHNudWxsOiBhdHRyaXRpb25lZCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbnJlc3VsdHM6IGF0dHJpdGlvbmVkIH4gYXMuZmFjdG9yKGNvbmRpdGlvbmR1cmF0aW9uKSArIGNvbmRpdGlvbiArICgxIHwgXG5yZXN1bHRzOiAgICAgaW5zdGFsbF9pZClcbiAgICAgICAgICAgIERmICAgIEFJQyAgICBCSUMgIGxvZ0xpayBkZXZpYW5jZSAgQ2hpc3EgQ2hpIERmIFByKD5DaGlzcSlcbnJlc3VsdHNudWxsICAzIDI4NC45OCAyOTYuMjYgLTEzOS40OSAgIDI3OC45OCAgICAgICAgICAgICAgICAgICAgICAgICBcbnJlc3VsdHMgICAgICA2IDI4OS40OSAzMTIuMDQgLTEzOC43NSAgIDI3Ny40OSAxLjQ5MjIgICAgICAzICAgICAwLjY4NDFcbiJ9 -->
+<pre><code>Data: datadays_facebook
+Models:
+resultsnull: attritioned ~ condition + (1 | install_id)
+results: attritioned ~ as.factor(conditionduration) + condition + (1 | 
+results:     install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)
+resultsnull  3 284.98 296.26 -139.49   278.98                         
+results      6 289.49 312.04 -138.75   277.49 1.4922      3     0.6841</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMSB8ICAgICAgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFkYXlzX2ZhY2Vib29rXG5cbiAgICAgQUlDICAgICAgQklDICAgbG9nTGlrIGRldmlhbmNlIGRmLnJlc2lkIFxuICAgMjg5LjUgICAgMzEyLjAgICAtMTM4LjcgICAgMjc3LjUgICAgICAzMTEgXG5cblNjYWxlZCByZXNpZHVhbHM6IFxuICAgIE1pbiAgICAgIDFRICBNZWRpYW4gICAgICAzUSAgICAgTWF4IFxuLTAuNTU5NSAtMC41MTQxIC0wLjQ1NDggLTAuMjY2OSAgMy43NDcyIFxuXG5SYW5kb20gZWZmZWN0czpcbiBHcm91cHMgICAgIE5hbWUgICAgICAgIFZhcmlhbmNlIFN0ZC5EZXYuXG4gaW5zdGFsbF9pZCAoSW50ZXJjZXB0KSAwICAgICAgICAwICAgICAgIFxuTnVtYmVyIG9mIG9iczogMzE3LCBncm91cHM6ICBpbnN0YWxsX2lkLCAxMzdcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgIC0xLjYzNDIxICAgIDAuNDkwNDYgIC0zLjMzMiAwLjAwMDg2MiAqKipcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikzICAwLjMwMzczICAgIDAuNTc0MjggICAwLjUyOSAwLjU5Njg4OSAgICBcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbik1ICAwLjQ3MjgwICAgIDAuNTU4ODEgICAwLjg0NiAwLjM5NzUwOSAgICBcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbik3ICAwLjA1ODM5ICAgIDAuNTQ4ODAgICAwLjEwNiAwLjkxNTI3MyAgICBcbmNvbmRpdGlvbnJhbmRvbSAgICAgICAgICAgICAgIC0xLjA2NjIwICAgIDAuNDU3NTUgIC0yLjMzMCAwLjAxOTc5MiAqICBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpIGFzLigpMyBhcy4oKTUgYXMuKCk3XG5hcy5mY3RyKGMpMyAtMC44MzMgICAgICAgICAgICAgICAgICAgICBcbmFzLmZjdHIoYyk1IC0wLjg2NyAgMC43MzIgICAgICAgICAgICAgIFxuYXMuZmN0cihjKTcgLTAuODc3ICAwLjc0NSAgMC43NjggICAgICAgXG5jb25kaXRucm5kbSAtMC4xNTUgLTAuMDAxICAwLjA2NSAgMC4wMzNcbiJ9 -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ as.factor(conditionduration) + condition + (1 |      install_id)
+   Data: datadays_facebook
+
+     AIC      BIC   logLik deviance df.resid 
+   289.5    312.0   -138.7    277.5      311 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.5595 -0.5141 -0.4548 -0.2669  3.7472 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0        0       
+Number of obs: 317, groups:  install_id, 137
+
+Fixed effects:
+                              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                   -1.63421    0.49046  -3.332 0.000862 ***
+as.factor(conditionduration)3  0.30373    0.57428   0.529 0.596889    
+as.factor(conditionduration)5  0.47280    0.55881   0.846 0.397509    
+as.factor(conditionduration)7  0.05839    0.54880   0.106 0.915273    
+conditionrandom               -1.06620    0.45755  -2.330 0.019792 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) as.()3 as.()5 as.()7
+as.fctr(c)3 -0.833                     
+as.fctr(c)5 -0.867  0.732              
+as.fctr(c)7 -0.877  0.745  0.768       
+conditnrndm -0.155 -0.001  0.065  0.033</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Does condition duration have an effect on attrition rates at the session level?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhKVxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5zdW1tYXJ5KHJlc3VsdHMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhKVxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5gYGAifQ== -->
 <pre class="r"><code>results &lt;- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = data)
 resultsnull &lt;- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
-anova(resultsnull, results)
-summary(results)</code></pre>
+anova(resultsnull, results)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YVxuTW9kZWxzOlxucmVzdWx0c251bGw6IGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxucmVzdWx0czogYXR0cml0aW9uZWQgfiBhcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pICsgY29uZGl0aW9uICsgKDEgfCBcbnJlc3VsdHM6ICAgICBpbnN0YWxsX2lkKVxuICAgICAgICAgICAgRGYgICAgQUlDICAgIEJJQyAgbG9nTGlrIGRldmlhbmNlICBDaGlzcSBDaGkgRGYgUHIoPkNoaXNxKVxucmVzdWx0c251bGwgIDMgMTAxOC43IDEwMzYuMSAtNTA2LjM3ICAgMTAxMi43ICAgICAgICAgICAgICAgICAgICAgICAgIFxucmVzdWx0cyAgICAgIDYgMTAyNC4yIDEwNTguOSAtNTA2LjA3ICAgMTAxMi4xIDAuNTk3NyAgICAgIDMgICAgICAwLjg5N1xuIn0= -->
+<pre><code>Data: data
+Models:
+resultsnull: attritioned ~ condition + (1 | install_id)
+results: attritioned ~ as.factor(conditionduration) + condition + (1 | 
+results:     install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)
+resultsnull  3 1018.7 1036.1 -506.37   1012.7                         
+results      6 1024.2 1058.9 -506.07   1012.1 0.5977      3      0.897</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyAoMSB8ICAgICAgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gIDEwMjQuMSAgIDEwNTguOSAgIC01MDYuMSAgIDEwMTIuMSAgICAgMjQyNSBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC40NDI3IC0wLjI2OTEgLTAuMTg2OSAtMC4xMTc1ICA1LjU1NjkgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBpbnN0YWxsX2lkIChJbnRlcmNlcHQpIDAuOTQ4NCAgIDAuOTczOCAgXG5OdW1iZXIgb2Ygb2JzOiAyNDMxLCBncm91cHM6ICBpbnN0YWxsX2lkLCAyMTdcblxuRml4ZWQgZWZmZWN0czpcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEVzdGltYXRlIFN0ZC4gRXJyb3IgeiB2YWx1ZSBQcig+fHp8KSAgICBcbihJbnRlcmNlcHQpICAgICAgICAgICAgICAgICAgIC0yLjk3NTA4ICAgIDAuMzIwNzcgIC05LjI3NSAgPCAyZS0xNiAqKipcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikzIC0wLjE1MTY2ICAgIDAuMzU2NzkgIC0wLjQyNSAgMC42NzA3OCAgICBcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbik1IC0wLjAyMzA0ICAgIDAuMzQ0NjMgIC0wLjA2NyAgMC45NDY3MCAgICBcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbik3ICAwLjA3ODYxICAgIDAuMzI3MDcgICAwLjI0MCAgMC44MTAwNiAgICBcbmNvbmRpdGlvbnJhbmRvbSAgICAgICAgICAgICAgICAwLjYyOTAzICAgIDAuMjMyMTYgICAyLjcwOSAgMC4wMDY3NCAqKiBcbi0tLVxuU2lnbmlmLiBjb2RlczogIDAg4oCYKioq4oCZIDAuMDAxIOKAmCoq4oCZIDAuMDEg4oCYKuKAmSAwLjA1IOKAmC7igJkgMC4xIOKAmCDigJkgMVxuXG5Db3JyZWxhdGlvbiBvZiBGaXhlZCBFZmZlY3RzOlxuICAgICAgICAgICAgKEludHIpIGFzLigpMyBhcy4oKTUgYXMuKCk3XG5hcy5mY3RyKGMpMyAtMC42MzQgICAgICAgICAgICAgICAgICAgICBcbmFzLmZjdHIoYyk1IC0wLjY1MyAgMC41ODEgICAgICAgICAgICAgIFxuYXMuZmN0cihjKTcgLTAuNjg1ICAwLjYxMyAgMC42NDUgICAgICAgXG5jb25kaXRucm5kbSAtMC41MTEgIDAuMDExIC0wLjAyOSAtMC4wMjZcbiJ9 -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ as.factor(conditionduration) + condition + (1 |      install_id)
+   Data: data
+
+     AIC      BIC   logLik deviance df.resid 
+  1024.1   1058.9   -506.1   1012.1     2425 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.4427 -0.2691 -0.1869 -0.1175  5.5569 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.9484   0.9738  
+Number of obs: 2431, groups:  install_id, 217
+
+Fixed effects:
+                              Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                   -2.97508    0.32077  -9.275  &lt; 2e-16 ***
+as.factor(conditionduration)3 -0.15166    0.35679  -0.425  0.67078    
+as.factor(conditionduration)5 -0.02304    0.34463  -0.067  0.94670    
+as.factor(conditionduration)7  0.07861    0.32707   0.240  0.81006    
+conditionrandom                0.62903    0.23216   2.709  0.00674 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) as.()3 as.()5 as.()7
+as.fctr(c)3 -0.634                     
+as.fctr(c)5 -0.653  0.581              
+as.fctr(c)7 -0.685  0.613  0.645       
+conditnrndm -0.511  0.011 -0.029 -0.026</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Does condition duration have an effect on attrition rates at the session level on Facebook?</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhX2ZhY2Vib29rKVxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhX2ZhY2Vib29rKVxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5zdW1tYXJ5KHJlc3VsdHMpXG5gYGAifQ== -->
-<pre class="r"><code>results &lt;- glmer(attritioned ~ as.factor(conditionduration) + condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-resultsnull &lt;- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-anova(resultsnull, results)
-summary(results)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0cyA8LSBnbG1lcihhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhX2ZhY2Vib29rKVxuYGBgIn0= -->
+<pre class="r"><code>results &lt;- glmer(attritioned ~ as.factor(conditionduration) + condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTW9kZWwgZmFpbGVkIHRvIGNvbnZlcmdlIHdpdGggbWF4fGdyYWR8ID0gMC40MTA0OTcgKHRvbCA9IDAuMDAxLCBjb21wb25lbnQgMSlcbiJ9 -->
+<pre><code>Model failed to converge with max|grad| = 0.410497 (tol = 0.001, component 1)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzdWx0c251bGwgPC0gZ2xtZXIoYXR0cml0aW9uZWQgfiBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAoMXxpbnN0YWxsX2lkKSwgZmFtaWx5PWJpbm9taWFsKGxpbms9J2xvZ2l0JyksIGRhdGEgPSBkYXRhX2ZhY2Vib29rKVxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5gYGAifQ== -->
+<pre class="r"><code>resultsnull &lt;- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
+anova(resultsnull, results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogZGF0YV9mYWNlYm9va1xuTW9kZWxzOlxucmVzdWx0c251bGw6IGF0dHJpdGlvbmVkIH4gY29uZGl0aW9uICsgaW50ZXJ2ZW50aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxucmVzdWx0czogYXR0cml0aW9uZWQgfiBhcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pICsgY29uZGl0aW9uICsgaW50ZXJ2ZW50aW9uICsgXG5yZXN1bHRzOiAgICAgKDEgfCBpbnN0YWxsX2lkKVxuICAgICAgICAgICAgRGYgICAgQUlDICAgIEJJQyAgbG9nTGlrIGRldmlhbmNlICBDaGlzcSBDaGkgRGYgUHIoPkNoaXNxKVxucmVzdWx0c251bGwgIDcgMzM3Ljc0IDM3MC45OSAtMTYxLjg3ICAgMzIzLjc0ICAgICAgICAgICAgICAgICAgICAgICAgIFxucmVzdWx0cyAgICAgMTAgMzQyLjEzIDM4OS42MyAtMTYxLjA3ICAgMzIyLjEzIDEuNjA5NyAgICAgIDMgICAgIDAuNjU3MlxuIn0= -->
+<pre><code>Data: data_facebook
+Models:
+resultsnull: attritioned ~ condition + intervention + (1 | install_id)
+results: attritioned ~ as.factor(conditionduration) + condition + intervention + 
+results:     (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)
+resultsnull  7 337.74 370.99 -161.87   323.74                         
+results     10 342.13 389.63 -161.07   322.13 1.6097      3     0.6572</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiR2VuZXJhbGl6ZWQgbGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBtYXhpbXVtIGxpa2VsaWhvb2QgKExhcGxhY2UgQXBwcm94aW1hdGlvbikgWydnbG1lck1vZCddXG4gRmFtaWx5OiBiaW5vbWlhbCAgKCBsb2dpdCApXG5Gb3JtdWxhOiBhdHRyaXRpb25lZCB+IGFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikgKyBjb25kaXRpb24gKyBpbnRlcnZlbnRpb24gKyAgICAgICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IGRhdGFfZmFjZWJvb2tcblxuICAgICBBSUMgICAgICBCSUMgICBsb2dMaWsgZGV2aWFuY2UgZGYucmVzaWQgXG4gICAzNDIuMSAgICAzODkuNiAgIC0xNjEuMSAgICAzMjIuMSAgICAgIDg0NCBcblxuU2NhbGVkIHJlc2lkdWFsczogXG4gICAgTWluICAgICAgMVEgIE1lZGlhbiAgICAgIDNRICAgICBNYXggXG4tMC41NzQ4IC0wLjI1MTEgLTAuMTQ2MyAtMC4wODE4ICA4Ljg4MzMgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBpbnN0YWxsX2lkIChJbnRlcmNlcHQpIDAuNjg3MyAgIDAuODI5MSAgXG5OdW1iZXIgb2Ygb2JzOiA4NTQsIGdyb3VwczogIGluc3RhbGxfaWQsIDE0NlxuXG5GaXhlZCBlZmZlY3RzOlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBFc3RpbWF0ZSBTdGQuIEVycm9yIHogdmFsdWUgUHIoPnx6fCkgICAgXG4oSW50ZXJjZXB0KSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIC00LjE3NTcwICAgIDAuNzQ5MTYgIC01LjU3NCAyLjQ5ZS0wOCAqKipcbmFzLmZhY3Rvcihjb25kaXRpb25kdXJhdGlvbikzICAgICAgICAgICAgIDAuNjQzOTQgICAgMC42NDkzMiAgIDAuOTkyIDAuMzIxMzM4ICAgIFxuYXMuZmFjdG9yKGNvbmRpdGlvbmR1cmF0aW9uKTUgICAgICAgICAgICAgMC41NDczOCAgICAwLjYzNzg1ICAgMC44NTggMC4zOTA4MDEgICAgXG5hcy5mYWN0b3IoY29uZGl0aW9uZHVyYXRpb24pNyAgICAgICAgICAgICAwLjI2NTcyICAgIDAuNjI5ODMgICAwLjQyMiAwLjY3MzExMCAgICBcbmNvbmRpdGlvbnJhbmRvbSAgICAgICAgICAgICAgICAgICAgICAgICAgIDEuOTUzOTkgICAgMC41MDM0MCAgIDMuODgyIDAuMDAwMTA0ICoqKlxuaW50ZXJ2ZW50aW9uZmFjZWJvb2svcmVtb3ZlX2NvbW1lbnRzICAgICAtMC42NzI3NCAgICAwLjUyODAxICAtMS4yNzQgMC4yMDI2MjEgICAgXG5pbnRlcnZlbnRpb25mYWNlYm9vay9yZW1vdmVfbmV3c19mZWVkICAgICAwLjA2NjA0ICAgIDAuNDYxNDggICAwLjE0MyAwLjg4NjIwMSAgICBcbmludGVydmVudGlvbmZhY2Vib29rL3Nob3dfdGltZXJfYmFubmVyICAgLTEuMTExNjAgICAgMC41NDkyNiAgLTIuMDI0IDAuMDQyOTkwICogIFxuaW50ZXJ2ZW50aW9uZmFjZWJvb2svdG9hc3Rfbm90aWZpY2F0aW9ucyAtMC44MDQyMiAgICAwLjQ5NjM1ICAtMS42MjAgMC4xMDUxNzUgICAgXG4tLS1cblNpZ25pZi4gY29kZXM6ICAwIOKAmCoqKuKAmSAwLjAwMSDigJgqKuKAmSAwLjAxIOKAmCrigJkgMC4wNSDigJgu4oCZIDAuMSDigJgg4oCZIDFcblxuQ29ycmVsYXRpb24gb2YgRml4ZWQgRWZmZWN0czpcbiAgICAgICAgICAgICAgICAgKEludHIpIGFzLigpMyBhcy4oKTUgYXMuKCk3IGNuZHRuciBpbnRydm50bmZjYmsvcl8gaW50cnZudG5mY2JrL3JfXyBpbnRydm50bmZjYmsvc19fXG5hcy5mY3RyKGMpMyAgICAgIC0wLjY1OCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuYXMuZmN0cihjKTUgICAgICAtMC42NzMgIDAuNzMwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbmFzLmZjdHIoYyk3ICAgICAgLTAuNjY3ICAwLjc1NiAgMC43NTAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5jb25kaXRucm5kbSAgICAgIC0wLjUyMyAgMC4wMzIgIDAuMDE5IC0wLjAwMyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuaW50cnZudG5mY2JrL3JfICAtMC4xODkgIDAuMDA1IC0wLjAyMiAgMC4wMDMgLTAuMDkyICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcbmludHJ2bnRuZmNiay9yX18gLTAuMzAxICAwLjAyNyAgMC4wOTcgIDAuMDQ4IC0wLjA5NSAgMC40MTAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXG5pbnRydm50bmZjYmsvc19fIC0wLjE2NyAtMC4wNDMgIDAuMDA1IC0wLjA2MCAtMC4wOTggIDAuMzUyICAgICAgICAgICAwLjQxMSAgICAgICAgICAgICAgICAgICAgICAgICAgIFxuaW50cnZudG5mY2JrL3RfICAtMC4yMTYgLTAuMDI0ICAwLjAyNyAgMC4wMTYgLTAuMTM0ICAwLjM4OCAgICAgICAgICAgMC40NjkgICAgICAgICAgICAwLjM4NiAgICAgICAgICBcbmNvbnZlcmdlbmNlIGNvZGU6IDBcbk1vZGVsIGZhaWxlZCB0byBjb252ZXJnZSB3aXRoIG1heHxncmFkfCA9IDAuNDEwNDk3ICh0b2wgPSAwLjAwMSwgY29tcG9uZW50IDEpXG4ifQ== -->
+<pre><code>Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: attritioned ~ as.factor(conditionduration) + condition + intervention +      (1 | install_id)
+   Data: data_facebook
+
+     AIC      BIC   logLik deviance df.resid 
+   342.1    389.6   -161.1    322.1      844 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-0.5748 -0.2511 -0.1463 -0.0818  8.8833 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.6873   0.8291  
+Number of obs: 854, groups:  install_id, 146
+
+Fixed effects:
+                                         Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)                              -4.17570    0.74916  -5.574 2.49e-08 ***
+as.factor(conditionduration)3             0.64394    0.64932   0.992 0.321338    
+as.factor(conditionduration)5             0.54738    0.63785   0.858 0.390801    
+as.factor(conditionduration)7             0.26572    0.62983   0.422 0.673110    
+conditionrandom                           1.95399    0.50340   3.882 0.000104 ***
+interventionfacebook/remove_comments     -0.67274    0.52801  -1.274 0.202621    
+interventionfacebook/remove_news_feed     0.06604    0.46148   0.143 0.886201    
+interventionfacebook/show_timer_banner   -1.11160    0.54926  -2.024 0.042990 *  
+interventionfacebook/toast_notifications -0.80422    0.49635  -1.620 0.105175    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+                 (Intr) as.()3 as.()5 as.()7 cndtnr intrvntnfcbk/r_ intrvntnfcbk/r__ intrvntnfcbk/s__
+as.fctr(c)3      -0.658                                                                              
+as.fctr(c)5      -0.673  0.730                                                                       
+as.fctr(c)7      -0.667  0.756  0.750                                                                
+conditnrndm      -0.523  0.032  0.019 -0.003                                                         
+intrvntnfcbk/r_  -0.189  0.005 -0.022  0.003 -0.092                                                  
+intrvntnfcbk/r__ -0.301  0.027  0.097  0.048 -0.095  0.410                                           
+intrvntnfcbk/s__ -0.167 -0.043  0.005 -0.060 -0.098  0.352           0.411                           
+intrvntnfcbk/t_  -0.216 -0.024  0.027  0.016 -0.134  0.388           0.469            0.386          
+convergence code: 0
+Model failed to converge with max|grad| = 0.410497 (tol = 0.001, component 1)</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmRhdGEgPC0gc3Vic2V0KGRhdGFkYXlzX25vZmlyc3RsYXN0LCBkb21haW4gPT0gJ3d3dy5mYWNlYm9vay5jb20nKVxubmRhdGEgPC0gc3Vic2V0KG5kYXRhLCBpc19kYXlfd2l0aF9qdXN0X29uZV9zYW1wbGUgPT0gMClcblxucmVzdWx0cyA8LSBsbWVyKGxvZ190aW1lX3NwZW50IH4gY29uZGl0aW9uICsgKDF8aW5zdGFsbF9pZCksIGRhdGEgPSBuZGF0YSlcbnJlc3VsdHNudWxsIDwtIGxtZXIobG9nX3RpbWVfc3BlbnQgfiAoMXxpbnN0YWxsX2lkKSwgZGF0YSA9IG5kYXRhKVxuYW5vdmEocmVzdWx0c251bGwsIHJlc3VsdHMpXG5zdW1tYXJ5KHJlc3VsdHMpXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubmRhdGEgPC0gc3Vic2V0KGRhdGFkYXlzX25vZmlyc3RsYXN0LCBkb21haW4gPT0gJ3d3dy5mYWNlYm9vay5jb20nKVxubmRhdGEgPC0gc3Vic2V0KG5kYXRhLCBpc19kYXlfd2l0aF9qdXN0X29uZV9zYW1wbGUgPT0gMClcbnJlc3VsdHMgPC0gbG1lcihsb2dfdGltZV9zcGVudCB+IGNvbmRpdGlvbiArICgxfGluc3RhbGxfaWQpLCBkYXRhID0gbmRhdGEpXG5yZXN1bHRzbnVsbCA8LSBsbWVyKGxvZ190aW1lX3NwZW50IH4gKDF8aW5zdGFsbF9pZCksIGRhdGEgPSBuZGF0YSlcbmFub3ZhKHJlc3VsdHNudWxsLCByZXN1bHRzKVxuYGBgIn0= -->
 <pre class="r"><code>ndata &lt;- subset(datadays_nofirstlast, domain == 'www.facebook.com')
 ndata &lt;- subset(ndata, is_day_with_just_one_sample == 0)
-
 results &lt;- lmer(log_time_spent ~ condition + (1|install_id), data = ndata)
 resultsnull &lt;- lmer(log_time_spent ~ (1|install_id), data = ndata)
-anova(resultsnull, results)
-summary(results)</code></pre>
+anova(resultsnull, results)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoicmVmaXR0aW5nIG1vZGVsKHMpIHdpdGggTUwgKGluc3RlYWQgb2YgUkVNTClcbiJ9 -->
+<pre><code>refitting model(s) with ML (instead of REML)</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YTogbmRhdGFcbk1vZGVsczpcbnJlc3VsdHNudWxsOiBsb2dfdGltZV9zcGVudCB+ICgxIHwgaW5zdGFsbF9pZClcbnJlc3VsdHM6IGxvZ190aW1lX3NwZW50IH4gY29uZGl0aW9uICsgKDEgfCBpbnN0YWxsX2lkKVxuICAgICAgICAgICAgRGYgICAgQUlDICAgIEJJQyAgbG9nTGlrIGRldmlhbmNlICBDaGlzcSBDaGkgRGYgUHIoPkNoaXNxKSAgIFxucmVzdWx0c251bGwgIDMgMjYyLjg1IDI3MC4xOCAtMTI4LjQzICAgMjU2Ljg1ICAgICAgICAgICAgICAgICAgICAgICAgICAgIFxucmVzdWx0cyAgICAgIDQgMjU0Ljc1IDI2NC41MiAtMTIzLjM3ICAgMjQ2Ljc1IDEwLjEwNSAgICAgIDEgICAwLjAwMTQ3OSAqKlxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
+<pre><code>Data: ndata
+Models:
+resultsnull: log_time_spent ~ (1 | install_id)
+results: log_time_spent ~ condition + (1 | install_id)
+            Df    AIC    BIC  logLik deviance  Chisq Chi Df Pr(&gt;Chisq)   
+resultsnull  3 262.85 270.18 -128.43   256.85                            
+results      4 254.75 264.52 -123.37   246.75 10.105      1   0.001479 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShyZXN1bHRzKVxuYGBgIn0= -->
+<pre class="r"><code>summary(results)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIG1peGVkIG1vZGVsIGZpdCBieSBSRU1MIFsnbG1lck1vZCddXG5Gb3JtdWxhOiBsb2dfdGltZV9zcGVudCB+IGNvbmRpdGlvbiArICgxIHwgaW5zdGFsbF9pZClcbiAgIERhdGE6IG5kYXRhXG5cblJFTUwgY3JpdGVyaW9uIGF0IGNvbnZlcmdlbmNlOiAyNDkuMlxuXG5TY2FsZWQgcmVzaWR1YWxzOiBcbiAgICAgTWluICAgICAgIDFRICAgTWVkaWFuICAgICAgIDNRICAgICAgTWF4IFxuLTIuMDE4NDQgLTAuNTIxMzcgIDAuMDM5MjggIDAuNDIxNDAgIDEuODc5MTIgXG5cblJhbmRvbSBlZmZlY3RzOlxuIEdyb3VwcyAgICAgTmFtZSAgICAgICAgVmFyaWFuY2UgU3RkLkRldi5cbiBpbnN0YWxsX2lkIChJbnRlcmNlcHQpIDAuOTkzNyAgIDAuOTk2OSAgXG4gUmVzaWR1YWwgICAgICAgICAgICAgICAwLjU3NDQgICAwLjc1NzkgIFxuTnVtYmVyIG9mIG9iczogODUsIGdyb3VwczogIGluc3RhbGxfaWQsIDQzXG5cbkZpeGVkIGVmZmVjdHM6XG4gICAgICAgICAgICAgICAgRXN0aW1hdGUgU3RkLiBFcnJvciB0IHZhbHVlXG4oSW50ZXJjZXB0KSAgICAgICA1LjM1MjQgICAgIDAuMTg3NiAgMjguNTM4XG5jb25kaXRpb25yYW5kb20gICAwLjgyMTMgICAgIDAuMjUzNiAgIDMuMjM4XG5cbkNvcnJlbGF0aW9uIG9mIEZpeGVkIEVmZmVjdHM6XG4gICAgICAgICAgICAoSW50cilcbmNvbmRpdG5ybmRtIC0wLjIxN1xuIn0= -->
+<pre><code>Linear mixed model fit by REML ['lmerMod']
+Formula: log_time_spent ~ condition + (1 | install_id)
+   Data: ndata
+
+REML criterion at convergence: 249.2
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.01844 -0.52137  0.03928  0.42140  1.87912 
+
+Random effects:
+ Groups     Name        Variance Std.Dev.
+ install_id (Intercept) 0.9937   0.9969  
+ Residual               0.5744   0.7579  
+Number of obs: 85, groups:  install_id, 43
+
+Fixed effects:
+                Estimate Std. Error t value
+(Intercept)       5.3524     0.1876  28.538
+conditionrandom   0.8213     0.2536   3.238
+
+Correlation of Fixed Effects:
+            (Intr)
+conditnrndm -0.217</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p><em>SIGNIFICANT</em> Does condition have an effect on time spent per day?</p>
