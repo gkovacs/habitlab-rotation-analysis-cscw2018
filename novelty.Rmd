@@ -22,7 +22,7 @@ library(fitdistrplus)
 library(ez)
 library(lme4)
 
-basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/habitlab_data_analysis/'
+basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 #basepath <- '/home/geza/habitlab_data_analysis/'
 survivaldata_grouped_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
 survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_nongrouped_april3_4pm.csv', sep='')
@@ -39,6 +39,7 @@ datadays$attritioned <- datadays$attritioned == 1
 datadays$is_last_day <- datadays$is_last_day == 1
 datadays$is_day_with_just_one_sample <- datadays$is_day_with_just_one_sample == 1
 datadays$user_saw_both_same_and_random <- datadays$user_saw_both_same_and_random == 1
+datadays$condition <- factor(datadays$condition, labels=c("same", "random"))
 summary(datadays)
 ```
 
@@ -48,6 +49,7 @@ data <- read.csv(data_filename)
 data$attritioned <- data$attritioned == 1
 data$is_first_visit_of_day <- data$is_first_visit_of_day == 1
 data$is_day_with_just_one_sample <- data$is_day_with_just_one_sample == 1
+data$condition <- factor(data$condition, levels=c('same', 'random'))
 
 summary(data)
 ```
@@ -222,7 +224,7 @@ results <- lmer(log_time_spent ~ condition + (1|domain) + (1|install_id), data =
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
-stargazer(results)
+stargazer(results, covariate.labels = c("Rotation (baseline: static)", "(Intercept)"), dep.var.labels=c("Log time spent per day", "(Intercept)"), no.space=TRUE, title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", label="tab:effectiveness_same_vs_random")
 ```
 
 *SIGNIFICANT* Does condition have an effect on time spent on Facebook per day?
@@ -373,7 +375,7 @@ resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(
 anova(resultsnull, results)
 summary(results)
 library(stargazer)
-stargazer(results, covariate.labels = c("(Intercept)", "Number of days the intervention has been seen"), dep.var.labels=c("Log time spent"), align=TRUE, no.space=TRUE)
+stargazer(results, covariate.labels = c("Number of days the intervention has been seen", "(Intercept)"), dep.var.labels=c("Log time spent per session"), no.space=TRUE, title="Within the same condition, interventions decline in effectiveness, with longer visit lengths with increasing larger number of days since it was first observed.", label="tab:effectiveness_sessions_alldomain_vs_num_days_same")
 ```
 
 ```{r}
