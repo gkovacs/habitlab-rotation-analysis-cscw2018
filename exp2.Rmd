@@ -26,8 +26,12 @@ library("survival")
 library("survminer")
 
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+if (!file.exists(basepath)) {
+  basepath <- '/home/geza/habitlab_data_analysis/'
+}
 #basepath <- '/home/geza/habitlab_data_analysis/'
-data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+#data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+data_exp2_filename <- paste(basepath, 'exp2_april18_3am_withsessionlengths.csv', sep='')
 #data_exp2_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2 <- read.csv(data_exp2_filename)
 
@@ -79,6 +83,7 @@ ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition ==
 #ndata <- subset(ndata, is_preview == 'false')
 #ndata <- subset(ndata, did_user_see_notice_or_is_none == 'true')
 ndata <- subset(ndata, did_user_see_notice_or_is_none_and_saw_interventions == 'true')
+#ndata <- subset(ndata, did_user_complete_onboarding == 'true')
 #ndata <- subset(ndata, domain != 'www.youtube.com')
 #ndata <- subset(ndata, condition == 'none' | condition == 'power')
 #ndata <- subset(ndata, total_num_times_interventions_seen > 0)
@@ -89,10 +94,11 @@ ndata <- subset(ndata, initial_habitlab_version_for_user == '1.0.216')
 #summary(ndata)
 ndata <- subset(ndata, saw_multiple_conditions_for_user == 'false')
 ndata <- subset(ndata, is_first_install_id == 'true')
+ndata <- subset(ndata, have_multiple_install_ids == 'false')
 ndata$attritioned <- ndata$attritioned == 'true'
 ndata$attritioned_install_id <- ndata$attritioned_install_id == 'true'
-ndata$days_alive <- ndata$days_alive_install_id
-ndata$attritioned <- ndata$attritioned_install_id
+#ndata$days_alive <- ndata$days_alive_install_id
+#ndata$attritioned <- ndata$attritioned_install_id
 summary(ndata)
 fit <- survfit(Surv(days_alive, attritioned) ~ condition, data=ndata)
 summary(fit)
