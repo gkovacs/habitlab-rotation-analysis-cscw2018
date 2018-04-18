@@ -22,8 +22,8 @@ library(fitdistrplus)
 library(ez)
 library(lme4)
 
-basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/habitlab_data_analysis/'
-#basepath <- '/home/geza/habitlab_data_analysis/'
+#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/habitlab_data_analysis/'
+basepath <- '/home/geza/habitlab_data_analysis/'
 survivaldata_grouped_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
 survivaldata_filename <-paste(basepath, 'oldexp_lifetime_data_nongrouped_april3_4pm.csv', sep='')
 datadays_filename <- paste(basepath, 'data_april3_1am_days.csv', sep='')
@@ -217,11 +217,14 @@ summary(results)
 # GENERATES table 3
 
 ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
 
 results <- lmer(log_time_spent ~ condition + (1|domain) + (1|install_id), data = ndata)
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
+#install.packages('stargazer')
+library(stargazer)
 stargazer(results)
 ```
 
@@ -295,8 +298,8 @@ stargazer(results)
 ```
 
 ```{r}
-results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + intervention + (1|install_id), data = data_facebook_same)
-resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + intervention + (1|install_id), data = data_facebook_same)
+results <- lmer(log_time_spent ~ impression_idx + is_first_visit_of_day + intervention + (1|install_id), data = subset(data_facebook, condition == 'same'))
+resultsnull <- lmer(log_time_spent ~ is_first_visit_of_day + intervention + (1|install_id), data = subset(data_facebook, condition == 'same'))
 anova(resultsnull, results)
 summary(results)
 ```
