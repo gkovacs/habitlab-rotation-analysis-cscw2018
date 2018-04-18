@@ -124,7 +124,7 @@ ggsurvplot(fit,
           linetype = "strata", # Change line type by groups
           surv.median.line = "none", # Specify median survival
           ggtheme = theme_bw(), # Change ggplot2 theme
-          palette = c("#E7B800", "#444444", "#2E9FDF"),
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"),
           xlab="Days HabitLab is installed",
           xlim=c(0, 70),
           break.x.by = 10,
@@ -143,7 +143,8 @@ stargazer(coxresult,
           no.space=TRUE, 
           title="A Cox proportional hazards analysis over a longer period suggests that rotating with more interventions increases the hazard of attrition. Coefficients are log hazard ratio.", 
           label="tab:cox_regression_between_participants",
-          keep.stat="n"
+          keep.stat="n",
+          table.placement = "tb"
           )
 
 ```

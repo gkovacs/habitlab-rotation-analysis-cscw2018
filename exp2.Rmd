@@ -25,8 +25,8 @@ library(lme4)
 library("survival")
 library("survminer")
 
-#basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
-basepath <- '/home/geza/habitlab_data_analysis/'
+basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+#basepath <- '/home/geza/habitlab_data_analysis/'
 data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
 #data_exp2_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2 <- read.csv(data_exp2_filename)
@@ -35,6 +35,7 @@ data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april16_1am_withs
 #data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2_withsessionlengths <- read.csv(data_exp2_withsessionlengths_filename)
 
+data_exp2$condition <- factor(data_exp2$condition, levels=c("none", "info", "power"))
 summary(data_exp2)
 #summary(data_exp2_withsessionlengths)
 ```
@@ -105,11 +106,36 @@ ggsurvplot(fit,
           palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
           #palette = c("#E7B800", "#2E9FDF"))
 
+ggsurvplot(fit,
+          pval = FALSE, conf.int = TRUE,
+          risk.table = FALSE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "none", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+          palette = c("#E7B800", "#2E9FDF", "#FD2FDF"),
+          xlab="Days HabitLab is installed",
+          xlim=c(0, 7),
+          break.x.by = 1,
+          legend="bottom",
+          legend.labs = c("No design", "Mental model design", "User control design")
+          )
+ggsave(paste(basepath, 'none_vs_info.png', sep=''), width = 7.5, height = 4, units="in")
+
 
 survdiff(Surv(days_alive, attritioned) ~ condition, data=ndata)
 
 coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
 summary(coxresult)
+stargazer(coxresult, 
+          covariate.labels = c("Mental model design", "User control design"), 
+          dep.var.labels=c("Survival in days"), 
+          no.space=TRUE, 
+          title="A Cox proportional hazards analysis suggests that the informational intervention that corrected users' mental models was successful in reducing attrition due to rotation. Coefficients are log hazard ratio.", 
+          label="tab:cox_regression_design",
+          keep.stat="n",
+          table.placement = "tb"
+          )
 ```
 
 

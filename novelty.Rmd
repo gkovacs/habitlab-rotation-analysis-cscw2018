@@ -231,7 +231,7 @@ anova(resultsnull, results)
 summary(results)
 #install.packages('stargazer')
 library(stargazer)
-stargazer(results, covariate.labels = c("Rotation (baseline: static)", "(Intercept)"), dep.var.labels=c("Log time spent per day", "(Intercept)"), no.space=TRUE, title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", label="tab:effectiveness_same_vs_random")
+stargazer(results, covariate.labels = c("Rotation (baseline: static)", "(Intercept)"), dep.var.labels=c("Log time spent per day", "(Intercept)"), no.space=TRUE, title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", label="tab:effectiveness_same_vs_random", table.placement = "tb")
 ```
 
 *SIGNIFICANT* Does condition have an effect on time spent on Facebook per day?
@@ -382,7 +382,7 @@ resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(
 anova(resultsnull, results)
 summary(results)
 library(stargazer)
-stargazer(results, covariate.labels = c("Number of days the intervention has been seen", "(Intercept)"), dep.var.labels=c("Log time spent per session"), no.space=TRUE, title="Within the same condition, interventions decline in effectiveness, with longer visit lengths with increasing larger number of days since it was first observed.", label="tab:effectiveness_sessions_alldomain_vs_num_days_same")
+stargazer(results, covariate.labels = c("Number of days the intervention has been seen", "(Intercept)"), dep.var.labels=c("Log time spent per session"), no.space=TRUE, title="Within the same condition, interventions decline in effectiveness, with longer visit lengths with increasing larger number of days since it was first observed.", label="tab:effectiveness_sessions_alldomain_vs_num_days_same", table.placement = "tb")
 ```
 
 ```{r}
@@ -684,7 +684,15 @@ summary(data_peruser)
 
 coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 summary(coxresult)
-stargazer(coxresult, covariate.labels = c("Rotation (baseline: static)"), dep.var.labels=c("Survival in days"), no.space=TRUE, title="A Cox proportional hazards analysis suggests that the rotation condition substantially increases the hazard of attrition. Coefficients are log hazard ratio, so values under 1 indicate increased hazard; the exponentiated hazard ratio for the rotation condition is 1.72.", label="tab:cox_regression")
+stargazer(coxresult, 
+          covariate.labels = c("Rotation (baseline: static)"), 
+          dep.var.labels=c("Survival in days"), 
+          no.space=TRUE, 
+          title="A Cox proportional hazards analysis suggests that the rotation condition substantially increases the hazard of attrition. Coefficients are log hazard ratio, so values under 1 indicate increased hazard; the exponentiated hazard ratio for the rotation condition is 1.72.", 
+          label="tab:cox_regression", 
+          keep.stat="n",
+          table.placement = "tb"
+          )
 
 ```
 
