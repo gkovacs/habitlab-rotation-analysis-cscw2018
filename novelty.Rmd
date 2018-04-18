@@ -40,7 +40,7 @@ datadays$attritioned <- datadays$attritioned == 1
 datadays$is_last_day <- datadays$is_last_day == 1
 datadays$is_day_with_just_one_sample <- datadays$is_day_with_just_one_sample == 1
 datadays$user_saw_both_same_and_random <- datadays$user_saw_both_same_and_random == 1
-datadays$condition <- factor(datadays$condition, labels=c("same", "random"))
+datadays$condition <- factor(datadays$condition, levels=c("same", "random"))
 summary(datadays)
 ```
 
@@ -658,20 +658,29 @@ summary(data_peruser)
 ```{r}
 library("survival")
 library("survminer")
+data_peruser$first_condition_for_user <- factor(data_peruser$first_condition_for_user, levels=c("same", "random"))
 fit <- survfit(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 #fit <- survfit(Surv(days_kept_installed, did_not_complete_first_condition) ~ first_condition_for_user, data=data_peruser)
 summary(fit)
 ggsurvplot(fit,
-          pval = TRUE, conf.int = TRUE,
-          risk.table = TRUE, # Add risk table
+          pval = FALSE, conf.int = TRUE,
+          risk.table = FALSE, # Add risk table
           risk.table.col = "strata", # Change risk table color by groups
           linetype = "strata", # Change line type by groups
-          surv.median.line = "hv", # Specify median survival
+          surv.median.line = "none", # Specify median survival
           ggtheme = theme_bw(), # Change ggplot2 theme
-          palette = c("#E7B800", "#2E9FDF"))
+          palette = c("#E7B800", "#2E9FDF"),
+          xlab="Days HabitLab is installed",
+          xlim=c(0, 7),
+          break.x.by = 1,
+          legend="bottom",
+          legend.labs = c("Static", "Rotation")
+          )
 
 
 survdiff(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
+
+summary(data_peruser)
 
 coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition) ~ first_condition_for_user, data=data_peruser)
 summary(coxresult)
