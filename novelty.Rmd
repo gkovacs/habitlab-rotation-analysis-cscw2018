@@ -23,6 +23,9 @@ library(ez)
 library(lme4)
 
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+if (!file.exists(basepath)) {
+  basepath <- '/home/geza/habitlab_data_analysis/'
+}
 #basepath <- '/home/geza/habitlab_data_analysis/'
 
 survivaldata_grouped_filename <-paste(basepath, 'oldexp_lifetime_data_april3_4pm.csv', sep='')
@@ -214,6 +217,37 @@ anova(resultsnull, results)
 summary(results)
 ```
 
+```{r}
+# GENERATES table 4
+
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
+
+mean(ndata$log_time_spent[ndata$condition == "same"])
+mean(ndata$log_time_spent[ndata$condition == "random"])
+
+results <- lmer(log_time_spent ~  condition + conditionduration + (1|domain) + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ conditionduration + (1|domain) + (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+```
+
+
+
+```{r}
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
+
+mean(ndata$log_time_spent[ndata$condition == "same"])
+mean(ndata$log_time_spent[ndata$condition == "random"])
+
+results <- lmer(log_time_spent ~  condition + factor(conditionduration, levels=c('1', '3', '5', '7')) + (1|domain) + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ factor(conditionduration, levels=c('1', '3', '5', '7')) + (1|domain) + (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+```
+
+
 *SIGNIFICANT* Does condition have an effect on time spent per day?
 
 ```{r}
@@ -377,6 +411,25 @@ anova(resultsnull, results)
 summary(results)
 #library(stargazer)
 #stargazer(results)
+```
+
+```{r}
+# GENERATES result on study 1 decline in effectiveness per day
+ndata <- subset(datadays, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata <- subset(ndata, condition == 'same')
+#summary(ndata)
+
+results <- lmer(log_time_spent ~ num_days_in_same_condition + (1|domain) + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+
+
+#results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
+#resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
+#anova(resultsnull, results)
+#summary(results)
+
 ```
 
 ```{r}

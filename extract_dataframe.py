@@ -276,10 +276,13 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
     last_timestamp = firstlast_info['last_timestamp']
     user_saw_both_same_and_random = get_did_user_experience_both_same_and_random(experiment_info_with_sessions)
     for experiment_info in experiment_info_with_sessions:
+      num_days_in_same_condition = 0
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
         conditionduration = condition_info['conditionduration']
         for day_info in condition_info['day_info_list']:
+          if condition == 'same':
+            num_days_in_same_condition += 1
           domain_to_num_samples = get_domain_to_num_samples(day_info['session_info_list'])
           #is_day_with_just_one_sample = 0
           #if len(day_info['session_info_list']) < 2:
@@ -353,6 +356,7 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               'userid': userid,
               'condition': condition,
               'domain': domain,
+              'num_days_in_same_condition': num_days_in_same_condition,
             }
             accept = True
             for day_filter_func in day_filter_funcs:
