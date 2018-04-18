@@ -201,6 +201,16 @@ anova(resultsnull, results)
 summary(results)
 ```
 
+```{r}
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com')
+ndata <- subset(ndata, is_day_with_just_one_sample == 0)
+
+results <- lmer(log_time_spent ~ condition + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+```
+
 *SIGNIFICANT* Does condition have an effect on time spent per day?
 
 ```{r}
@@ -337,6 +347,19 @@ results <- lmer(log_time_spent ~ impression_idx + (1|domain) + (1|install_id), d
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(data, condition == 'same'))
 anova(resultsnull, results)
 summary(results)
+```
+
+```{r}
+ndata <- subset(data, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+
+#summary(ndata)
+
+results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(ndata, condition == 'random'))
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(ndata, condition == 'random'))
+anova(resultsnull, results)
+summary(results)
+#library(stargazer)
+#stargazer(results)
 ```
 
 ```{r}
