@@ -222,6 +222,9 @@ summary(results)
 ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
 ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
 
+mean(ndata$log_time_spent[ndata$condition == "same"])
+mean(ndata$log_time_spent[ndata$condition == "random"])
+
 results <- lmer(log_time_spent ~ condition + (1|domain) + (1|install_id), data = ndata)
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
