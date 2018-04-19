@@ -116,106 +116,6 @@ length(unique(datadays_facebook_nofirstlast$userid))
 ```
 
 
-*SIGNIFICANT* Does condition have effect on attrition rates at the day level overall?
-
-```{r}
-results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
-resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays)
-anova(resultsnull, results)
-summary(results)
-
-print("Odds ratios")
-rtab <- exp(fixef(results))
-print(rtab,digits=3)
-```
-
-*SIGNIFICANT* Does condition have effect on attrition rates at the day level, on Facebook?
-
-```{r}
-results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-anova(resultsnull, results)
-summary(results)
-
-print("Odds ratios")
-rtab <- exp(fixef(results))
-print(rtab,digits=3)
-```
-
-
-
-*SIGNIFICANT* Does condition have an effect on attrition rates at the session level?
-
-```{r}
-results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
-resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = data)
-anova(resultsnull, results)
-summary(results)
-
-print("Odds ratios")
-rtab <- exp(fixef(results))
-print(rtab,digits=3)
-```
-
-
-*SIGNIFICANT* Does condition have an effect on attrition rates at the session level, on Facebook?
-
-```{r}
-results <- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-resultsnull <- glmer(attritioned ~ intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-anova(resultsnull, results)
-summary(results)
-
-print("Odds ratios")
-rtab <- exp(fixef(results))
-print(rtab,digits=3)
-```
-
-Does condition duration have an effect on attrition rates at the day level?
-
-```{r}
-results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays)
-resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
-anova(resultsnull, results)
-summary(results)
-```
-
-Does condition duration have an effect on attrition rates at the day level on Facebook?
-
-```{r}
-results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
-anova(resultsnull, results)
-summary(results)
-```
-
-Does condition duration have an effect on attrition rates at the session level?
-
-```{r}
-results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = data)
-resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
-anova(resultsnull, results)
-summary(results)
-```
-
-Does condition duration have an effect on attrition rates at the session level on Facebook?
-
-```{r}
-results <- glmer(attritioned ~ as.factor(conditionduration) + condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-resultsnull <- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
-anova(resultsnull, results)
-summary(results)
-```
-
-```{r}
-ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com')
-ndata <- subset(ndata, is_day_with_just_one_sample == 0)
-
-results <- lmer(log_time_spent ~ condition + (1|install_id), data = ndata)
-resultsnull <- lmer(log_time_spent ~ (1|install_id), data = ndata)
-anova(resultsnull, results)
-summary(results)
-```
 
 ```{r}
 # GENERATES table 4
@@ -230,6 +130,17 @@ results <- lmer(log_time_spent ~  condition + conditionduration + (1|domain) + (
 resultsnull <- lmer(log_time_spent ~ conditionduration + (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
+
+library(stargazer)
+stargazer(results, 
+          covariate.labels = c("Rotation (baseline: static)", "Block length", "(Intercept)"),
+          dep.var.labels=c("Log time spent per day", "(Intercept)"), 
+          no.space=TRUE, 
+          title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", 
+          label="tab:effectiveness_same_vs_random", 
+          keep.stat="n",
+          table.placement = "tb"
+          )
 ```
 
 
@@ -453,6 +364,114 @@ stargazer(results,
           table.placement = "tb"
 )
 ```
+
+
+Older analyses:
+
+
+*SIGNIFICANT* Does condition have effect on attrition rates at the day level overall?
+
+```{r}
+results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
+resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays)
+anova(resultsnull, results)
+summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
+```
+
+*SIGNIFICANT* Does condition have effect on attrition rates at the day level, on Facebook?
+
+```{r}
+results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
+resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
+anova(resultsnull, results)
+summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
+```
+
+
+
+*SIGNIFICANT* Does condition have an effect on attrition rates at the session level?
+
+```{r}
+results <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
+resultsnull <- glmer(attritioned ~ (1|install_id), family=binomial(link='logit'), data = data)
+anova(resultsnull, results)
+summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
+```
+
+
+*SIGNIFICANT* Does condition have an effect on attrition rates at the session level, on Facebook?
+
+```{r}
+results <- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
+resultsnull <- glmer(attritioned ~ intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
+anova(resultsnull, results)
+summary(results)
+
+print("Odds ratios")
+rtab <- exp(fixef(results))
+print(rtab,digits=3)
+```
+
+Does condition duration have an effect on attrition rates at the day level?
+
+```{r}
+results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays)
+resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays)
+anova(resultsnull, results)
+summary(results)
+```
+
+Does condition duration have an effect on attrition rates at the day level on Facebook?
+
+```{r}
+results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
+resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = datadays_facebook)
+anova(resultsnull, results)
+summary(results)
+```
+
+Does condition duration have an effect on attrition rates at the session level?
+
+```{r}
+results <- glmer(attritioned ~ as.factor(conditionduration) + condition + (1|install_id), family=binomial(link='logit'), data = data)
+resultsnull <- glmer(attritioned ~ condition + (1|install_id), family=binomial(link='logit'), data = data)
+anova(resultsnull, results)
+summary(results)
+```
+
+Does condition duration have an effect on attrition rates at the session level on Facebook?
+
+```{r}
+results <- glmer(attritioned ~ as.factor(conditionduration) + condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
+resultsnull <- glmer(attritioned ~ condition + intervention + (1|install_id), family=binomial(link='logit'), data = data_facebook)
+anova(resultsnull, results)
+summary(results)
+```
+
+```{r}
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com')
+ndata <- subset(ndata, is_day_with_just_one_sample == 0)
+
+results <- lmer(log_time_spent ~ condition + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+```
+
+
+
 
 ```{r}
 results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + condition + (1|domain) + (1|install_id), data = data)
