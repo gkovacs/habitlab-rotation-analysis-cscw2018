@@ -139,7 +139,8 @@ stargazer(results,
           title="Daily time spent on sites in the static and rotation conditions. Users spend less time per day on sites in the random condition.", 
           label="tab:effectiveness_same_vs_random", 
           keep.stat="n",
-          table.placement = "tb"
+          table.placement = "tb",
+          star.cutoffs = c(0.05, 0.01, 0.001)
           )
 ```
 
@@ -326,14 +327,27 @@ summary(results)
 
 ```{r}
 # GENERATES result on study 1 decline in effectiveness per day
-ndata <- subset(datadays, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
 ndata <- subset(ndata, condition == 'same')
 #summary(ndata)
 
-results <- lmer(log_time_spent ~ num_days_in_same_condition + (1|domain) + (1|install_id), data = ndata)
+summary(ndata)
+
+results <- lmer(log_time_spent ~ num_days_in_same_condition + conditionduration + (1|domain) + (1|install_id), data = ndata)
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
+
+stargazer(results, 
+          covariate.labels = c("Number of days in the static condition", "(Intercept)"), 
+          dep.var.labels=c("Log time spent per day"), 
+          no.space=TRUE, 
+          title="Within the same condition, interventions decline in effectiveness, with longer visit lengths increasing with the number of days seeing the same static intervention.", 
+          label="tab:effectiveness_sessions_alldomain_vs_num_days_same", 
+          keep.stat="n",
+          table.placement = "tb",
+          star.cutoffs = c(0.05, 0.01, 0.001)
+)
 
 
 #results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
@@ -779,7 +793,8 @@ stargazer(coxresult,
           title="A Cox proportional hazards analysis suggests that the rotation condition substantially increases the hazard of attrition. Coefficients are log hazard ratio, so values under 1 indicate increased hazard; the exponentiated hazard ratio for the rotation condition is 1.72.", 
           label="tab:cox_regression", 
           keep.stat="n",
-          table.placement = "tb"
+          table.placement = "tb",
+          star.cutoffs = c(0.05, 0.01, 0.001)
           )
 
 ```
