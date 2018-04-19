@@ -118,7 +118,12 @@ length(unique(datadays_facebook_nofirstlast$userid))
 
 
 ```{r}
-# GENERATES table 4
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
+summary(ndata)
+```
+
+```{r}
+# GENERATES table 3
 
 ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
 ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
@@ -325,17 +330,9 @@ summary(results)
 #stargazer(results)
 ```
 
-```{r}
-summary(datadays_nofirstlast)
-```
-
-```{r}
-summary(datadays_nofirstlast$domain)
-```
 
 ```{r}
 # GENERATES result on study 1 decline in effectiveness per day
-<<<<<<< HEAD
 #ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
 ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
 #ndata <- subset(ndata, is_last_day == FALSE)
@@ -347,24 +344,15 @@ ndata <- subset(ndata, condition == 'same')
 #results <- lmer(log_time_spent ~ num_days_saw_intervention_for_same_intervention + (1|domain) + (1|install_id), data = ndata)
 #resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 results <- lmer(log_time_spent ~ num_days_saw_intervention_for_same_intervention + (1|domain) + (1|install_id), data = ndata)
-=======
-ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
-ndata <- subset(ndata, condition == 'same')
-#summary(ndata)
-
-summary(ndata)
-
-results <- lmer(log_time_spent ~ num_days_in_same_condition + conditionduration + (1|domain) + (1|install_id), data = ndata)
->>>>>>> 8d67e0677b016a4e62dfe25aa5728573720f2b2b
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
 
 stargazer(results, 
-          covariate.labels = c("Number of days in the static condition", "(Intercept)"), 
+          covariate.labels = c("Number of days the user had seen the static intervention", "(Intercept)"), 
           dep.var.labels=c("Log time spent per day"), 
           no.space=TRUE, 
-          title="Within the same condition, interventions decline in effectiveness, with longer visit lengths increasing with the number of days seeing the same static intervention.", 
+          title="Within the static condition, interventions decline in effectiveness, with longer visit lengths increasing with the number of days seeing the same static intervention.", 
           label="tab:effectiveness_sessions_alldomain_vs_num_days_same", 
           keep.stat="n",
           table.placement = "tb",
