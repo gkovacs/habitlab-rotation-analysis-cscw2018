@@ -277,12 +277,12 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
     user_saw_both_same_and_random = get_did_user_experience_both_same_and_random(experiment_info_with_sessions)
     for experiment_info in experiment_info_with_sessions:
       num_days_in_same_condition = 0
+      num_days_in_same_condition_and_saw_intervention = 0
+      intervention_to_num_days_seen_at_least_once = Counter()
       for condition_info in experiment_info['condition_info_list']:
         condition = condition_info['condition']
         conditionduration = condition_info['conditionduration']
         for day_info in condition_info['day_info_list']:
-          if condition == 'same':
-            num_days_in_same_condition += 1
           domain_to_num_samples = get_domain_to_num_samples(day_info['session_info_list'])
           #is_day_with_just_one_sample = 0
           #if len(day_info['session_info_list']) < 2:
@@ -295,6 +295,8 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
           days_since_install = None
           days_until_last_day = None
           domain_to_last_timestamp = {}
+          saw_intervention_today_same = False
+          interventions_seen_today = set()
           for session_info in sorted(day_info['session_info_list'], key=lambda k: k['timestamp']):
             domain = session_info['domain']
             if domain not in domain_to_num_impressions_on_day:
@@ -312,7 +314,9 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               last_timestamp_on_day = timestamp
             last_timestamp_on_day = max(last_timestamp_on_day, timestamp)
             intervention = session_info['intervention']
+            interventions_seen_today.add(intervention)
             if condition == 'same':
+              saw_intervention_today_same = True
               day_intervention = intervention
             localepoch = session_info['localepoch']
             days_since_install = localepoch - first_localepoch
@@ -357,13 +361,23 @@ def extract_dataframe_daily(alldata, day_filter_funcs=[], user_filter_funcs=[]):
               'condition': condition,
               'domain': domain,
               'num_days_in_same_condition': num_days_in_same_condition,
+              'num_days_in_same_condition_and_saw_intervention': num_days_in_same_condition_and_saw_intervention,
             }
+            row['num_days_saw_intervention_for_same_intervention'] = 0
+            if condition == 'same':
+              row['num_days_saw_intervention_for_same_intervention'] = intervention_to_num_days_seen_at_least_once[day_intervention]
             accept = True
             for day_filter_func in day_filter_funcs:
               if not day_filter_func(row):
                 accept = False
             if accept:
               rows.append(row)
+          for intervention in interventions_seen_today:
+            intervention_to_num_days_seen_at_least_once[intervention] += 1
+          if condition == 'same':
+            num_days_in_same_condition += 1
+            if saw_intervention_today_same:
+              num_days_in_same_condition_and_saw_intervention += 1
   print(Counter(install_id_to_first_condition.values()))
   return pd.DataFrame(rows)
 

@@ -118,9 +118,14 @@ length(unique(datadays_facebook_nofirstlast$userid))
 
 
 ```{r}
-# GENERATES table 4
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
+summary(ndata)
+```
 
-ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+```{r}
+# GENERATES table 3
+
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
 ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
 
 mean(ndata$log_time_spent[ndata$condition == "same"])
@@ -165,7 +170,7 @@ summary(results)
 ```{r}
 # GENERATES table 3
 
-ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
 ndata$condition <- factor(ndata$condition, levels=c('same', 'random'))
 
 mean(ndata$log_time_spent[ndata$condition == "same"])
@@ -325,22 +330,30 @@ summary(results)
 #stargazer(results)
 ```
 
+
 ```{r}
-# GENERATES result on study 1 decline in effectiveness per day
-ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
-ndata <- subset(ndata, condition == 'same' | condition == 'random')
+
+#ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
+#ndata <- subset(ndata, is_last_day == FALSE)
+#ndata <- subset(datadays_nofirstlast, domain == 'www.facebook.com')
+ndata <- subset(ndata, condition == 'same')
 #summary(ndata)
 
-results <- lmer(log_time_spent ~ days_since_install + condition + (1|domain) + (1|install_id), data = ndata)
+#results <- lmer(log_time_spent ~ num_days_in_same_condition + (1|install_id), data = ndata)
+#results <- lmer(log_time_spent ~ num_days_saw_intervention_for_same_intervention + (1|domain) + (1|install_id), data = ndata)
+#resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
+results <- lmer(log_time_spent ~ num_days_saw_intervention_for_same_intervention + (1|domain) + (1|install_id), data = ndata)
+
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
 anova(resultsnull, results)
 summary(results)
 
 stargazer(results, 
-          covariate.labels = c("Number of days since install", "Condition", "(Intercept)"), 
+          covariate.labels = c("Number of days the user had seen the static intervention", "(Intercept)"), 
           dep.var.labels=c("Log time spent per day"), 
           no.space=TRUE, 
-          title="Controlling for condition, interventions decline in effectiveness over time, as seen with increasing log time per day.", 
+          title="Within the static condition, interventions decline in effectiveness, with longer visit lengths increasing with the number of days seeing the same static intervention.", 
           label="tab:effectiveness_sessions_alldomain_vs_num_days_same", 
           keep.stat="n",
           table.placement = "tb",
@@ -359,7 +372,7 @@ stargazer(results,
 # GENERATES table 2
 # generates tab:effectiveness_sessions_alldomains_vs_num_days_same
 
-ndata <- subset(data, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com')
+ndata <- subset(data, domain == 'www.facebook.com' | domain == 'www.youtube.com' | domain == 'www.reddit.com' | domain == 'twitter.com' | domain == 'vk.com' | domain == 'www.amazon.com')
 
 results <- lmer(log_time_spent ~ num_days_intervention_seen_at_least_once + (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
 resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = subset(ndata, condition == 'same'))
