@@ -140,7 +140,8 @@ stargazer(coxresult,
           title="A Cox proportional hazards analysis suggests that the informational intervention that corrected users' mental models was successful in reducing attrition due to rotation. Coefficients are log hazard ratio.", 
           label="tab:cox_regression_design",
           keep.stat="n",
-          table.placement = "tb"
+          table.placement = "tb",
+          star.cutoffs = c(0.05, 0.01, 0.001)
           )
 ```
 
