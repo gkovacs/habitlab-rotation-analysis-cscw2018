@@ -386,6 +386,8 @@ def extract_dataframe_peruser(alldata):
   install_id_to_first_condition = {}
   max_timestamp = get_global_max_timestamp(alldata)
   for install_id,experiment_info_with_sessions in alldata.items():
+    userid = ''
+    last_condition_for_user = ''
     firstlast_info = get_firstlast_info(experiment_info_with_sessions)
     first_localepoch = firstlast_info['first_localepoch']
     last_localepoch = firstlast_info['last_localepoch']
@@ -408,13 +410,17 @@ def extract_dataframe_peruser(alldata):
           first_conditionduration_for_user = conditionduration
         for day_info in condition_info['day_info_list']:
           for session_info in sorted(day_info['session_info_list'], key=lambda k: k['timestamp']):
+            last_condition_for_user = condition
+            userid = session_info['userid']
             domain = session_info['domain']
     if first_condition_for_user == None or first_conditionduration_for_user == None:
       continue
     completed_first_condition = days_kept_installed >= first_conditionduration_for_user
     attritioned_during_first_condition = (not completed_first_condition) and attritioned
     rows.append({
+      'userid': userid,
       'install_id': install_id,
+      'last_condition_for_user': last_condition_for_user,
       'attritioned': int(attritioned),
       'days_kept_installed': days_kept_installed,
       'attritioned_during_first_condition': int(attritioned_during_first_condition),

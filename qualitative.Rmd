@@ -1,0 +1,179 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+```{r}
+basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
+if (!file.exists(basepath)) {
+  basepath <- '/home/geza/habitlab_data_analysis/'
+}
+#basepath <- '/home/geza/habitlab_data_analysis/'
+#data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
+data_filename <- paste(basepath, 'qualitative_data_with_studies_april18_3am.csv', sep='')
+data <- read.csv(data_filename)
+summary(data)
+```
+
+
+```{r}
+study1 <- subset(data, study == 'study1')
+summary(study1)
+```
+
+```{r}
+study2 <- subset(data, study == 'study2')
+study2 <- subset(study2, study2condition == 'info' | study2condition == 'none' | study2condition == 'power')
+study2noneboth <- study2
+study2noneboth$study2condition <- ifelse(study2$condition == 'none', 'none', 'manipulation')
+summary(study2)
+```
+
+```{r}
+tb <- table(study2noneboth$study2condition, study2noneboth$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+fisher.test(tb)
+```
+
+```{r}
+tb <- table(study2noneboth$study2condition, study2noneboth$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+fisher.test(tb)
+```
+
+
+```{r}
+tb <- table(study2$study2condition, study2$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study2$study2condition, study2$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study2$study2condition, study2$lag)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study2$study2condition, study2$privacy)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+
+
+
+
+```{r}
+study3 <- subset(data, study == 'study3')
+summary(study3)
+```
+
+```{r}
+study3oneall <- subset(data, study3condition == 'all_of_defaults' | study3condition == 'one')
+summary(study3oneall)
+```
+
+
+```{r}
+study3nochange <- subset(study3, study3did_user_change_interventions == 'false')
+summary(study3nochange)
+```
+
+
+```{r}
+study3oneallnochange <- subset(study3oneall, study3did_user_change_interventions == 'false')
+summary(study3oneall)
+```
+
+
+
+```{r}
+tb <- table(study3oneall$condition, study3oneall$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+fisher.test(tb)
+```
+
+```{r}
+tb <- table(study3oneall$condition, study3oneall$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+fisher.test(tb)
+```
+
+```{r}
+tb <- table(study3oneallnochange$condition, study3oneallnochange$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+fisher.test(tb)
+```
+
+
+```{r}
+tb <- table(study3oneallnochange$condition, study3oneallnochange$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+
+```{r}
+tb <- table(study3$condition, study3$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3$condition, study3$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3$condition, study3$lag)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3$condition, study3$privacy)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+
+
+```{r}
+tb <- table(study3nochange$condition, study3nochange$annoying)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3nochange$condition, study3nochange$ineffective)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3nochange$condition, study3nochange$lag)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
+
+```{r}
+tb <- table(study3nochange$condition, study3nochange$privacy)
+tb <- tb[which(rowSums(tb) > 0),]
+chisq.test(tb)
+```
