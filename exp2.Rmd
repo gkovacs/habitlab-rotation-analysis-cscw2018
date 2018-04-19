@@ -35,6 +35,10 @@ data_exp2_filename <- paste(basepath, 'exp2_april18_3am_withsessionlengths.csv',
 #data_exp2_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2 <- read.csv(data_exp2_filename)
 
+data_exp2_days_filename <- paste(basepath, 'exp2_days_april18_3am.csv', sep='')
+#data_exp2_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
+data_exp2_days <- read.csv(data_exp2_days_filename)
+
 data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april16_1am_withsessionlengths.csv', sep='')
 #data_exp2_withsessionlengths_filename <- paste(basepath, 'exp2_april17_2am_withsessionlengths.csv', sep='')
 data_exp2_withsessionlengths <- read.csv(data_exp2_withsessionlengths_filename)
@@ -44,6 +48,17 @@ summary(data_exp2)
 #summary(data_exp2_withsessionlengths)
 ```
 
+
+```{r}
+# no significant result in time spent between conditions
+ndata <- data_exp2_days
+ndata <- subset(ndata, condition == 'none' | condition == 'power' | condition == 'info')
+
+results <- lmer(log_time_spent ~  condition + (1|domain) + (1|install_id), data = ndata)
+resultsnull <- lmer(log_time_spent ~ (1|domain) + (1|install_id), data = ndata)
+anova(resultsnull, results)
+summary(results)
+```
 
 
 ```{r}
