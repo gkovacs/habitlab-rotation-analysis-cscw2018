@@ -150,7 +150,7 @@ coxresult <- coxph(Surv(days_alive, attritioned) ~ condition, data=ndata)
 summary(coxresult)
 stargazer(coxresult, 
           covariate.labels = c("Mental model design", "User control design"), 
-          dep.var.labels=c("Log hazard"), 
+          dep.var.labels=c("Log hazard ratio"), 
           no.space=TRUE, 
           title="A Cox proportional hazards analysis suggests that the informational intervention that corrected users' mental models was successful in reducing attrition due to rotation. Coefficients are log hazard ratio.", 
           label="tab:cox_regression_design",

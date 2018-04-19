@@ -139,7 +139,7 @@ summary(coxresult)
 
 stargazer(coxresult, 
           covariate.labels = c("Half of total interventions (baseline: one intervention)", "All interventions"), 
-          dep.var.labels=c("Log hazard"), 
+          dep.var.labels=c("Log hazard ratio"), 
           no.space=TRUE, 
           title="A Cox proportional hazards analysis over a longer period suggests that rotating with more interventions increases the hazard of attrition. Coefficients are log hazard ratio.", 
           label="tab:cox_regression_between_participants",

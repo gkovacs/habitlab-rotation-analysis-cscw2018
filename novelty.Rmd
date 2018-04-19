@@ -799,7 +799,7 @@ coxresult <- coxph(Surv(days_kept_installed, attritioned_during_first_condition)
 summary(coxresult)
 stargazer(coxresult, 
           covariate.labels = c("Rotation (baseline: static)"), 
-          dep.var.labels=c("Log hazard"), 
+          dep.var.labels=c("Log hazard ratio"), 
           no.space=TRUE, 
           title="A Cox proportional hazards analysis suggests that the rotation condition substantially increases the hazard of attrition. Coefficients are log hazard ratio, so values under 1 indicate increased hazard; the exponentiated hazard ratio for the rotation condition is 1.72.", 
           label="tab:cox_regression", 
