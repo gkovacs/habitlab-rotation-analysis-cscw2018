@@ -35,7 +35,20 @@ summary(optional_difficulty)
 ```
 
 ```{r}
+optional_difficulty <- subset(data, difficulty_selection_screen == 'nodefault_optional')
+optional_difficulty <- subset(optional_difficulty, selected_difficulty == 'noneselected')
+summary(optional_difficulty)
+optional_difficulty$last_onboarding_slide_idx
+```
+
+```{r}
 forced_difficulty <- subset(data, difficulty_selection_screen == 'nodefault_forcedchoice')
+summary(forced_difficulty)
+```
+
+```{r}
+forced_difficulty <- subset(data, difficulty_selection_screen == 'nodefault_forcedchoice')
+forced_difficulty <- subset(forced_difficulty, selected_difficulty == 'noneselected')
 summary(forced_difficulty)
 ```
 
