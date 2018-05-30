@@ -101,6 +101,33 @@ summary(coxresult)
 ```
 
 
+```{r}
+ndata <- data
+#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+#ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(coxresult)
+```
+
 
 
 ```{r}
@@ -110,6 +137,34 @@ ndata <- data
 #ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
 #ndata <- subset(ndata, saw_multiple_interventions == TRUE)
 summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ selected_difficulty, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ selected_difficulty, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ selected_difficulty, data=ndata)
+summary(coxresult)
+```
+
+
+```{r}
+ndata <- data
+#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+#ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+ndata <- subset(ndata, selected_difficulty == 'nothing' | selected_difficulty == 'hard')
 fit <- survfit(Surv(lifetime, attritioned) ~ selected_difficulty, data=ndata)
 summary(fit)
 ggsurvplot(fit,
