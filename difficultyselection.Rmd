@@ -15,11 +15,14 @@ if (!file.exists(basepath)) {
 #basepath <- '/home/geza/habitlab_data_analysis/'
 #data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_may23_1am.csv', sep='')
-data_filename <- paste(basepath, 'difficultyselectionexp_may29_9pm.csv', sep='')
+#data_filename <- paste(basepath, 'difficultyselectionexp_may29_9pm.csv', sep='')
+#data_filename <- paste(basepath, 'difficultyselectionexp_may30_11am.csv', sep='')
+data_filename <- paste(basepath, 'difficultyselectionexp_may31_11am.csv', sep='')
 data <- read.csv(data_filename)
 data$attritioned <- data$attritioned == 'true'
 data$reward_gifs <- data$reward_gifs == 'on'
 data$goal_notifications <- data$goal_notifications == 'on'
+data$domain_visit_info_compressed <- NULL
 data <- subset(data, num_install_ids == 1)
 data <- subset(data, duplicate_user == 'false')
 #data <- subset(data, lifetime > 20)
@@ -156,6 +159,62 @@ coxresult <- coxph(Surv(lifetime, attritioned) ~ difficulty_selection_screen, da
 summary(coxresult)
 ```
 
+```{r}
+ndata <- data
+ndata <- subset(ndata, difficulty_selection_screen == 'none' | difficulty_selection_screen == 'nodefault_forcedchoice')
+#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+#ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(coxresult)
+```
+
+
+```{r}
+ndata <- data
+ndata <- subset(ndata, difficulty_selection_screen == 'none' | difficulty_selection_screen == 'nodefault_optional')
+#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+#ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
+#ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
+#ndata <- subset(ndata, saw_multiple_interventions == TRUE)
+summary(ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(fit)
+ggsurvplot(fit,
+          pval = TRUE, conf.int = TRUE,
+          risk.table = TRUE, # Add risk table
+          risk.table.col = "strata", # Change risk table color by groups
+          linetype = "strata", # Change line type by groups
+          surv.median.line = "hv", # Specify median survival
+          ggtheme = theme_bw(), # Change ggplot2 theme
+)
+          #palette = c("#E7B800", "#2E9FDF", "#FD2FDF"))
+          #palette = c("#E7B800", "#2E9FDF"))
+
+
+survdiff(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+
+coxresult <- coxph(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
+summary(coxresult)
+```
 
 ```{r}
 ndata <- data
