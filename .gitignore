@@ -36,3 +36,4 @@ vignettes/*.pdf
 rsconnect/
 
 *.csv
+.ipynb_checkpoints
