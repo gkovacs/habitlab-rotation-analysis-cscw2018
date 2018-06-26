@@ -8,6 +8,15 @@ This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute
 Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
 
 ```{r}
+library(plyr)
+library(fitdistrplus)
+#library(ez)
+library(lme4)
+library("survival")
+library("survminer")
+```
+
+```{r}
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 if (!file.exists(basepath)) {
   basepath <- '/home/geza/habitlab_data_analysis/'
@@ -18,7 +27,8 @@ if (!file.exists(basepath)) {
 #data_filename <- paste(basepath, 'difficultyselectionexp_may29_9pm.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_may30_11am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_may31_11am.csv', sep='')
-data_filename <- paste(basepath, 'difficultyselectionexp_june6_3pm.csv', sep='')
+#data_filename <- paste(basepath, 'difficultyselectionexp_june6_3pm.csv', sep='')
+data_filename <- paste(basepath, 'difficultyselectionexp_june25_9pm.csv', sep='')
 data <- read.csv(data_filename)
 data$attritioned <- data$attritioned == 'true'
 data$reward_gifs <- data$reward_gifs == 'on'
@@ -65,19 +75,53 @@ summary(no_difficulty_selection)
 ```
 
 ```{r}
+print('onboarding completion ratios')
+no_difficulty_selection <- subset(data, difficulty_selection_screen == 'none')
+completed <- length(which(no_difficulty_selection$onboarding_completed == 'true'))
+not_completed <- length(which(no_difficulty_selection$onboarding_completed == 'false'))
+ratio <- completed / (completed + not_completed)
+cat('no difficulty selection screen', ratio, '\n')
+
+optional_difficulty <- subset(data, difficulty_selection_screen == 'nodefault_optional')
+completed <- length(which(optional_difficulty$onboarding_completed == 'true'))
+not_completed <- length(which(optional_difficulty$onboarding_completed == 'false'))
+ratio <- completed / (completed + not_completed)
+cat('optional difficulty selection screen', ratio, '\n')
+
+forced_difficulty <- subset(data, difficulty_selection_screen == 'nodefault_forcedchoice')
+completed <- length(which(forced_difficulty$onboarding_completed == 'true'))
+not_completed <- length(which(forced_difficulty$onboarding_completed == 'false'))
+ratio <- completed / (completed + not_completed)
+cat('forced difficulty selection screen', ratio, '\n')
+```
+
+```{r}
+print('forced choice vs optional')
+ndata <- subset(data, difficulty_selection_screen == 'nodefault_optional' | difficulty_selection_screen == 'nodefault_forcedchoice')
+tb <- table(ndata$difficulty_selection_screen, ndata$onboarding_completed)
+tb <- tb[which(rowSums(tb) > 0),]
+fisher.test(tb)
+
+print('no choice vs optional')
+ndata <- subset(data, difficulty_selection_screen == 'none' | difficulty_selection_screen == 'nodefault_optional')
+tb <- table(ndata$difficulty_selection_screen, ndata$onboarding_completed)
+tb <- tb[which(rowSums(tb) > 0),]
+fisher.test(tb)
+
+print('forced choice vs no choice')
+ndata <- subset(data, difficulty_selection_screen == 'none' | difficulty_selection_screen == 'nodefault_forcedchoice')
+tb <- table(ndata$difficulty_selection_screen, ndata$onboarding_completed)
+tb <- tb[which(rowSums(tb) > 0),]
+fisher.test(tb)
+```
+
+```{r}
 tb <- table(data$difficulty_selection_screen, data$onboarding_completed)
 tb <- tb[which(rowSums(tb) > 0),]
 chisq.test(tb)
 fisher.test(tb)
 ```
 
-```{r}
-library(fitdistrplus)
-#library(ez)
-library(lme4)
-library("survival")
-library("survminer")
-```
 
 ```{r}
 ndata <- data
