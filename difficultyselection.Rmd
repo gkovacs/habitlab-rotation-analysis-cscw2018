@@ -14,12 +14,13 @@ library(fitdistrplus)
 library(lme4)
 library("survival")
 library("survminer")
+
 ```
 
 ```{r}
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 if (!file.exists(basepath)) {
-  basepath <- '/home/geza/habitlab_data_analysis/'
+  basepath <- '/Users/golrokh/Desktop/habitlab_data_analysis/'
 }
 #basepath <- '/home/geza/habitlab_data_analysis/'
 #data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
@@ -28,7 +29,7 @@ if (!file.exists(basepath)) {
 #data_filename <- paste(basepath, 'difficultyselectionexp_may30_11am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_may31_11am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_june6_3pm.csv', sep='')
-data_filename <- paste(basepath, 'difficultyselectionexp_june25_9pm.csv', sep='')
+data_filename <- paste(basepath, 'AUG6.csv', sep='')
 data <- read.csv(data_filename)
 data$attritioned <- data$attritioned == 'true'
 data$reward_gifs <- data$reward_gifs == 'on'
