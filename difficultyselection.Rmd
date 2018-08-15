@@ -20,7 +20,7 @@ library("survminer")
 ```{r}
 basepath <- '/Users/msb/Dropbox (Stanford HCI)/projects/habitlab/'
 if (!file.exists(basepath)) {
-  basepath <- '/Users/golrokh/Desktop/habitlab_data_analysis/'
+  basepath <- '/Users/golrokh/Desktop/habitlab_data_analysis/data/'
 }
 #basepath <- '/home/geza/habitlab_data_analysis/'
 #data_exp2_filename <- paste(basepath, 'exp2_april16_1am.csv', sep='')
@@ -29,7 +29,7 @@ if (!file.exists(basepath)) {
 #data_filename <- paste(basepath, 'difficultyselectionexp_may30_11am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_may31_11am.csv', sep='')
 #data_filename <- paste(basepath, 'difficultyselectionexp_june6_3pm.csv', sep='')
-data_filename <- paste(basepath, 'AUG6.csv', sep='')
+data_filename <- paste(basepath, 'AUG8.csv', sep='')
 data <- read.csv(data_filename)
 data$attritioned <- data$attritioned == 'true'
 data$reward_gifs <- data$reward_gifs == 'on'
@@ -120,18 +120,19 @@ fisher.test(tb)
 tb <- table(data$difficulty_selection_screen, data$onboarding_completed)
 tb <- tb[which(rowSums(tb) > 0),]
 chisq.test(tb)
-fisher.test(tb)
+#fisher.test(tb)
 ```
 
 
 ```{r}
-ndata <- data
+ndata <- subset(data,  first_active < 20)
+ndata <-subset(ndata, difficulty_selection_screen == 'nochoice_easy' | difficulty_selection_screen == 'nochoice_medium' | difficulty_selection_screen == 'nochoice_hard' | difficulty_selection_screen == 'nochoice_nothing' | (difficulty_selection_screen == 'nodefault_optional'))
 #ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
 #ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
 #ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
 #ndata <- subset(ndata, saw_multiple_interventions == TRUE)
 summary(ndata)
-fit <- survfit(Surv(lifetime, attritioned) ~ goal_notifications, data=ndata)
+fit <- survfit(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
 summary(fit)
 ggsurvplot(fit,
           pval = TRUE, conf.int = TRUE,
@@ -145,11 +146,12 @@ ggsurvplot(fit,
           #palette = c("#E7B800", "#2E9FDF"))
 
 
-survdiff(Surv(lifetime, attritioned) ~ goal_notifications, data=ndata)
+survdiff(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
 
-coxresult <- coxph(Surv(lifetime, attritioned) ~ goal_notifications, data=ndata)
+coxresult <- coxph(Surv(lifetime, attritioned) ~ difficulty_selection_screen, data=ndata)
 summary(coxresult)
 ```
+
 
 ```{r}
 ndata <- data
@@ -180,7 +182,7 @@ summary(coxresult)
 
 ```{r}
 ndata <- data
-#ndata <- subset(ndata, condition == 'one' | condition == 'all_of_defaults')
+ndata <- subset(ndata, difficulty_selection_screen== 'nodefault_forcedchoice' |  difficulty_selection_screen== 'nodefault_optional' |  difficulty_selection_screen== 'none' )
 #ndata <- subset(ndata, did_user_change_interventions_5min == FALSE)
 #ndata <- subset(ndata, saw_multiple_facebook_interventions == TRUE)
 #ndata <- subset(ndata, saw_multiple_interventions == TRUE)
